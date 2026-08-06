@@ -4,7 +4,7 @@
 
 Veriducta is a technically rigorous proof of concept that answers one question no existing RAG observability tool can: given a failed answer, which pipeline stage caused the failure, and by how much?
 
-> This repository is currently at **Phase 0** (engineering foundation). No RAG functionality is implemented yet.
+> This repository is currently at **Phase 1** (ingestion pipeline). The document parsing, chunking, version graph, embedding, BM25 index, and Qdrant upsert are complete. Retrieval is not yet implemented.
 
 ---
 

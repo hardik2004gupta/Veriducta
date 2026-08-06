@@ -22,7 +22,7 @@
 │  Layer 3 — Retrieval (retrieval/)                         │
 │  BM25 + dense, RRF, temporal filter, reranker, expander   │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 2 — Ingestion (ingestion/)                         │
+│  Layer 2 — Ingestion (ingestion/) ✓ Phase 1 complete      │
 │  PDF parsing, chunking, embedding, Qdrant upsert, BM25    │
 ├───────────────────────────────────────────────────────────┤
 │  Layer 1 — Foundation                                     │

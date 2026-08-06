@@ -29,7 +29,8 @@ def to_json(obj: Any, *, indent: bool = False) -> bytes:
     opts = orjson.OPT_NON_STR_KEYS | orjson.OPT_SERIALIZE_UUID
     if indent:
         opts |= orjson.OPT_INDENT_2
-    return orjson.dumps(obj, default=_default, option=opts)
+    result: bytes = orjson.dumps(obj, default=_default, option=opts)
+    return result
 
 
 def to_json_str(obj: Any, *, indent: bool = False) -> str:

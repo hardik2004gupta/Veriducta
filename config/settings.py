@@ -62,6 +62,39 @@ class MinIOSettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="MINIO_")
 
 
+class IngestionSettings(BaseSettings):
+    """Ingestion pipeline configuration."""
+
+    corpus_dir: str = Field(default="corpus")
+    sidecar_dir: str = Field(default="corpus/sidecars")
+    bm25_index_path: str = Field(default="corpus/bm25_index.pkl")
+    version_graph_path: str = Field(default="corpus/version_graph.json")
+    chunking_snapshot_dir: str = Field(default="config/chunking_snapshots")
+    embedding_batch_size: int = Field(default=32, ge=1)
+    parent_size_tokens: int = Field(default=1500, ge=100)
+    child_size_tokens: int = Field(default=300, ge=50)
+    child_overlap_tokens: int = Field(default=50, ge=0)
+    boundary_aware: bool = Field(default=True)
+
+    model_config = SettingsConfigDict(env_prefix="INGESTION_")
+
+
+class RetrievalSettings(BaseSettings):
+    """Retrieval pipeline configuration."""
+
+    bm25_top_k: int = Field(default=100, ge=1)
+    dense_top_k: int = Field(default=100, ge=1)
+    rrf_k: int = Field(default=60, ge=1)
+    reranker_model_id: str = Field(default="cross-encoder/ms-marco-MiniLM-L-12-v2")
+    reranker_input_top_k: int = Field(default=40, ge=1)
+    reranker_output_top_k: int = Field(default=8, ge=1)
+    embedding_cache_size: int = Field(default=1000, ge=0)
+    embedding_cache_ttl_seconds: int = Field(default=3600, ge=1)
+    temporal_filtering_enabled: bool = Field(default=True)
+
+    model_config = SettingsConfigDict(env_prefix="RETRIEVAL_")
+
+
 class ObservabilitySettings(BaseSettings):
     """OpenTelemetry and Prometheus configuration."""
 
@@ -69,6 +102,7 @@ class ObservabilitySettings(BaseSettings):
     prometheus_port: int = Field(default=8000, ge=1, le=65535)
     service_name: str = Field(default="veriducta")
     service_version: str = Field(default="0.1.0")
+    evidence_log_dir: str = Field(default="evidence_logs")
 
     model_config = SettingsConfigDict(env_prefix="OTLP_", extra="ignore")
 
@@ -102,6 +136,8 @@ class Settings(BaseSettings):
     anthropic: AnthropicSettings = Field(default_factory=AnthropicSettings)
     qdrant: QdrantSettings = Field(default_factory=QdrantSettings)
     minio: MinIOSettings = Field(default_factory=MinIOSettings)
+    ingestion: IngestionSettings = Field(default_factory=IngestionSettings)
+    retrieval: RetrievalSettings = Field(default_factory=RetrievalSettings)
     observability: ObservabilitySettings = Field(default_factory=ObservabilitySettings)
     logging: LoggingSettings = Field(default_factory=LoggingSettings)
 

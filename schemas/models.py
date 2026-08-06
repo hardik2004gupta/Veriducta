@@ -112,9 +112,16 @@ class Document(BaseModel):
 class Chunk(BaseModel):
     """A single text chunk produced by the chunking pipeline."""
 
-    chunk_id: str = Field(..., description="Format: '{document_id}-ch-{zero_padded_index}'.")
+    chunk_id: str = Field(
+        ...,
+        description=(
+            "Child format: '{document_id}-ch-{zero_padded_index}'. "
+            "Parent format: '{document_id}-par-{zero_padded_index}'."
+        ),
+    )
     parent_chunk_id: str | None = Field(
-        None, description="Format: '{document_id}-par-{zero_padded_index}'."
+        None,
+        description="Parent chunk ID ('{document_id}-par-{index}'). None for parent chunks.",
     )
     document_id: str
     text: str

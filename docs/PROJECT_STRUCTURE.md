@@ -8,7 +8,7 @@ veriducta/
 ├── core/                     # Domain core: exceptions, abstract interfaces, logging
 ├── storage/                  # Storage backend abstractions (Qdrant, MinIO)
 ├── schemas/                  # Shared Pydantic models: Document, Chunk, Claim, Trace…
-├── models/                   # ML model wrappers (embedding, NLI — Phase 1+)
+├── models/                   # ML model wrappers: parsed_document.py (ingestion), embedding.py (Phase 1), NLI (Phase 12+)
 ├── utils/                    # Stateless utilities: hashing, IDs, timers, filesystem…
 │
 ├── ingestion/                # Phases 1–6: sidecar, parser, chunker, version graph, embedder, ingestor

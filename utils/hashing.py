@@ -36,3 +36,24 @@ def sha256_file(path: str) -> str:
         for block in iter(lambda: fh.read(65536), b""):
             h.update(block)
     return h.hexdigest()
+
+
+# Mask ensures the result fits in a signed 64-bit integer, which satisfies
+# Qdrant's requirement for integer point IDs.
+_POINT_ID_MASK = 0x7FFFFFFFFFFFFFFF
+
+
+def stable_point_id(chunk_id: str) -> int:
+    """Convert a string chunk ID to a stable unsigned 63-bit Qdrant point ID.
+
+    Uses SHA-256 → first 8 bytes → big-endian uint64 masked to 63 bits.
+    The deterministic mapping enables idempotent upserts and O(1) point lookup.
+
+    Args:
+        chunk_id: String chunk ID, e.g. ``"usgs-2021-001-ch-0042"``.
+
+    Returns:
+        Unsigned 63-bit integer suitable for use as a Qdrant point ID.
+    """
+    digest = hashlib.sha256(chunk_id.encode()).digest()
+    return int.from_bytes(digest[:8], "big") & _POINT_ID_MASK

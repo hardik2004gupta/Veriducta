@@ -38,6 +38,34 @@ RETRIEVAL_LATENCY = Histogram(
     buckets=[50, 100, 250, 500, 1000, 2500, 5000, 10000],
 )
 
+BM25_RETRIEVAL_LATENCY = Histogram(
+    "veriducta_bm25_retrieval_latency_ms",
+    "BM25 retrieval latency in milliseconds.",
+    buckets=[5, 10, 25, 50, 100, 250, 500],
+)
+
+DENSE_RETRIEVAL_LATENCY = Histogram(
+    "veriducta_dense_retrieval_latency_ms",
+    "Dense (vector) retrieval latency in milliseconds.",
+    buckets=[50, 100, 250, 500, 1000, 2500],
+)
+
+RERANKER_LATENCY = Histogram(
+    "veriducta_reranker_latency_ms",
+    "Cross-encoder reranker latency in milliseconds.",
+    buckets=[100, 250, 500, 1000, 2500, 5000],
+)
+
+EMBEDDING_CACHE_HITS = Counter(
+    "veriducta_embedding_cache_hits_total",
+    "Query embedding cache hits.",
+)
+
+EMBEDDING_CACHE_MISSES = Counter(
+    "veriducta_embedding_cache_misses_total",
+    "Query embedding cache misses.",
+)
+
 TEMPORAL_FILTER_REJECTIONS = Counter(
     "veriducta_temporal_filter_rejections_total",
     "Chunks rejected by the temporal validity filter.",
