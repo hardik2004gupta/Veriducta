@@ -138,6 +138,12 @@ ROOT_CAUSE_ATTRIBUTED = Counter(
     ["root_cause_stage"],
 )
 
+REPLAY_LATENCY = Histogram(
+    "veriducta_replay_latency_ms",
+    "End-to-end ablation run latency in milliseconds.",
+    buckets=[500, 1000, 2500, 5000, 10000, 30000, 60000],
+)
+
 # ---------------------------------------------------------------------------
 # Pipeline health
 # ---------------------------------------------------------------------------

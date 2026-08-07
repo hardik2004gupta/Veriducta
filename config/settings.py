@@ -156,6 +156,21 @@ class LoggingSettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="LOG_")
 
 
+class ReplaySettings(BaseSettings):
+    """Causal replay engine configuration."""
+
+    golden_qa_path: str = Field(default="data/golden_qa.jsonl")
+    corruptions_path: str = Field(default="data/synthetic_corruptions/corruptions.jsonl")
+    chunking_failure_corpus_dir: str = Field(default="corpus/chunking_variants")
+    quality_delta_threshold: float = Field(default=0.05, ge=0.0, le=1.0)
+    reranker_cutoffs: list[int] = Field(default=[1, 3, 5, 8])
+    max_concurrent_replays: int = Field(default=1, ge=1)
+    cache_enabled: bool = Field(default=True)
+    cache_max_size: int = Field(default=100, ge=0)
+
+    model_config = SettingsConfigDict(env_prefix="REPLAY_")
+
+
 class Settings(BaseSettings):
     """Root application settings aggregating all sub-configurations."""
 
@@ -171,6 +186,7 @@ class Settings(BaseSettings):
     verification: VerificationSettings = Field(default_factory=VerificationSettings)
     observability: ObservabilitySettings = Field(default_factory=ObservabilitySettings)
     logging: LoggingSettings = Field(default_factory=LoggingSettings)
+    replay: ReplaySettings = Field(default_factory=ReplaySettings)
 
     model_config = SettingsConfigDict(
         env_prefix="VERIDUCTA_",
