@@ -1,0 +1,131 @@
+<svg viewBox="0 0 1280 800" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, -apple-system, sans-serif">
+  <!-- Background -->
+  <rect width="1280" height="800" fill="#0a0a0f"/>
+
+  <!-- Sidebar -->
+  <rect x="0" y="0" width="220" height="800" fill="#0f0f18" rx="0"/>
+  <rect x="220" y="0" width="1" height="800" fill="#ffffff10"/>
+
+  <!-- Logo -->
+  <text x="24" y="42" font-size="16" font-weight="700" fill="#06b6d4">Veriducta</text>
+  <circle cx="168" cy="35" r="6" fill="#22c55e"/>
+  <circle cx="168" cy="35" r="4" fill="#16a34a"/>
+
+  <!-- Nav items -->
+  <rect x="12" y="58" width="196" height="36" rx="8" fill="#06b6d415"/>
+  <text x="44" y="81" font-size="13" fill="#06b6d4" font-weight="600">Dashboard</text>
+  <text x="44" y="120" font-size="13" fill="#9ca3af">Ask Veriducta</text>
+  <text x="44" y="156" font-size="13" fill="#9ca3af">Retrieval Inspector</text>
+  <text x="44" y="192" font-size="13" fill="#9ca3af">Replay Viewer</text>
+  <text x="44" y="228" font-size="13" fill="#9ca3af">Evaluation</text>
+  <text x="44" y="264" font-size="13" fill="#9ca3af">Evidence Log</text>
+  <text x="44" y="300" font-size="13" fill="#9ca3af">Settings</text>
+
+  <!-- Main content area -->
+  <!-- Page title -->
+  <text x="248" y="52" font-size="22" font-weight="700" fill="#f9fafb">Dashboard</text>
+  <text x="248" y="72" font-size="13" fill="#6b7280">Real-time pipeline observability</text>
+
+  <!-- Stat cards row -->
+  <!-- Card 1: Total Queries -->
+  <rect x="248" y="92" width="230" height="90" rx="10" fill="#ffffff05" stroke="#ffffff12" stroke-width="1"/>
+  <text x="268" y="118" font-size="11" fill="#9ca3af">Total Queries</text>
+  <text x="268" y="148" font-size="28" font-weight="700" fill="#f9fafb">1,247</text>
+  <text x="268" y="168" font-size="11" fill="#22c55e">↑ 12% this week</text>
+
+  <!-- Card 2: Avg Latency -->
+  <rect x="494" y="92" width="230" height="90" rx="10" fill="#ffffff05" stroke="#ffffff12" stroke-width="1"/>
+  <text x="514" y="118" font-size="11" fill="#9ca3af">Avg Latency (p50)</text>
+  <text x="514" y="148" font-size="28" font-weight="700" fill="#f9fafb">2.8s</text>
+  <text x="514" y="168" font-size="11" fill="#22c55e">↓ 3% vs baseline</text>
+
+  <!-- Card 3: Faithfulness -->
+  <rect x="740" y="92" width="230" height="90" rx="10" fill="#ffffff05" stroke="#ffffff12" stroke-width="1"/>
+  <text x="760" y="118" font-size="11" fill="#9ca3af">Faithfulness</text>
+  <text x="760" y="148" font-size="28" font-weight="700" fill="#06b6d4">84.2%</text>
+  <text x="760" y="168" font-size="11" fill="#22c55e">↑ 2.1% vs RAGAS</text>
+
+  <!-- Card 4: Total Cost -->
+  <rect x="986" y="92" width="270" height="90" rx="10" fill="#ffffff05" stroke="#ffffff12" stroke-width="1"/>
+  <text x="1006" y="118" font-size="11" fill="#9ca3af">Total Cost (USD)</text>
+  <text x="1006" y="148" font-size="28" font-weight="700" fill="#f9fafb">$34.82</text>
+  <text x="1006" y="168" font-size="11" fill="#9ca3af">~$0.028 / query</text>
+
+  <!-- Latency Chart -->
+  <rect x="248" y="200" width="490" height="220" rx="10" fill="#ffffff05" stroke="#ffffff12" stroke-width="1"/>
+  <text x="268" y="226" font-size="13" font-weight="600" fill="#f9fafb">Query Latency (24h)</text>
+  <!-- Chart axes -->
+  <line x1="290" y1="390" x2="720" y2="390" stroke="#ffffff15" stroke-width="1"/>
+  <line x1="290" y1="250" x2="290" y2="390" stroke="#ffffff15" stroke-width="1"/>
+  <!-- p95 area (filled) -->
+  <path d="M290,310 L330,290 L370,320 L410,280 L450,300 L490,270 L530,290 L570,260 L610,280 L650,255 L690,275 L720,265 L720,390 L290,390 Z" fill="#7c3aed20"/>
+  <path d="M290,310 L330,290 L370,320 L410,280 L450,300 L490,270 L530,290 L570,260 L610,280 L650,255 L690,275 L720,265" fill="none" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <!-- p50 area -->
+  <path d="M290,340 L330,330 L370,345 L410,328 L450,336 L490,320 L530,332 L570,315 L610,328 L650,312 L690,322 L720,318 L720,390 L290,390 Z" fill="#06b6d420"/>
+  <path d="M290,340 L330,330 L370,345 L410,328 L450,336 L490,320 L530,332 L570,315 L610,328 L650,312 L690,322 L720,318" fill="none" stroke="#06b6d4" stroke-width="2"/>
+  <!-- Legend -->
+  <line x1="560" y1="223" x2="580" y2="223" stroke="#06b6d4" stroke-width="2"/>
+  <text x="584" y="227" font-size="10" fill="#9ca3af">p50</text>
+  <line x1="610" y1="223" x2="630" y2="223" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="634" y="227" font-size="10" fill="#9ca3af">p95</text>
+
+  <!-- Root Cause Pie -->
+  <rect x="754" y="200" width="502" height="220" rx="10" fill="#ffffff05" stroke="#ffffff12" stroke-width="1"/>
+  <text x="774" y="226" font-size="13" font-weight="600" fill="#f9fafb">Root Cause Distribution</text>
+  <!-- Pie segments approximation -->
+  <circle cx="890" cy="315" r="70" fill="none" stroke="#06b6d4" stroke-width="30" stroke-dasharray="95 220"/>
+  <circle cx="890" cy="315" r="70" fill="none" stroke="#8b5cf6" stroke-width="30" stroke-dasharray="66 220" stroke-dashoffset="-95"/>
+  <circle cx="890" cy="315" r="70" fill="none" stroke="#f59e0b" stroke-width="30" stroke-dasharray="44 220" stroke-dashoffset="-161"/>
+  <circle cx="890" cy="315" r="70" fill="none" stroke="#ef4444" stroke-width="30" stroke-dasharray="15 220" stroke-dashoffset="-205"/>
+  <!-- Legend -->
+  <rect x="990" y="255" width="10" height="10" rx="2" fill="#06b6d4"/>
+  <text x="1006" y="265" font-size="11" fill="#d1d5db">Retrieval (43%)</text>
+  <rect x="990" y="278" width="10" height="10" rx="2" fill="#8b5cf6"/>
+  <text x="1006" y="288" font-size="11" fill="#d1d5db">Chunking (30%)</text>
+  <rect x="990" y="301" width="10" height="10" rx="2" fill="#f59e0b"/>
+  <text x="1006" y="311" font-size="11" fill="#d1d5db">Reranking (20%)</text>
+  <rect x="990" y="324" width="10" height="10" rx="2" fill="#ef4444"/>
+  <text x="1006" y="334" font-size="11" fill="#d1d5db">Generation (7%)</text>
+
+  <!-- Recent Queries Table -->
+  <rect x="248" y="438" width="1008" height="320" rx="10" fill="#ffffff05" stroke="#ffffff12" stroke-width="1"/>
+  <text x="268" y="464" font-size="13" font-weight="600" fill="#f9fafb">Recent Queries</text>
+  <!-- Table header -->
+  <rect x="248" y="474" width="1008" height="32" rx="0" fill="#ffffff08"/>
+  <text x="272" y="494" font-size="11" fill="#6b7280" font-weight="600">QUERY</text>
+  <text x="700" y="494" font-size="11" fill="#6b7280" font-weight="600">LATENCY</text>
+  <text x="790" y="494" font-size="11" fill="#6b7280" font-weight="600">COST</text>
+  <text x="870" y="494" font-size="11" fill="#6b7280" font-weight="600">FAITHFULNESS</text>
+  <text x="1000" y="494" font-size="11" fill="#6b7280" font-weight="600">ROOT CAUSE</text>
+  <!-- Row 1 -->
+  <line x1="248" y1="506" x2="1256" y2="506" stroke="#ffffff08" stroke-width="1"/>
+  <text x="272" y="527" font-size="12" fill="#d1d5db">What are the silica exposure limits for construction workers?</text>
+  <text x="700" y="527" font-size="12" fill="#d1d5db">3.1s</text>
+  <text x="790" y="527" font-size="12" fill="#d1d5db">$0.031</text>
+  <rect x="870" y="514" width="55" height="18" rx="9" fill="#22c55e20"/>
+  <text x="885" y="527" font-size="11" fill="#22c55e">91.2%</text>
+  <rect x="1000" y="514" width="55" height="18" rx="9" fill="#9ca3af15"/>
+  <text x="1010" y="527" font-size="11" fill="#9ca3af">none</text>
+  <!-- Row 2 -->
+  <line x1="248" y1="540" x2="1256" y2="540" stroke="#ffffff08" stroke-width="1"/>
+  <text x="272" y="561" font-size="12" fill="#d1d5db">Does the 2019 standard supersede the 2014 ventilation requirements?</text>
+  <text x="700" y="561" font-size="12" fill="#d1d5db">4.8s</text>
+  <text x="790" y="561" font-size="12" fill="#d1d5db">$0.048</text>
+  <rect x="870" y="548" width="55" height="18" rx="9" fill="#f59e0b20"/>
+  <text x="885" y="561" font-size="11" fill="#f59e0b">73.4%</text>
+  <rect x="1000" y="548" width="68" height="18" rx="9" fill="#06b6d420"/>
+  <text x="1010" y="561" font-size="11" fill="#06b6d4">retrieval</text>
+  <!-- Row 3 (flagged) -->
+  <rect x="248" y="574" width="1008" height="34" rx="0" fill="#ef444408"/>
+  <line x1="248" y1="574" x2="1256" y2="574" stroke="#ffffff08" stroke-width="1"/>
+  <text x="272" y="595" font-size="12" fill="#fca5a5">Maximum permissible exposure for crystalline silica in mining operations</text>
+  <text x="700" y="595" font-size="12" fill="#d1d5db">6.2s</text>
+  <text x="790" y="595" font-size="12" fill="#d1d5db">$0.062</text>
+  <rect x="870" y="582" width="55" height="18" rx="9" fill="#ef444420"/>
+  <text x="885" y="595" font-size="11" fill="#ef4444">61.8%</text>
+  <rect x="1000" y="582" width="75" height="18" rx="9" fill="#8b5cf620"/>
+  <text x="1010" y="595" font-size="11" fill="#a78bfa">chunking</text>
+  <!-- Flagged badge -->
+  <rect x="1196" y="582" width="48" height="18" rx="9" fill="#ef444420"/>
+  <text x="1207" y="595" font-size="10" fill="#ef4444">⚑ flagged</text>
+</svg>

@@ -1,0 +1,95 @@
+<svg viewBox="0 0 1280 800" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, -apple-system, sans-serif">
+  <!-- Background -->
+  <rect width="1280" height="800" fill="#0a0a0f"/>
+
+  <!-- Sidebar -->
+  <rect x="0" y="0" width="220" height="800" fill="#0f0f18"/>
+  <rect x="220" y="0" width="1" height="800" fill="#ffffff10"/>
+  <text x="24" y="42" font-size="16" font-weight="700" fill="#06b6d4">Veriducta</text>
+  <circle cx="168" cy="35" r="6" fill="#22c55e"/>
+  <text x="44" y="81" font-size="13" fill="#9ca3af">Dashboard</text>
+  <rect x="12" y="94" width="196" height="36" rx="8" fill="#06b6d415"/>
+  <text x="44" y="117" font-size="13" fill="#06b6d4" font-weight="600">Ask Veriducta</text>
+  <text x="44" y="153" font-size="13" fill="#9ca3af">Retrieval Inspector</text>
+  <text x="44" y="189" font-size="13" fill="#9ca3af">Replay Viewer</text>
+  <text x="44" y="225" font-size="13" fill="#9ca3af">Evaluation</text>
+  <text x="44" y="261" font-size="13" fill="#9ca3af">Evidence Log</text>
+
+  <!-- Chat area -->
+  <text x="248" y="52" font-size="22" font-weight="700" fill="#f9fafb">Ask Veriducta</text>
+
+  <!-- User message bubble -->
+  <rect x="600" y="76" width="630" height="60" rx="12" fill="#06b6d420" stroke="#06b6d430" stroke-width="1"/>
+  <text x="620" y="101" font-size="13" fill="#e2e8f0">What are the permissible exposure limits for respirable</text>
+  <text x="620" y="119" font-size="13" fill="#e2e8f0">crystalline silica under OSHA 1926.1153?</text>
+
+  <!-- Assistant response area -->
+  <rect x="248" y="152" width="500" height="280" rx="12" fill="#ffffff05" stroke="#ffffff12" stroke-width="1"/>
+  <text x="268" y="178" font-size="13" font-weight="600" fill="#f9fafb">Answer</text>
+  <rect x="268" y="188" width="60" height="20" rx="10" fill="#22c55e20"/>
+  <text x="278" y="202" font-size="10" fill="#22c55e">HIGH confidence</text>
+
+  <text x="268" y="228" font-size="12" fill="#d1d5db">The OSHA standard 1926.1153 establishes an action</text>
+  <text x="268" y="246" font-size="12" fill="#d1d5db">level (AL) of 25 µg/m³ and a permissible exposure</text>
+  <text x="268" y="264" font-size="12" fill="#d1d5db">limit (PEL) of 50 µg/m³ as an 8-hour TWA for</text>
+  <text x="268" y="282" font-size="12" fill="#d1d5db">respirable crystalline silica in construction work.</text>
+
+  <!-- Claims section -->
+  <text x="268" y="316" font-size="11" font-weight="600" fill="#9ca3af">CLAIMS (3)</text>
+
+  <!-- Claim 1: supported -->
+  <rect x="268" y="326" width="460" height="52" rx="8" fill="#22c55e08" stroke="#22c55e30" stroke-width="1"/>
+  <rect x="268" y="326" width="3" height="52" rx="1" fill="#22c55e"/>
+  <text x="284" y="346" font-size="11" fill="#d1d5db">Action level is 25 µg/m³ as an 8-hour TWA</text>
+  <rect x="284" y="354" width="62" height="16" rx="8" fill="#22c55e20"/>
+  <text x="292" y="366" font-size="10" fill="#22c55e">✓ supported</text>
+  <text x="490" y="354" font-size="10" fill="#6b7280">entailment: 0.91</text>
+
+  <!-- Claim 2: supported -->
+  <rect x="268" y="386" width="460" height="52" rx="8" fill="#22c55e08" stroke="#22c55e30" stroke-width="1"/>
+  <rect x="268" y="386" width="3" height="52" rx="1" fill="#22c55e"/>
+  <text x="284" y="406" font-size="11" fill="#d1d5db">PEL is 50 µg/m³ as an 8-hour TWA</text>
+  <rect x="284" y="414" width="62" height="16" rx="8" fill="#22c55e20"/>
+  <text x="292" y="426" font-size="10" fill="#22c55e">✓ supported</text>
+  <text x="490" y="414" font-size="10" fill="#6b7280">entailment: 0.87</text>
+
+  <!-- Right panel: Evidence -->
+  <rect x="766" y="152" width="490" height="280" rx="12" fill="#ffffff05" stroke="#ffffff12" stroke-width="1"/>
+  <text x="786" y="178" font-size="13" font-weight="600" fill="#f9fafb">Evidence</text>
+
+  <!-- Tabs -->
+  <rect x="786" y="188" width="80" height="24" rx="4" fill="#06b6d420"/>
+  <text x="800" y="204" font-size="11" fill="#06b6d4">Chunks (8)</text>
+  <text x="880" y="204" font-size="11" fill="#6b7280">Trace</text>
+
+  <!-- Chunk cards -->
+  <!-- Chunk 1 -->
+  <rect x="786" y="222" width="450" height="58" rx="8" fill="#ffffff08"/>
+  <text x="802" y="242" font-size="10" fill="#9ca3af">OSHA-1926-1153 · ch-0012 · p.4</text>
+  <rect x="910" y="232" width="55" height="16" rx="8" fill="#22c55e20"/>
+  <text x="920" y="244" font-size="10" fill="#22c55e">valid</text>
+  <text x="802" y="260" font-size="11" fill="#d1d5db">"...the action level of 25 µg/m³ as an 8-hour TWA..."</text>
+  <text x="1170" y="260" font-size="10" fill="#9ca3af">0.94</text>
+
+  <!-- Chunk 2 -->
+  <rect x="786" y="288" width="450" height="58" rx="8" fill="#ffffff08"/>
+  <text x="802" y="308" font-size="10" fill="#9ca3af">OSHA-1926-1153 · ch-0015 · p.5</text>
+  <rect x="910" y="298" width="55" height="16" rx="8" fill="#22c55e20"/>
+  <text x="920" y="310" font-size="10" fill="#22c55e">valid</text>
+  <text x="802" y="326" font-size="11" fill="#d1d5db">"...permissible exposure limit (PEL) of 50 µg/m³..."</text>
+  <text x="1170" y="326" font-size="10" fill="#9ca3af">0.89</text>
+
+  <!-- Chunk 3 (superseded warning) -->
+  <rect x="786" y="354" width="450" height="58" rx="8" fill="#f59e0b08" stroke="#f59e0b20" stroke-width="1"/>
+  <text x="802" y="374" font-size="10" fill="#9ca3af">OSHA-2014-SILICA · ch-0008 · p.2</text>
+  <rect x="910" y="364" width="75" height="16" rx="8" fill="#f59e0b20"/>
+  <text x="918" y="376" font-size="10" fill="#f59e0b">superseded</text>
+  <text x="802" y="392" font-size="11" fill="#9ca3af">"...PEL of 100 µg/m³ (legacy pre-2016 standard)..."</text>
+  <text x="1170" y="392" font-size="10" fill="#9ca3af">0.52</text>
+
+  <!-- Input area -->
+  <rect x="248" y="720" width="1008" height="50" rx="25" fill="#ffffff08" stroke="#ffffff15" stroke-width="1"/>
+  <text x="284" y="750" font-size="13" fill="#4b5563">Ask a question about engineering standards or geoscience…</text>
+  <rect x="1210" y="731" width="36" height="28" rx="14" fill="#06b6d4"/>
+  <text x="1221" y="750" font-size="14" fill="#000000" font-weight="700">↑</text>
+</svg>

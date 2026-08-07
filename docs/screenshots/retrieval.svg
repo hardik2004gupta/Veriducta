@@ -1,0 +1,197 @@
+<svg viewBox="0 0 1280 800" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, -apple-system, sans-serif">
+  <!-- Background -->
+  <rect width="1280" height="800" fill="#0a0a0f"/>
+
+  <!-- Sidebar -->
+  <rect x="0" y="0" width="220" height="800" fill="#0f0f18"/>
+  <rect x="220" y="0" width="1" height="800" fill="#ffffff10"/>
+  <text x="24" y="42" font-size="16" font-weight="700" fill="#06b6d4">Veriducta</text>
+  <circle cx="168" cy="35" r="6" fill="#22c55e"/>
+  <text x="44" y="81" font-size="13" fill="#9ca3af">Dashboard</text>
+  <text x="44" y="117" font-size="13" fill="#9ca3af">Ask Veriducta</text>
+  <rect x="12" y="130" width="196" height="36" rx="8" fill="#06b6d415"/>
+  <text x="44" y="153" font-size="13" fill="#06b6d4" font-weight="600">Retrieval Inspector</text>
+  <text x="44" y="189" font-size="13" fill="#9ca3af">Replay Viewer</text>
+  <text x="44" y="225" font-size="13" fill="#9ca3af">Evaluation</text>
+  <text x="44" y="261" font-size="13" fill="#9ca3af">Evidence Log</text>
+
+  <!-- Page title -->
+  <text x="248" y="52" font-size="22" font-weight="700" fill="#f9fafb">Retrieval Inspector</text>
+  <text x="248" y="72" font-size="13" fill="#6b7280">Query: "silica exposure limits construction" · query_date: 2024-01-15</text>
+
+  <!-- Stage stat cards -->
+  <!-- BM25 -->
+  <rect x="248" y="88" width="175" height="64" rx="10" fill="#ffffff05" stroke="#ffffff12" stroke-width="1"/>
+  <text x="268" y="110" font-size="10" fill="#9ca3af">BM25 Candidates</text>
+  <text x="268" y="132" font-size="22" font-weight="700" fill="#f9fafb">100</text>
+  <text x="268" y="145" font-size="10" fill="#6b7280">top-100 retrieved</text>
+
+  <!-- Dense -->
+  <rect x="439" y="88" width="175" height="64" rx="10" fill="#ffffff05" stroke="#ffffff12" stroke-width="1"/>
+  <text x="459" y="110" font-size="10" fill="#9ca3af">Dense Candidates</text>
+  <text x="459" y="132" font-size="22" font-weight="700" fill="#f9fafb">100</text>
+  <text x="459" y="145" font-size="10" fill="#6b7280">BGE-large-en-v1.5</text>
+
+  <!-- After RRF -->
+  <rect x="630" y="88" width="175" height="64" rx="10" fill="#ffffff05" stroke="#ffffff12" stroke-width="1"/>
+  <text x="650" y="110" font-size="10" fill="#9ca3af">After RRF Fusion</text>
+  <text x="650" y="132" font-size="22" font-weight="700" fill="#f9fafb">140</text>
+  <text x="650" y="145" font-size="10" fill="#6b7280">unique candidates</text>
+
+  <!-- Temporal rejections -->
+  <rect x="821" y="88" width="175" height="64" rx="10" fill="#f59e0b08" stroke="#f59e0b25" stroke-width="1"/>
+  <text x="841" y="110" font-size="10" fill="#9ca3af">Temporal Rejections</text>
+  <text x="841" y="132" font-size="22" font-weight="700" fill="#f59e0b">3</text>
+  <text x="841" y="145" font-size="10" fill="#6b7280">superseded docs</text>
+
+  <!-- After rerank -->
+  <rect x="1012" y="88" width="244" height="64" rx="10" fill="#06b6d410" stroke="#06b6d430" stroke-width="1"/>
+  <text x="1032" y="110" font-size="10" fill="#9ca3af">Final Candidates</text>
+  <text x="1032" y="132" font-size="22" font-weight="700" fill="#06b6d4">8</text>
+  <text x="1032" y="145" font-size="10" fill="#6b7280">post-rerank top-8</text>
+
+  <!-- Score formula box -->
+  <rect x="248" y="168" width="490" height="58" rx="10" fill="#7c3aed10" stroke="#7c3aed30" stroke-width="1"/>
+  <text x="268" y="188" font-size="11" font-weight="600" fill="#c4b5fd">RRF Score Formula</text>
+  <text x="268" y="208" font-size="12" fill="#e2e8f0" font-family="monospace">score(d) = Σ 1 / (k + rank_i(d))   where k = 60</text>
+  <text x="540" y="208" font-size="10" fill="#6b7280">Cormack et al. 2009</text>
+
+  <rect x="754" y="168" width="502" height="58" rx="10" fill="#06b6d410" stroke="#06b6d430" stroke-width="1"/>
+  <text x="774" y="188" font-size="11" font-weight="600" fill="#67e8f9">Query Embedding Prefix</text>
+  <text x="774" y="208" font-size="11" fill="#e2e8f0" font-family="monospace">"Represent this sentence for searching relevant passages: "</text>
+
+  <!-- Candidate table -->
+  <rect x="248" y="242" width="1008" height="516" rx="12" fill="#ffffff05" stroke="#ffffff12" stroke-width="1"/>
+  <text x="268" y="268" font-size="13" font-weight="600" fill="#f9fafb">Retrieval Candidates</text>
+
+  <!-- Table header -->
+  <rect x="248" y="278" width="1008" height="28" rx="0" fill="#ffffff08"/>
+  <text x="272" y="296" font-size="10" fill="#6b7280" font-weight="600">RANK</text>
+  <text x="320" y="296" font-size="10" fill="#6b7280" font-weight="600">CHUNK ID</text>
+  <text x="520" y="296" font-size="10" fill="#6b7280" font-weight="600">BM25</text>
+  <text x="620" y="296" font-size="10" fill="#6b7280" font-weight="600">DENSE</text>
+  <text x="720" y="296" font-size="10" fill="#6b7280" font-weight="600">RRF SCORE</text>
+  <text x="840" y="296" font-size="10" fill="#6b7280" font-weight="600">RERANKER</text>
+  <text x="960" y="296" font-size="10" fill="#6b7280" font-weight="600">TEMPORAL</text>
+  <text x="1090" y="296" font-size="10" fill="#6b7280" font-weight="600">FINAL RANK</text>
+
+  <!-- Row data helper: y positions for 8 rows -->
+  <!-- Row 1 -->
+  <line x1="248" y1="306" x2="1256" y2="306" stroke="#ffffff08" stroke-width="1"/>
+  <text x="272" y="326" font-size="11" fill="#9ca3af">1</text>
+  <text x="320" y="326" font-size="11" fill="#d1d5db" font-family="monospace">OSHA-1153-ch-0012</text>
+  <text x="520" y="326" font-size="11" fill="#d1d5db">rank 1</text>
+  <!-- BM25 score bar -->
+  <rect x="555" y="316" width="50" height="10" rx="5" fill="#ffffff08"/>
+  <rect x="555" y="316" width="48" height="10" rx="5" fill="#06b6d4"/>
+  <text x="620" y="326" font-size="11" fill="#d1d5db">rank 2</text>
+  <rect x="655" y="316" width="50" height="10" rx="5" fill="#ffffff08"/>
+  <rect x="655" y="316" width="45" height="10" rx="5" fill="#8b5cf6"/>
+  <text x="720" y="326" font-size="11" fill="#d1d5db" font-weight="600">0.0323</text>
+  <rect x="840" y="316" width="80" height="10" rx="5" fill="#ffffff08"/>
+  <rect x="840" y="316" width="77" height="10" rx="5" fill="#22c55e"/>
+  <text x="930" y="326" font-size="10" fill="#22c55e">0.94</text>
+  <rect x="960" y="316" width="55" height="18" rx="9" fill="#22c55e15"/>
+  <text x="970" y="328" font-size="10" fill="#22c55e">valid</text>
+  <text x="1090" y="326" font-size="13" font-weight="700" fill="#06b6d4">1</text>
+
+  <!-- Row 2 -->
+  <line x1="248" y1="338" x2="1256" y2="338" stroke="#ffffff08" stroke-width="1"/>
+  <text x="272" y="358" font-size="11" fill="#9ca3af">2</text>
+  <text x="320" y="358" font-size="11" fill="#d1d5db" font-family="monospace">OSHA-1153-ch-0015</text>
+  <text x="520" y="358" font-size="11" fill="#d1d5db">rank 3</text>
+  <rect x="555" y="348" width="50" height="10" rx="5" fill="#ffffff08"/>
+  <rect x="555" y="348" width="40" height="10" rx="5" fill="#06b6d4"/>
+  <text x="620" y="358" font-size="11" fill="#d1d5db">rank 1</text>
+  <rect x="655" y="348" width="50" height="10" rx="5" fill="#ffffff08"/>
+  <rect x="655" y="348" width="48" height="10" rx="5" fill="#8b5cf6"/>
+  <text x="720" y="358" font-size="11" fill="#d1d5db" font-weight="600">0.0314</text>
+  <rect x="840" y="348" width="80" height="10" rx="5" fill="#ffffff08"/>
+  <rect x="840" y="348" width="72" height="10" rx="5" fill="#22c55e"/>
+  <text x="930" y="358" font-size="10" fill="#22c55e">0.89</text>
+  <rect x="960" y="348" width="55" height="18" rx="9" fill="#22c55e15"/>
+  <text x="970" y="360" font-size="10" fill="#22c55e">valid</text>
+  <text x="1090" y="358" font-size="13" font-weight="700" fill="#06b6d4">2</text>
+
+  <!-- Row 3 -->
+  <line x1="248" y1="370" x2="1256" y2="370" stroke="#ffffff08" stroke-width="1"/>
+  <text x="272" y="390" font-size="11" fill="#9ca3af">4</text>
+  <text x="320" y="390" font-size="11" fill="#d1d5db" font-family="monospace">NIST-1800-ch-0034</text>
+  <text x="520" y="390" font-size="11" fill="#d1d5db">rank 5</text>
+  <rect x="555" y="380" width="50" height="10" rx="5" fill="#ffffff08"/>
+  <rect x="555" y="380" width="30" height="10" rx="5" fill="#06b6d4"/>
+  <text x="620" y="390" font-size="11" fill="#d1d5db">rank 4</text>
+  <rect x="655" y="380" width="50" height="10" rx="5" fill="#ffffff08"/>
+  <rect x="655" y="380" width="35" height="10" rx="5" fill="#8b5cf6"/>
+  <text x="720" y="390" font-size="11" fill="#d1d5db" font-weight="600">0.0281</text>
+  <rect x="840" y="380" width="80" height="10" rx="5" fill="#ffffff08"/>
+  <rect x="840" y="380" width="60" height="10" rx="5" fill="#22c55e"/>
+  <text x="930" y="390" font-size="10" fill="#22c55e">0.76</text>
+  <rect x="960" y="380" width="55" height="18" rx="9" fill="#22c55e15"/>
+  <text x="970" y="392" font-size="10" fill="#22c55e">valid</text>
+  <text x="1090" y="390" font-size="13" font-weight="700" fill="#06b6d4">3</text>
+
+  <!-- Row 4 (temporal rejection) -->
+  <rect x="248" y="402" width="1008" height="34" rx="0" fill="#f59e0b05"/>
+  <line x1="248" y1="402" x2="1256" y2="402" stroke="#ffffff08" stroke-width="1"/>
+  <text x="272" y="422" font-size="11" fill="#9ca3af">7</text>
+  <text x="320" y="422" font-size="11" fill="#9ca3af" font-family="monospace">OSHA-2014-ch-0008</text>
+  <text x="520" y="422" font-size="11" fill="#9ca3af">rank 7</text>
+  <rect x="555" y="412" width="50" height="10" rx="5" fill="#ffffff08"/>
+  <rect x="555" y="412" width="20" height="10" rx="5" fill="#6b7280"/>
+  <text x="620" y="422" font-size="11" fill="#9ca3af">rank 12</text>
+  <rect x="655" y="412" width="50" height="10" rx="5" fill="#ffffff08"/>
+  <rect x="655" y="412" width="18" height="10" rx="5" fill="#6b7280"/>
+  <text x="720" y="422" font-size="11" fill="#9ca3af">0.0241</text>
+  <text x="840" y="422" font-size="10" fill="#6b7280">filtered before rerank</text>
+  <rect x="960" y="412" width="75" height="18" rx="9" fill="#f59e0b15"/>
+  <text x="968" y="424" font-size="10" fill="#f59e0b">superseded</text>
+  <text x="1090" y="422" font-size="11" fill="#9ca3af">—</text>
+
+  <!-- Remaining rows (compact) -->
+  <line x1="248" y1="436" x2="1256" y2="436" stroke="#ffffff08" stroke-width="1"/>
+  <text x="272" y="456" font-size="11" fill="#9ca3af">8</text>
+  <text x="320" y="456" font-size="11" fill="#d1d5db" font-family="monospace">USGS-2021-ch-0091</text>
+  <text x="520" y="456" font-size="11" fill="#d1d5db">rank 9</text>
+  <rect x="555" y="446" width="50" height="10" rx="5" fill="#ffffff08"/>
+  <rect x="555" y="446" width="25" height="10" rx="5" fill="#06b6d4"/>
+  <text x="620" y="456" font-size="11" fill="#d1d5db">rank 8</text>
+  <rect x="655" y="446" width="50" height="10" rx="5" fill="#ffffff08"/>
+  <rect x="655" y="446" width="28" height="10" rx="5" fill="#8b5cf6"/>
+  <text x="720" y="456" font-size="11" fill="#d1d5db">0.0218</text>
+  <rect x="840" y="446" width="80" height="10" rx="5" fill="#ffffff08"/>
+  <rect x="840" y="446" width="42" height="10" rx="5" fill="#22c55e"/>
+  <text x="930" y="456" font-size="10" fill="#22c55e">0.52</text>
+  <rect x="960" y="446" width="55" height="18" rx="9" fill="#22c55e15"/>
+  <text x="970" y="458" font-size="10" fill="#22c55e">valid</text>
+  <text x="1090" y="456" font-size="13" font-weight="700" fill="#06b6d4">4</text>
+
+  <!-- More rows (5-8 compact) -->
+  <line x1="248" y1="468" x2="1256" y2="468" stroke="#ffffff06" stroke-width="1"/>
+  <text x="272" y="488" font-size="11" fill="#9ca3af">11</text>
+  <text x="320" y="488" font-size="11" fill="#d1d5db" font-family="monospace">OSHA-1153-ch-0018</text>
+  <text x="1090" y="488" font-size="13" font-weight="700" fill="#06b6d4">5</text>
+  <line x1="248" y1="500" x2="1256" y2="500" stroke="#ffffff06" stroke-width="1"/>
+  <text x="272" y="520" font-size="11" fill="#9ca3af">13</text>
+  <text x="320" y="520" font-size="11" fill="#d1d5db" font-family="monospace">NIOSH-2016-ch-0044</text>
+  <text x="1090" y="520" font-size="13" font-weight="700" fill="#06b6d4">6</text>
+  <line x1="248" y1="532" x2="1256" y2="532" stroke="#ffffff06" stroke-width="1"/>
+  <text x="272" y="552" font-size="11" fill="#9ca3af">18</text>
+  <text x="320" y="552" font-size="11" fill="#d1d5db" font-family="monospace">OSHA-1153-ch-0022</text>
+  <text x="1090" y="552" font-size="13" font-weight="700" fill="#06b6d4">7</text>
+  <line x1="248" y1="564" x2="1256" y2="564" stroke="#ffffff06" stroke-width="1"/>
+  <text x="272" y="584" font-size="11" fill="#9ca3af">24</text>
+  <text x="320" y="584" font-size="11" fill="#d1d5db" font-family="monospace">USGS-2019-ch-0112</text>
+  <text x="1090" y="584" font-size="13" font-weight="700" fill="#06b6d4">8</text>
+
+  <!-- Parent-child expansion note -->
+  <rect x="248" y="610" width="1008" height="50" rx="0" fill="#06b6d408"/>
+  <line x1="248" y1="610" x2="1256" y2="610" stroke="#06b6d420" stroke-width="1"/>
+  <text x="268" y="630" font-size="11" font-weight="600" fill="#67e8f9">Parent-Child Expansion</text>
+  <text x="268" y="648" font-size="11" fill="#9ca3af">Each of the 8 final chunks has been expanded with its parent section (1400–1600 token context window). Context passed to generator: child_text + [SECTION] + parent_section_text.</text>
+
+  <!-- Pagination footer -->
+  <line x1="248" y1="660" x2="1256" y2="660" stroke="#ffffff08" stroke-width="1"/>
+  <text x="268" y="680" font-size="11" fill="#6b7280">Showing final 8 of 140 fused candidates (3 temporal rejections, 40 sent to reranker)</text>
+  <text x="1090" y="680" font-size="11" fill="#6b7280">Retrieval latency: 1,842 ms</text>
+</svg>
