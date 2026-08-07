@@ -104,7 +104,9 @@ def _make_retriever(
     model = MagicMock()
     model.embed_query.return_value = embed_return or [0.1] * 1024
     client = MagicMock()
-    client.search.return_value = hits or []
+    result = MagicMock()
+    result.points = hits or []
+    client.query_points.return_value = result
     return DenseRetriever(
         embedding_model=model,
         qdrant_client=client,
@@ -148,7 +150,9 @@ def test_retrieve_uses_embedding_cache() -> None:
     model = MagicMock()
     model.embed_query.return_value = [0.1] * 1024
     client = MagicMock()
-    client.search.return_value = [_make_hit("doc-a-ch-0000", 0.9)]
+    result = MagicMock()
+    result.points = [_make_hit("doc-a-ch-0000", 0.9)]
+    client.query_points.return_value = result
     r = DenseRetriever(embedding_model=model, qdrant_client=client, top_k=10, cache_size=100)
     r.retrieve("same query")
     r.retrieve("same query")
@@ -169,7 +173,7 @@ def test_retrieve_qdrant_failure_raises_vector_store_error() -> None:
     model = MagicMock()
     model.embed_query.return_value = [0.1] * 1024
     client = MagicMock()
-    client.search.side_effect = RuntimeError("qdrant down")
+    client.query_points.side_effect = RuntimeError("qdrant down")
     r = DenseRetriever(embedding_model=model, qdrant_client=client, cache_size=0)
     with pytest.raises(VectorStoreError):
         r.retrieve("query")
