@@ -176,12 +176,13 @@ class DenseRetriever:
     def _search(self, query_vector: list[float]) -> list[Any]:
         """Run Qdrant ANN search and return raw ScoredPoint list."""
         try:
-            return self._client.search(  # type: ignore[no-any-return]
+            result = self._client.query_points(
                 collection_name=self._collection,
-                query_vector=query_vector,
+                query=query_vector,
                 limit=self._top_k,
                 with_payload=True,
             )
+            return result.points  # type: ignore[no-any-return]
         except Exception as exc:
             raise VectorStoreError(
                 "Qdrant dense search failed",

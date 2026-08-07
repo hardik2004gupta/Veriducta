@@ -367,7 +367,7 @@ class VeriductaGenerator(BaseGenerator):
                 model=self._ant_settings.model,
                 max_tokens=self._ant_settings.max_tokens,
                 system=system_prompt,
-                messages=messages,
+                messages=messages,  # type: ignore[arg-type]
                 temperature=self._settings.temperature,
             )
         except anthropic.APIError as exc:

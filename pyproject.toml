@@ -164,7 +164,6 @@ module = [
     "structlog.*",
     "qdrant_client.*",
     "orjson.*",
-    "minio.*",
     "anthropic.*",
     "ragas.*",
     "datasets.*",
