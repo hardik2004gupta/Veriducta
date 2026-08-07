@@ -145,6 +145,40 @@ REPLAY_LATENCY = Histogram(
 )
 
 # ---------------------------------------------------------------------------
+# Dataset metrics
+# ---------------------------------------------------------------------------
+
+DATASET_ITEMS_LOADED = Counter(
+    "veriducta_dataset_items_loaded_total",
+    "Total dataset items loaded from JSONL files.",
+    ["dataset_type"],
+)
+
+DATASET_VALIDATION_ERRORS = Counter(
+    "veriducta_dataset_validation_errors_total",
+    "Dataset validation errors by issue type.",
+    ["issue_type"],
+)
+
+DATASET_VALIDATION_WARNINGS = Counter(
+    "veriducta_dataset_validation_warnings_total",
+    "Dataset validation warnings by issue type.",
+    ["issue_type"],
+)
+
+DATASET_EXPORTS = Counter(
+    "veriducta_dataset_exports_total",
+    "Dataset exports by format.",
+    ["format"],
+)
+
+DATASET_BUILD_DURATION = Histogram(
+    "veriducta_dataset_build_duration_ms",
+    "Time to build and write the full dataset from seed.",
+    buckets=[10, 50, 100, 250, 500, 1000, 2500],
+)
+
+# ---------------------------------------------------------------------------
 # Pipeline health
 # ---------------------------------------------------------------------------
 

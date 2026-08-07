@@ -159,8 +159,8 @@ class LoggingSettings(BaseSettings):
 class ReplaySettings(BaseSettings):
     """Causal replay engine configuration."""
 
-    golden_qa_path: str = Field(default="data/golden_qa.jsonl")
-    corruptions_path: str = Field(default="data/synthetic_corruptions/corruptions.jsonl")
+    golden_qa_path: str = Field(default="data/golden/golden_qa.jsonl")
+    corruptions_path: str = Field(default="data/synthetic/corruptions.jsonl")
     chunking_failure_corpus_dir: str = Field(default="corpus/chunking_variants")
     quality_delta_threshold: float = Field(default=0.05, ge=0.0, le=1.0)
     reranker_cutoffs: list[int] = Field(default=[1, 3, 5, 8])
@@ -169,6 +169,20 @@ class ReplaySettings(BaseSettings):
     cache_max_size: int = Field(default=100, ge=0)
 
     model_config = SettingsConfigDict(env_prefix="REPLAY_")
+
+
+class DatasetSettings(BaseSettings):
+    """Dataset build and validation configuration."""
+
+    dataset_dir: str = Field(default="data")
+    golden_qa_path: str = Field(default="data/golden/golden_qa.jsonl")
+    corruptions_path: str = Field(default="data/synthetic/corruptions.jsonl")
+    annotation_schema_path: str = Field(default="data/annotations/annotation_schema.json")
+    export_dir: str = Field(default="data/exports")
+    expected_golden_count: int = Field(default=40, ge=1)
+    expected_corruptions_count: int = Field(default=60, ge=1)
+
+    model_config = SettingsConfigDict(env_prefix="DATASET_")
 
 
 class Settings(BaseSettings):
@@ -187,6 +201,7 @@ class Settings(BaseSettings):
     observability: ObservabilitySettings = Field(default_factory=ObservabilitySettings)
     logging: LoggingSettings = Field(default_factory=LoggingSettings)
     replay: ReplaySettings = Field(default_factory=ReplaySettings)
+    dataset: DatasetSettings = Field(default_factory=DatasetSettings)
 
     model_config = SettingsConfigDict(
         env_prefix="VERIDUCTA_",
