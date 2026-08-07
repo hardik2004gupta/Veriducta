@@ -48,7 +48,7 @@ def create_app() -> FastAPI:
         description=(
             "RAG pipeline observability - causal root-cause attribution for answer failures."
         ),
-        version="0.1.0",
+        version="1.0.0",
         docs_url="/docs" if not settings.is_production else None,
         redoc_url="/redoc" if not settings.is_production else None,
         lifespan=lifespan,

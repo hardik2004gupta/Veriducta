@@ -117,5 +117,5 @@ make run
 
 ---
 
-**Full changelog**: [CHANGELOG.md](CHANGELOG.md)
-**Roadmap**: [ROADMAP.md](ROADMAP.md)
+**Full changelog**: [CHANGELOG.md](../CHANGELOG.md)
+**Roadmap**: [ROADMAP.md](../ROADMAP.md)

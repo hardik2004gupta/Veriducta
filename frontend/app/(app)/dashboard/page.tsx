@@ -134,7 +134,7 @@ export default function DashboardPage() {
               <Activity className="h-4 w-4 text-emerald-400 animate-pulse" />
               <span className="text-sm text-emerald-400 font-medium">All systems operational</span>
             </div>
-            <Badge variant="muted">v0.1.0</Badge>
+            <Badge variant="muted">v1.0.0</Badge>
           </div>
         </motion.div>
       </motion.div>

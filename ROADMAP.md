@@ -164,4 +164,4 @@
 
 ---
 
-*This roadmap is updated with each major release. Items in "Ideas" and "Research" sections are speculative and may not be implemented. Contributions welcome - see [CONTRIBUTING.md](docs/CONTRIBUTING.md).*
+*This roadmap is updated with each major release. Items in "Ideas" and "Research" sections are speculative and may not be implemented. Contributions welcome - see [CONTRIBUTING.md](community/CONTRIBUTING.md).*

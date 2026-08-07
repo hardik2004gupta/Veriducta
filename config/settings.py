@@ -126,7 +126,7 @@ class ObservabilitySettings(BaseSettings):
     otlp_endpoint: str = Field(default="http://localhost:4317")
     prometheus_port: int = Field(default=8000, ge=1, le=65535)
     service_name: str = Field(default="veriducta")
-    service_version: str = Field(default="0.1.0")
+    service_version: str = Field(default="1.0.0")
     evidence_log_dir: str = Field(default="evidence_logs")
     sqlite_index_path: str = Field(default="evidence_logs/index.db")
     rotation_size_mb: float = Field(default=0.0, ge=0.0, description="0 disables size rotation.")

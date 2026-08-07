@@ -176,7 +176,7 @@ export default function LandingPage() {
             <Zap className="h-4 w-4 text-white" />
           </div>
           <span className="font-bold text-white tracking-tight">Veriducta</span>
-          <Badge variant="muted">v0.1.0</Badge>
+          <Badge variant="muted">v1.0.0</Badge>
         </div>
         <div className="flex items-center gap-4">
           <Link href="/docs" className="text-sm text-slate-400 hover:text-white transition-colors">Docs</Link>

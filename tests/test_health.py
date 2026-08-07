@@ -20,7 +20,7 @@ def test_version_returns_200(client: TestClient) -> None:
     body = response.json()
     assert "version" in body
     assert "service" in body
-    assert body["version"] == "0.1.0"
+    assert body["version"] == "1.0.0"
 
 
 def test_unknown_route_returns_404(client: TestClient) -> None:

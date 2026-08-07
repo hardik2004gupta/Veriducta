@@ -98,9 +98,9 @@ existing tool can: *given a failed answer, which pipeline stage caused the failu
 
 #### Documentation
 - `README.md` - full evaluation scorecard, architecture, quickstart, RAGAS comparison table
-- `docs/ARCHITECTURE.md` - 6 Mermaid diagrams
-- `docs/blog_post.md` - worked chunking failure case study
-- `docs/case_study.md`, `technical_decisions.md`, `engineering_challenges.md`, `performance_analysis.md`, `research_notes.md`
+- `docs/architecture/ARCHITECTURE.md` - 6 Mermaid diagrams
+- `docs/case-study/blog_post.md` - worked chunking failure case study
+- `docs/case-study/case_study.md`, `docs/architecture/technical_decisions.md`, `docs/engineering/engineering_challenges.md`, `docs/case-study/performance_analysis.md`, `docs/research/research_notes.md`
 - `SECURITY.md`, `CODE_OF_CONDUCT.md`, `CODEOWNERS`, issue/PR templates
 
 ---

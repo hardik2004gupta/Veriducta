@@ -767,7 +767,7 @@ NEXT_PUBLIC_API_URL=https://your-railway-app.up.railway.app
 
 **Qdrant Cloud** - free 1 GB tier at cloud.qdrant.io covers the 50-document corpus.
 
-For Fly.io, Render, and VM deployment: see [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
+For Fly.io, Render, and VM deployment: see [`docs/deployment/DEPLOYMENT.md`](docs/deployment/DEPLOYMENT.md).
 
 </details>
 
@@ -1061,11 +1061,11 @@ A realistic boundary error is a chunking corruption case where the boundary-naiv
 
 | | | |
 |:---:|:---:|:---:|
-| [🏗 Architecture](docs/ARCHITECTURE.md) | [📖 Case Study](docs/case_study.md) | [⚙️ Technical Decisions](docs/technical_decisions.md) |
+| [🏗 Architecture](docs/architecture/ARCHITECTURE.md) | [📖 Case Study](docs/case-study/case_study.md) | [⚙️ Technical Decisions](docs/architecture/technical_decisions.md) |
 | Eight-layer design, Mermaid diagrams, dependency graph | End-to-end build narrative, design evolution, lessons | 10 non-obvious choices with tradeoffs |
-| [🔬 Engineering Challenges](docs/engineering_challenges.md) | [📊 Performance Analysis](docs/performance_analysis.md) | [🚀 Deployment](docs/DEPLOYMENT.md) |
+| [🔬 Engineering Challenges](docs/engineering/engineering_challenges.md) | [📊 Performance Analysis](docs/case-study/performance_analysis.md) | [🚀 Deployment](docs/deployment/DEPLOYMENT.md) |
 | Causal attribution, temporal filtering, circular imports | Latency budget, memory profile, scaling strategies | Local, Docker, Railway, Fly.io, Render |
-| [📝 Blog Post](docs/blog_post.md) | [🤝 Contributing](docs/CONTRIBUTING.md) | [🔑 Research Notes](docs/research_notes.md) |
+| [📝 Blog Post](docs/case-study/blog_post.md) | [🤝 Contributing](community/CONTRIBUTING.md) | [🔑 Research Notes](docs/research/research_notes.md) |
 | Full technical write-up for publication | Contribution guide, good first issues | Limitations, future research, threats to validity |
 
 </div>

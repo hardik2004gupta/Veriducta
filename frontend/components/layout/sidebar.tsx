@@ -86,7 +86,7 @@ export function Sidebar() {
 
       {/* Footer */}
       <div className="border-t border-white/[0.06] px-5 py-4">
-        <p className="text-[10px] text-slate-600 uppercase tracking-widest">v0.1.0 · Phase 7</p>
+        <p className="text-[10px] text-slate-600 uppercase tracking-widest">v1.0.0 · MIT</p>
       </div>
     </aside>
   );
