@@ -1,0 +1,117 @@
+<svg viewBox="0 0 1280 800" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, -apple-system, sans-serif">
+  <!-- Background -->
+  <rect width="1280" height="800" fill="#0a0a0f"/>
+
+  <!-- Sidebar -->
+  <rect x="0" y="0" width="220" height="800" fill="#0f0f18"/>
+  <rect x="220" y="0" width="1" height="800" fill="#ffffff10"/>
+  <text x="24" y="42" font-size="16" font-weight="700" fill="#06b6d4">Veriducta</text>
+  <circle cx="168" cy="35" r="6" fill="#22c55e"/>
+  <text x="44" y="81" font-size="13" fill="#9ca3af">Dashboard</text>
+  <text x="44" y="117" font-size="13" fill="#9ca3af">Ask Veriducta</text>
+  <text x="44" y="153" font-size="13" fill="#9ca3af">Retrieval Inspector</text>
+  <rect x="12" y="166" width="196" height="36" rx="8" fill="#06b6d415"/>
+  <text x="44" y="189" font-size="13" fill="#06b6d4" font-weight="600">Replay Viewer</text>
+  <text x="44" y="225" font-size="13" fill="#9ca3af">Evaluation</text>
+  <text x="44" y="261" font-size="13" fill="#9ca3af">Evidence Log</text>
+
+  <!-- Page title -->
+  <text x="248" y="52" font-size="22" font-weight="700" fill="#f9fafb">Causal Replay Engine</text>
+  <text x="248" y="72" font-size="13" fill="#6b7280">Four-stage gold ablation · trace_id: a3f2c8e1</text>
+
+  <!-- Root cause banner -->
+  <rect x="248" y="88" width="1008" height="48" rx="10" fill="#8b5cf620" stroke="#8b5cf640" stroke-width="1"/>
+  <text x="272" y="106" font-size="12" font-weight="600" fill="#a78bfa">Primary Root Cause</text>
+  <text x="272" y="124" font-size="14" font-weight="700" fill="#c4b5fd">chunking_boundary</text>
+  <text x="500" y="118" font-size="12" fill="#9ca3af">Stage 1 quality delta: −0.41 · Boundary-aware chunking raised Recall@5 from 0.45 → 0.80</text>
+  <rect x="1130" y="100" width="110" height="24" rx="12" fill="#8b5cf640"/>
+  <text x="1148" y="116" font-size="11" fill="#c4b5fd">confidence: 0.88</text>
+
+  <!-- Stage cards row -->
+  <!-- Stage 1: Chunking (root cause - highlighted) -->
+  <rect x="248" y="152" width="238" height="200" rx="12" fill="#7c3aed15" stroke="#8b5cf650" stroke-width="2"/>
+  <rect x="248" y="152" width="238" height="6" rx="12" fill="#8b5cf6"/>
+  <text x="268" y="180" font-size="11" font-weight="700" fill="#c4b5fd">STAGE 1 — CHUNKING</text>
+  <rect x="400" y="168" width="70" height="18" rx="9" fill="#8b5cf630"/>
+  <text x="410" y="181" font-size="10" fill="#a78bfa">root cause</text>
+  <text x="268" y="208" font-size="11" fill="#9ca3af">Config variant</text>
+  <text x="268" y="226" font-size="12" fill="#e2e8f0">boundary_aware=True</text>
+  <text x="268" y="250" font-size="11" fill="#9ca3af">Recall@5 delta</text>
+  <text x="268" y="270" font-size="20" font-weight="700" fill="#ef4444">−0.41</text>
+  <text x="268" y="290" font-size="10" fill="#9ca3af">baseline → 0.45</text>
+  <text x="340" y="290" font-size="10" fill="#22c55e">gold → 0.80</text>
+  <text x="268" y="316" font-size="10" fill="#9ca3af">OSHA-1153 medical surveillance threshold split</text>
+  <text x="268" y="330" font-size="10" fill="#9ca3af">across chunk boundary in baseline config</text>
+
+  <!-- Stage 2: Retrieval -->
+  <rect x="502" y="152" width="238" height="200" rx="12" fill="#0e749015" stroke="#06b6d430" stroke-width="1"/>
+  <rect x="502" y="152" width="238" height="6" rx="12" fill="#06b6d4"/>
+  <text x="522" y="180" font-size="11" font-weight="700" fill="#67e8f9">STAGE 2 — RETRIEVAL</text>
+  <text x="522" y="208" font-size="11" fill="#9ca3af">Gold chunks injected</text>
+  <text x="522" y="226" font-size="12" fill="#e2e8f0">5 supporting chunk IDs</text>
+  <text x="522" y="250" font-size="11" fill="#9ca3af">Quality delta</text>
+  <text x="522" y="270" font-size="20" font-weight="700" fill="#9ca3af">−0.08</text>
+  <text x="522" y="294" font-size="10" fill="#6b7280">Below attribution threshold (0.15)</text>
+  <rect x="522" y="308" width="80" height="20" rx="10" fill="#22c55e15"/>
+  <text x="534" y="322" font-size="10" fill="#22c55e">not root cause</text>
+
+  <!-- Stage 3: Reranker -->
+  <rect x="756" y="152" width="238" height="200" rx="12" fill="#b4530915" stroke="#f59e0b30" stroke-width="1"/>
+  <rect x="756" y="152" width="238" height="6" rx="12" fill="#f59e0b"/>
+  <text x="776" y="180" font-size="11" font-weight="700" fill="#fcd34d">STAGE 3 — RERANKER</text>
+  <text x="776" y="208" font-size="11" fill="#9ca3af">Top-k cutoffs tested</text>
+  <text x="776" y="226" font-size="12" fill="#e2e8f0">top-1 / top-3 / top-5 / top-8</text>
+  <text x="776" y="250" font-size="11" fill="#9ca3af">Max quality delta</text>
+  <text x="776" y="270" font-size="20" font-weight="700" fill="#9ca3af">−0.12</text>
+  <text x="776" y="294" font-size="10" fill="#6b7280">Below attribution threshold (0.15)</text>
+  <rect x="776" y="308" width="80" height="20" rx="10" fill="#22c55e15"/>
+  <text x="788" y="322" font-size="10" fill="#22c55e">not root cause</text>
+
+  <!-- Stage 4: Generation -->
+  <rect x="1010" y="152" width="246" height="200" rx="12" fill="#15803d15" stroke="#22c55e30" stroke-width="1"/>
+  <rect x="1010" y="152" width="246" height="6" rx="12" fill="#22c55e"/>
+  <text x="1030" y="180" font-size="11" font-weight="700" fill="#86efac">STAGE 4 — GENERATION</text>
+  <text x="1030" y="208" font-size="11" fill="#9ca3af">Baseline prompt applied</text>
+  <text x="1030" y="226" font-size="12" fill="#e2e8f0">historical context replay</text>
+  <text x="1030" y="250" font-size="11" fill="#9ca3af">Quality delta</text>
+  <text x="1030" y="270" font-size="20" font-weight="700" fill="#9ca3af">−0.03</text>
+  <text x="1030" y="294" font-size="10" fill="#6b7280">Below attribution threshold (0.15)</text>
+  <rect x="1030" y="308" width="80" height="20" rx="10" fill="#22c55e15"/>
+  <text x="1042" y="322" font-size="10" fill="#22c55e">not root cause</text>
+
+  <!-- Answer comparison -->
+  <rect x="248" y="370" width="490" height="196" rx="12" fill="#ffffff05" stroke="#ffffff12" stroke-width="1"/>
+  <text x="268" y="396" font-size="12" font-weight="600" fill="#9ca3af">BASELINE ANSWER</text>
+  <rect x="268" y="406" width="450" height="1" fill="#ffffff10"/>
+  <text x="268" y="424" font-size="12" fill="#9ca3af">The OSHA silica standard specifies medical surveillance</text>
+  <text x="268" y="442" font-size="12" fill="#9ca3af">requirements for workers. Employers must provide</text>
+  <text x="268" y="460" font-size="12" fill="#9ca3af">medical examinations and maintain records.</text>
+  <!-- Missing claim highlight -->
+  <rect x="268" y="476" width="450" height="38" rx="6" fill="#ef444410" stroke="#ef444430" stroke-width="1"/>
+  <text x="280" y="492" font-size="11" fill="#fca5a5">Missing: specific threshold values (25 µg/m³ AL, 50 µg/m³ PEL)</text>
+  <text x="280" y="507" font-size="10" fill="#ef4444">Omitted due to chunk boundary split — key clause on p.4 not retrieved</text>
+  <text x="268" y="550" font-size="11" fill="#9ca3af">Quality score: 0.52 · RAGAS faithfulness: 0.82</text>
+
+  <rect x="754" y="370" width="502" height="196" rx="12" fill="#ffffff05" stroke="#22c55e30" stroke-width="1"/>
+  <text x="774" y="396" font-size="12" font-weight="600" fill="#22c55e">GOLD-CONTEXT ANSWER</text>
+  <rect x="774" y="406" width="462" height="1" fill="#22c55e20"/>
+  <text x="774" y="424" font-size="12" fill="#d1d5db">Under OSHA 1926.1153, the action level (AL) is 25 µg/m³</text>
+  <text x="774" y="442" font-size="12" fill="#d1d5db">and the permissible exposure limit (PEL) is 50 µg/m³ as an</text>
+  <text x="774" y="460" font-size="12" fill="#d1d5db">8-hour TWA. Medical surveillance is required when workers</text>
+  <text x="774" y="478" font-size="12" fill="#d1d5db">are exposed at or above the AL for 30+ days per year.</text>
+  <rect x="774" y="500" width="120" height="20" rx="10" fill="#22c55e20"/>
+  <text x="786" y="514" font-size="11" fill="#22c55e">✓ complete answer</text>
+  <text x="774" y="550" font-size="11" fill="#9ca3af">Quality score: 0.93 · All 3 claims: supported</text>
+
+  <!-- Quality delta bar -->
+  <rect x="248" y="578" width="1008" height="80" rx="12" fill="#ffffff05" stroke="#ffffff12" stroke-width="1"/>
+  <text x="268" y="604" font-size="12" font-weight="600" fill="#f9fafb">Ablation Quality Deltas</text>
+  <!-- Delta bar background -->
+  <rect x="268" y="618" width="968" height="20" rx="10" fill="#ffffff08"/>
+  <!-- Chunking delta (most significant, red) -->
+  <rect x="268" y="618" width="400" height="20" rx="10" fill="#ef4444"/>
+  <text x="268" y="650" font-size="10" fill="#9ca3af">Chunking: −0.41</text>
+  <text x="440" y="650" font-size="10" fill="#9ca3af">Retrieval: −0.08</text>
+  <text x="600" y="650" font-size="10" fill="#9ca3af">Reranker: −0.12</text>
+  <text x="760" y="650" font-size="10" fill="#9ca3af">Generation: −0.03</text>
+</svg>

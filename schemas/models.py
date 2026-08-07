@@ -112,9 +112,16 @@ class Document(BaseModel):
 class Chunk(BaseModel):
     """A single text chunk produced by the chunking pipeline."""
 
-    chunk_id: str = Field(..., description="Format: '{document_id}-ch-{zero_padded_index}'.")
+    chunk_id: str = Field(
+        ...,
+        description=(
+            "Child format: '{document_id}-ch-{zero_padded_index}'. "
+            "Parent format: '{document_id}-par-{zero_padded_index}'."
+        ),
+    )
     parent_chunk_id: str | None = Field(
-        None, description="Format: '{document_id}-par-{zero_padded_index}'."
+        None,
+        description="Parent chunk ID ('{document_id}-par-{index}'). None for parent chunks.",
     )
     document_id: str
     text: str
@@ -313,4 +320,47 @@ class EvaluationMetrics(BaseModel):
     answer_quality: AnswerQualityMetrics = Field(default_factory=AnswerQualityMetrics)
     causal_attribution: CausalAttributionMetrics = Field(default_factory=CausalAttributionMetrics)
     operational: OperationalMetrics = Field(default_factory=OperationalMetrics)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
+
+
+# ---------------------------------------------------------------------------
+# Pipeline trace (Phase 14 — unified evidence log entry)
+# ---------------------------------------------------------------------------
+
+
+class PipelineTrace(BaseModel):
+    """Unified evidence log entry linking retrieval, generation, and verification.
+
+    Cross-references the individual stage traces by ID.  The full stage data
+    (candidates, structured answer) lives in the corresponding
+    :class:`RetrievalTrace` and :class:`GenerationTrace` entries.
+    This record provides aggregated metrics and links needed by the replay engine.
+    """
+
+    pipeline_trace_id: str = Field(default_factory=lambda: str(uuid4()))
+    request_id: str = ""
+    query: str
+    query_hash: str = ""
+    query_date: str = ""
+
+    retrieval_trace_id: str = ""
+    generation_trace_id: str = ""
+
+    total_latency_ms: float = 0.0
+    retrieval_latency_ms: float = 0.0
+    generation_latency_ms: float = 0.0
+    verification_latency_ms: float = 0.0
+
+    input_tokens: int = 0
+    output_tokens: int = 0
+    estimated_cost_usd: float = 0.0
+
+    retrieval_config_hash: str = ""
+    generation_config_hash: str = ""
+    prompt_hash: str = ""
+
+    requires_expert_review: bool = False
+    quality_score: float | None = None
+
+    serialization_version: str = "1.0"
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))

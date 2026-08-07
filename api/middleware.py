@@ -8,6 +8,8 @@ import structlog
 from fastapi import Request, Response
 from starlette.middleware.base import BaseHTTPMiddleware
 
+from observability.context import RequestContext, set_current_context
+
 logger = structlog.get_logger(__name__)
 
 RequestResponseEndpoint = Callable[[Request], Awaitable[Response]]
@@ -17,13 +19,22 @@ class RequestContextMiddleware(BaseHTTPMiddleware):
     """Attach a unique request-ID and trace-ID to every incoming request.
 
     The IDs are injected into structlog context so every log line emitted
-    during the request carries them automatically.
+    during the request carries them automatically.  The same IDs are bound
+    to the :class:`~observability.context.RequestContext` contextvar so
+    pipeline components can read them without explicit parameter threading.
     """
 
     async def dispatch(self, request: Request, call_next: RequestResponseEndpoint) -> Response:
         """Process a single request: stamp IDs, log timing, clear context."""
         request_id = str(uuid.uuid4())
         trace_id = request.headers.get("X-Trace-Id", str(uuid.uuid4()))
+
+        set_current_context(
+            RequestContext(
+                request_id=request_id,
+                trace_id=trace_id,
+            )
+        )
 
         structlog.contextvars.clear_contextvars()
         structlog.contextvars.bind_contextvars(

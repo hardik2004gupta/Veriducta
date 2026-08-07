@@ -38,6 +38,34 @@ RETRIEVAL_LATENCY = Histogram(
     buckets=[50, 100, 250, 500, 1000, 2500, 5000, 10000],
 )
 
+BM25_RETRIEVAL_LATENCY = Histogram(
+    "veriducta_bm25_retrieval_latency_ms",
+    "BM25 retrieval latency in milliseconds.",
+    buckets=[5, 10, 25, 50, 100, 250, 500],
+)
+
+DENSE_RETRIEVAL_LATENCY = Histogram(
+    "veriducta_dense_retrieval_latency_ms",
+    "Dense (vector) retrieval latency in milliseconds.",
+    buckets=[50, 100, 250, 500, 1000, 2500],
+)
+
+RERANKER_LATENCY = Histogram(
+    "veriducta_reranker_latency_ms",
+    "Cross-encoder reranker latency in milliseconds.",
+    buckets=[100, 250, 500, 1000, 2500, 5000],
+)
+
+EMBEDDING_CACHE_HITS = Counter(
+    "veriducta_embedding_cache_hits_total",
+    "Query embedding cache hits.",
+)
+
+EMBEDDING_CACHE_MISSES = Counter(
+    "veriducta_embedding_cache_misses_total",
+    "Query embedding cache misses.",
+)
+
 TEMPORAL_FILTER_REJECTIONS = Counter(
     "veriducta_temporal_filter_rejections_total",
     "Chunks rejected by the temporal validity filter.",
@@ -108,6 +136,88 @@ ROOT_CAUSE_ATTRIBUTED = Counter(
     "veriducta_root_cause_attributed_total",
     "Root causes attributed by the replay engine.",
     ["root_cause_stage"],
+)
+
+REPLAY_LATENCY = Histogram(
+    "veriducta_replay_latency_ms",
+    "End-to-end ablation run latency in milliseconds.",
+    buckets=[500, 1000, 2500, 5000, 10000, 30000, 60000],
+)
+
+# ---------------------------------------------------------------------------
+# Dataset metrics
+# ---------------------------------------------------------------------------
+
+DATASET_ITEMS_LOADED = Counter(
+    "veriducta_dataset_items_loaded_total",
+    "Total dataset items loaded from JSONL files.",
+    ["dataset_type"],
+)
+
+DATASET_VALIDATION_ERRORS = Counter(
+    "veriducta_dataset_validation_errors_total",
+    "Dataset validation errors by issue type.",
+    ["issue_type"],
+)
+
+DATASET_VALIDATION_WARNINGS = Counter(
+    "veriducta_dataset_validation_warnings_total",
+    "Dataset validation warnings by issue type.",
+    ["issue_type"],
+)
+
+DATASET_EXPORTS = Counter(
+    "veriducta_dataset_exports_total",
+    "Dataset exports by format.",
+    ["format"],
+)
+
+DATASET_BUILD_DURATION = Histogram(
+    "veriducta_dataset_build_duration_ms",
+    "Time to build and write the full dataset from seed.",
+    buckets=[10, 50, 100, 250, 500, 1000, 2500],
+)
+
+# ---------------------------------------------------------------------------
+# Evaluation metrics
+# ---------------------------------------------------------------------------
+
+EVALUATION_QUERIES_TOTAL = Counter(
+    "veriducta_evaluation_queries_total",
+    "Total queries evaluated in evaluation runs.",
+    ["outcome"],  # success, error
+)
+
+EVALUATION_QUERY_LATENCY = Histogram(
+    "veriducta_evaluation_query_latency_ms",
+    "Per-query end-to-end latency in evaluation runs (milliseconds).",
+    buckets=[500, 1000, 2000, 4000, 8000, 16000, 30000],
+)
+
+EVALUATION_RECALL_AT_5 = Gauge(
+    "veriducta_evaluation_recall_at_5",
+    "Recall@5 from the most recent evaluation run.",
+)
+
+EVALUATION_FAITHFULNESS = Gauge(
+    "veriducta_evaluation_faithfulness",
+    "Citation entailment rate (faithfulness) from the most recent evaluation run.",
+)
+
+EVALUATION_ROOT_CAUSE_ACCURACY = Gauge(
+    "veriducta_evaluation_root_cause_accuracy",
+    "Root-cause localization accuracy from the most recent evaluation run.",
+)
+
+EVALUATION_REGRESSION_VIOLATIONS = Gauge(
+    "veriducta_evaluation_regression_violations",
+    "Number of regression gate violations in the most recent check.",
+)
+
+EVALUATION_RUNS_TOTAL = Counter(
+    "veriducta_evaluation_runs_total",
+    "Total evaluation benchmark runs.",
+    ["outcome"],  # passed, failed, error
 )
 
 # ---------------------------------------------------------------------------

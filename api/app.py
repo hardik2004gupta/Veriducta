@@ -13,6 +13,7 @@ from api.routes.health import router as health_router
 from config.settings import get_settings
 from core.exceptions import BaseError, NotFoundError, ValidationError
 from core.logging import configure_logging
+from observability.middleware import ObservabilityMiddleware
 from observability.tracing import configure_tracing
 
 logger = structlog.get_logger(__name__)
@@ -75,6 +76,7 @@ def _register_middleware(app: FastAPI) -> None:
         allow_headers=["*"],
     )
     app.add_middleware(RequestContextMiddleware)
+    app.add_middleware(ObservabilityMiddleware)
 
 
 def _register_exception_handlers(app: FastAPI) -> None:

@@ -1,0 +1,31 @@
+# CODEOWNERS — Veriducta
+# Each path requires review from the listed owner before merge.
+
+# Global fallback
+*                               @hardik-gupta
+
+# Core architecture — strict review required
+core/                           @hardik-gupta
+schemas/                        @hardik-gupta
+config/                         @hardik-gupta
+
+# Pipeline layers
+ingestion/                      @hardik-gupta
+retrieval/                      @hardik-gupta
+generation/                     @hardik-gupta
+verification/                   @hardik-gupta
+replay/                         @hardik-gupta
+evaluation/                     @hardik-gupta
+
+# Infrastructure
+observability/                  @hardik-gupta
+storage/                        @hardik-gupta
+docker/                         @hardik-gupta
+.github/                        @hardik-gupta
+
+# Frontend
+frontend/                       @hardik-gupta
+
+# CI configuration
+.github/workflows/              @hardik-gupta
+pyproject.toml                  @hardik-gupta
