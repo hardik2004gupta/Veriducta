@@ -52,6 +52,7 @@ class BM25Retriever:
             payload: dict[str, Any] = pickle.load(fh)  # noqa: S301
         self._bm25 = payload["bm25"]
         self._chunk_ids = payload["chunk_ids"]
+        self._texts: list[str] = payload.get("texts", [])
         logger.info(
             "bm25_retriever_loaded",
             path=str(path),
@@ -109,3 +110,12 @@ class BM25Retriever:
     def is_loaded(self) -> bool:
         """True if the index has been successfully loaded."""
         return self._bm25 is not None
+
+    @property
+    def chunk_texts(self) -> dict[str, str]:
+        """Mapping from chunk_id to chunk text for counterevidence NLI lookups.
+
+        Returns an empty dict when the index was built without a ``texts`` key
+        (older index format).
+        """
+        return dict(zip(self._chunk_ids, self._texts, strict=False))

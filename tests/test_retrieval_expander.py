@@ -85,7 +85,7 @@ def test_expand_with_parent_id_sets_parent_chunk() -> None:
     cand = _make_candidate("doc-a-ch-0000", parent_id="doc-a-par-0000")
     parent_pt = _parent_point("doc-a-par-0000", "Parent section text")
     expander = _make_expander([parent_pt])
-    expanded, log = expander.expand([cand])
+    expanded, _log = expander.expand([cand])
     assert expanded[0].parent_chunk is not None
     assert expanded[0].parent_chunk.text == "Parent section text"
 

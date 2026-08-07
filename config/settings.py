@@ -95,6 +95,32 @@ class RetrievalSettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="RETRIEVAL_")
 
 
+class GenerationSettings(BaseSettings):
+    """Structured generation configuration."""
+
+    temperature: float = Field(default=0.0, ge=0.0, le=2.0)
+    timeout_seconds: float = Field(default=60.0, gt=0)
+    prompt_version: str = Field(default="v1")
+
+    model_config = SettingsConfigDict(env_prefix="GENERATION_")
+
+
+class VerificationSettings(BaseSettings):
+    """NLI entailment and counterevidence configuration."""
+
+    nli_model_id: str = Field(default="cross-encoder/nli-deberta-v3-base")
+    counterevidence_top_k: int = Field(default=10, ge=1)
+    entailment_threshold: float = Field(default=0.65, ge=0.0, le=1.0)
+    contradiction_threshold: float = Field(default=0.85, ge=0.0, le=1.0)
+    contradiction_neutral_max: float = Field(default=0.30, ge=0.0, le=1.0)
+    ambiguous_neutral_min: float = Field(default=0.40, ge=0.0, le=1.0)
+    ambiguous_contradiction_min: float = Field(default=0.30, ge=0.0, le=1.0)
+    ambiguous_contradiction_max: float = Field(default=0.70, ge=0.0, le=1.0)
+    min_entities_for_search: int = Field(default=2, ge=1)
+
+    model_config = SettingsConfigDict(env_prefix="VERIFICATION_")
+
+
 class ObservabilitySettings(BaseSettings):
     """OpenTelemetry and Prometheus configuration."""
 
@@ -138,6 +164,8 @@ class Settings(BaseSettings):
     minio: MinIOSettings = Field(default_factory=MinIOSettings)
     ingestion: IngestionSettings = Field(default_factory=IngestionSettings)
     retrieval: RetrievalSettings = Field(default_factory=RetrievalSettings)
+    generation: GenerationSettings = Field(default_factory=GenerationSettings)
+    verification: VerificationSettings = Field(default_factory=VerificationSettings)
     observability: ObservabilitySettings = Field(default_factory=ObservabilitySettings)
     logging: LoggingSettings = Field(default_factory=LoggingSettings)
 

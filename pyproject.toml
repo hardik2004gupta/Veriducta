@@ -34,6 +34,8 @@ dependencies = [
     "python-multipart>=0.0.12",
     "orjson>=3.10.0",
     "tenacity>=9.0.0",
+    # Phase 3 — Generation & Verification
+    "anthropic>=0.40.0",
     # Phase 1 — Ingestion pipeline
     "PyMuPDF>=1.24.0",
     "pdfplumber>=0.11.0",
