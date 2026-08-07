@@ -1,4 +1,4 @@
-"""Tests for replay.executor — ReplayExecutor stage methods."""
+"""Tests for replay.executor - ReplayExecutor stage methods."""
 
 from unittest.mock import MagicMock
 
@@ -70,7 +70,7 @@ def _gen_trace(rt_id: str = "rt-001") -> GenerationTrace:
 
 
 # ---------------------------------------------------------------------------
-# Stage 1 — Chunking
+# Stage 1 - Chunking
 # ---------------------------------------------------------------------------
 
 
@@ -121,7 +121,7 @@ def test_stage1_with_all_components_calls_retriever() -> None:
 
 
 # ---------------------------------------------------------------------------
-# Stage 2 — Retrieval
+# Stage 2 - Retrieval
 # ---------------------------------------------------------------------------
 
 
@@ -178,7 +178,7 @@ def test_stage2_with_gold_chunk_ids() -> None:
 
 
 # ---------------------------------------------------------------------------
-# Stage 3 — Reranker
+# Stage 3 - Reranker
 # ---------------------------------------------------------------------------
 
 
@@ -229,7 +229,7 @@ def test_stage3_with_mocked_components_succeeds() -> None:
 
 
 # ---------------------------------------------------------------------------
-# Stage 4 — Generation
+# Stage 4 - Generation
 # ---------------------------------------------------------------------------
 
 

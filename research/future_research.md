@@ -1,4 +1,4 @@
-# Research — Future Research Directions
+# Research - Future Research Directions
 
 *Open problems emerging from the Veriducta design and evaluation.*
 
@@ -8,7 +8,7 @@
 
 **Problem**: Stage 2 attribution (retrieval) requires annotated gold supporting chunk IDs. Without annotation, the engine cannot test whether gold context would have improved the answer.
 
-**Why it's hard**: To test retrieval attribution without an oracle, you need to estimate which chunks *should* have been retrieved — without knowing the correct answer. This is a circularity: good retrieval is defined relative to a correct answer, but a correct answer requires good retrieval.
+**Why it's hard**: To test retrieval attribution without an oracle, you need to estimate which chunks *should* have been retrieved - without knowing the correct answer. This is a circularity: good retrieval is defined relative to a correct answer, but a correct answer requires good retrieval.
 
 **Potential approaches**:
 
@@ -62,7 +62,7 @@ Using Pearl's do-calculus, compute the causal effect of intervening at each node
 
 **Challenge**: Collecting human preference data at scale is expensive. The initial preference data needs to cover the full distribution of claim-context relationships, including nuanced conditionals.
 
-**Related work**: RLHF (Christiano et al. 2017), Constitutional AI (Bai et al. 2022), learned NLI (Bowman et al. 2015 — SNLI).
+**Related work**: RLHF (Christiano et al. 2017), Constitutional AI (Bai et al. 2022), learned NLI (Bowman et al. 2015 - SNLI).
 
 ---
 
@@ -80,7 +80,7 @@ Using Pearl's do-calculus, compute the causal effect of intervening at each node
 
 ## Priority 6: Temporal Drift Detection
 
-**Problem**: Regulatory corpora evolve. New standards supersede old ones. The version graph requires manual maintenance — if a new document is added without updating its supersession relationships, outdated information can appear in answers.
+**Problem**: Regulatory corpora evolve. New standards supersede old ones. The version graph requires manual maintenance - if a new document is added without updating its supersession relationships, outdated information can appear in answers.
 
 **Approach**: Automatic temporal drift detection by monitoring retrieval patterns over time. If chunks from a specific document consistently appear in retrieval but the document's effective date is approaching its expected expiry, flag for sidecar review.
 

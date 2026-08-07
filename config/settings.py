@@ -186,7 +186,7 @@ class DatasetSettings(BaseSettings):
 
 
 class EvaluationSettings(BaseSettings):
-    """Evaluation harness configuration — parallelism, thresholds, output paths."""
+    """Evaluation harness configuration - parallelism, thresholds, output paths."""
 
     report_dir: str = Field(default="evaluation_reports")
     baseline_metrics_path: str = Field(default="ci_baseline.json")
@@ -195,7 +195,7 @@ class EvaluationSettings(BaseSettings):
     parallelism: int = Field(default=1, ge=1)
     cache_enabled: bool = Field(default=True)
 
-    # Regression thresholds (CLAUDE.md Phase 18 — five blocking conditions)
+    # Regression thresholds (CLAUDE.md Phase 18 - five blocking conditions)
     faithfulness_drop_max: float = Field(default=0.02, ge=0.0, le=1.0)
     recall5_drop_max: float = Field(default=0.03, ge=0.0, le=1.0)
     p95_latency_increase_max: float = Field(default=0.20, ge=0.0)

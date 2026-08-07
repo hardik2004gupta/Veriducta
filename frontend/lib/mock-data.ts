@@ -156,7 +156,7 @@ export const MOCK_RETRIEVAL_TRACE: RetrievalTrace = {
       chunk_id: "osha-1926-1153-ch-0087",
       document_id: "osha-1926-1153",
       text: "Table 1 provides specified exposure control methods for 18 common construction tasks involving silica-containing materials.",
-      text_excerpt: "Table 1 — specified exposure control methods for 18 common construction tasks; compliance with Table 1 achieves PEL compliance without air monitoring.",
+      text_excerpt: "Table 1 - specified exposure control methods for 18 common construction tasks; compliance with Table 1 achieves PEL compliance without air monitoring.",
       bm25_score: 12.1,
       bm25_rank: 4,
       dense_score: 0.821,

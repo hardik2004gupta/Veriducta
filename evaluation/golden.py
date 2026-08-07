@@ -1,4 +1,4 @@
-"""Golden QA dataset — seed data and builder for the evaluation harness.
+"""Golden QA dataset - seed data and builder for the evaluation harness.
 
 :data:`GOLDEN_QA_SEED` contains 40 production-quality engineering and
 geoscience QA pairs spanning safety, geology, engineering, and regulatory
@@ -18,7 +18,7 @@ from evaluation.schemas import GoldenQAItem
 logger = structlog.get_logger(__name__)
 
 # ---------------------------------------------------------------------------
-# Seed data — 40 golden QA items
+# Seed data - 40 golden QA items
 # ---------------------------------------------------------------------------
 
 GOLDEN_QA_SEED: list[dict[str, Any]] = [
@@ -48,7 +48,7 @@ GOLDEN_QA_SEED: list[dict[str, Any]] = [
     {
         "question_id": "qa-002",
         "question": "Under OSHA 29 CFR 1910.146, what determines whether a confined space requires a written entry permit?",
-        "gold_answer": "A written permit is required for any permit-required confined space—one that contains or has potential for a hazardous atmosphere, material that could engulf an entrant, an internal configuration creating entrapment, or any other recognized serious health hazard.",
+        "gold_answer": "A written permit is required for any permit-required confined space-one that contains or has potential for a hazardous atmosphere, material that could engulf an entrant, an internal configuration creating entrapment, or any other recognized serious health hazard.",
         "supporting_chunk_ids": ["osha-conf-space-1910-ch-0023", "osha-conf-space-1910-ch-0024"],
         "counterevidence_chunk_ids": [],
         "expected_entities": [
@@ -1083,7 +1083,7 @@ GOLDEN_QA_SEED: list[dict[str, Any]] = [
     {
         "question_id": "qa-040",
         "question": "When groundwater contamination from an industrial facility crosses state lines, who has primary jurisdiction to require remediation?",
-        "gold_answer": "EPA has federal jurisdiction through CERCLA or RCRA corrective action for qualifying sites. The downstream state can also invoke state environmental statutes independently. Critical omission: CERCLA does not preempt state law for groundwater cases—both federal and state authorities may act concurrently, and the responsible party must satisfy the more stringent requirement.",
+        "gold_answer": "EPA has federal jurisdiction through CERCLA or RCRA corrective action for qualifying sites. The downstream state can also invoke state environmental statutes independently. Critical omission: CERCLA does not preempt state law for groundwater cases-both federal and state authorities may act concurrently, and the responsible party must satisfy the more stringent requirement.",
         "supporting_chunk_ids": ["epa-remed-ch-0099", "epa-remed-ch-0100"],
         "counterevidence_chunk_ids": ["epa-remed-ch-0104"],
         "expected_entities": [

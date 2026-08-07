@@ -1,7 +1,7 @@
 """Dataset-level validation for golden QA and corruption benchmark files.
 
-:class:`DatasetValidator` checks structural and semantic integrity — duplicate
-IDs, missing citations, invalid labels, broken cross-references — and returns
+:class:`DatasetValidator` checks structural and semantic integrity - duplicate
+IDs, missing citations, invalid labels, broken cross-references - and returns
 a typed :class:`~evaluation.schemas.ValidationResult` rather than raising.
 """
 
@@ -107,7 +107,7 @@ class DatasetValidator:
         return self._build_result(issues)
 
     # ------------------------------------------------------------------
-    # Private checks — golden QA
+    # Private checks - golden QA
     # ------------------------------------------------------------------
 
     def _check_duplicate_ids(self, ids: list[str], kind: str) -> list[ValidationIssue]:
@@ -200,7 +200,7 @@ class DatasetValidator:
         return issues
 
     # ------------------------------------------------------------------
-    # Private checks — corruptions
+    # Private checks - corruptions
     # ------------------------------------------------------------------
 
     def _check_corruption_type_distribution(

@@ -116,7 +116,7 @@ class Ingestor:
                 chunk.metadata["document_type"] = metadata.document_type
                 chunk.metadata["chunking_variant"] = metadata.chunking_variant
 
-            # Embed + upsert to Qdrant (skipped if no embedder — test mode)
+            # Embed + upsert to Qdrant (skipped if no embedder - test mode)
             child_count = 0
             if self._embedder is not None:
                 self._embedder.ensure_collection()
@@ -218,7 +218,7 @@ class Ingestor:
         """
         if not self._all_chunks:
             raise IngestionError(
-                "No chunks to index — ingest at least one document first.",
+                "No chunks to index - ingest at least one document first.",
                 details={},
             )
 

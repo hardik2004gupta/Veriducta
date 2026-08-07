@@ -1,4 +1,4 @@
-"""Tests for ingestion/parser.py — PDF parsing and table linearisation."""
+"""Tests for ingestion/parser.py - PDF parsing and table linearisation."""
 
 from pathlib import Path
 
@@ -54,7 +54,7 @@ def test_parser_does_not_support_other_mime() -> None:
 
 
 # ---------------------------------------------------------------------------
-# PyMuPDFParser.parse — happy path
+# PyMuPDFParser.parse - happy path
 # ---------------------------------------------------------------------------
 
 
@@ -113,7 +113,7 @@ def test_parse_document_id_from_stem(tmp_path: Path) -> None:
 
 
 # ---------------------------------------------------------------------------
-# PyMuPDFParser.parse — error paths
+# PyMuPDFParser.parse - error paths
 # ---------------------------------------------------------------------------
 
 

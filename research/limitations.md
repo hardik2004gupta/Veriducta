@@ -1,4 +1,4 @@
-# Research — Known Limitations
+# Research - Known Limitations
 
 *Honest analysis of what Veriducta cannot do and why.*
 
@@ -6,23 +6,23 @@
 
 ## 1. Stage 2 Requires Oracle Annotation
 
-**What**: Retrieval attribution (Stage 2) requires human-annotated `supporting_chunk_ids` — a list of chunks that should ground the correct answer.
+**What**: Retrieval attribution (Stage 2) requires human-annotated `supporting_chunk_ids` - a list of chunks that should ground the correct answer.
 
 **Why it matters**: Without annotation, the replay engine cannot determine whether a given retrieval context is "correct." Stage 2 is oracle-dependent by design.
 
 **Impact**: Stage 2 cannot run on unannotated production queries. For unannotated queries, the system falls back to the heuristic-only attribution mode, which uses Stages 1, 3, and 4 only.
 
-**Potential mitigation**: Query-agnostic chunk importance scoring — rank chunks by expected contribution to a correct answer without a reference. This is an open research problem. The closest existing work is ARES (Saad-Falcon et al. 2023), which trains domain-specific judges, but these require labeled data.
+**Potential mitigation**: Query-agnostic chunk importance scoring - rank chunks by expected contribution to a correct answer without a reference. This is an open research problem. The closest existing work is ARES (Saad-Falcon et al. 2023), which trains domain-specific judges, but these require labeled data.
 
 ---
 
 ## 2. Stage 4 LLM Stochasticity
 
-**What**: Generation attribution (Stage 4) compares original generation quality against baseline-prompt generation. LLM outputs are stochastic — the same context and prompt produce different outputs at temperature > 0.
+**What**: Generation attribution (Stage 4) compares original generation quality against baseline-prompt generation. LLM outputs are stochastic - the same context and prompt produce different outputs at temperature > 0.
 
 **Why it matters**: A 0.02–0.05 quality delta might be signal (the prompt caused the failure) or noise (temperature variance). The two are indistinguishable without an oracle.
 
-**Impact**: Stage 4 attribution accuracy: 50% — equivalent to random attribution on generation cases.
+**Impact**: Stage 4 attribution accuracy: 50% - equivalent to random attribution on generation cases.
 
 **Current mitigation**: Wider attribution threshold for Stage 4 (0.10 vs. 0.15 for other stages). Explicit confidence flag in ReplayReport. Heuristic disclaimer on all Stage 4 attribution outputs.
 
@@ -47,7 +47,7 @@
 
 ## 4. Chunking Failure Corpus Coverage
 
-**What**: Stage 1 ablation only runs for documents in the "chunking failure corpus" — documents where boundary-aware and boundary-naive configurations produce materially different splits. Documents not in the corpus are assumed chunking-neutral.
+**What**: Stage 1 ablation only runs for documents in the "chunking failure corpus" - documents where boundary-aware and boundary-naive configurations produce materially different splits. Documents not in the corpus are assumed chunking-neutral.
 
 **Why**: Maintaining a boundary-aware Qdrant collection for every document would double storage requirements and complicate the ingestion pipeline.
 

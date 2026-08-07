@@ -1,7 +1,7 @@
 """Abstract base interfaces for all pipeline components.
 
 Each interface defines the contract that concrete implementations must satisfy.
-No implementation logic lives here — only signatures and docstrings.
+No implementation logic lives here - only signatures and docstrings.
 """
 
 from abc import ABC, abstractmethod

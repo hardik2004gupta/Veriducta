@@ -1,4 +1,4 @@
-"""Tests for observability.trace_store — TraceStore."""
+"""Tests for observability.trace_store - TraceStore."""
 
 from collections.abc import Generator
 from pathlib import Path

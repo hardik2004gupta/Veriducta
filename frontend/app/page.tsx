@@ -116,7 +116,7 @@ const FEATURES = [
     icon: BarChart3,
     color: "cyan",
     title: "CI Regression Gate",
-    desc: "Five blocking conditions gate every merge. Faithfulness drop >2%, Recall@5 drop >3%, p95 latency >20% — all auto-blocked.",
+    desc: "Five blocking conditions gate every merge. Faithfulness drop >2%, Recall@5 drop >3%, p95 latency >20% - all auto-blocked.",
   },
   {
     icon: Zap,
@@ -225,7 +225,7 @@ export default function LandingPage() {
         >
           Veriducta stores a complete, replayable trace of every retrieval decision and
           runs four-stage causal ablation to attribute answer degradation to a specific pipeline
-          stage — chunking, retrieval, reranking, or generation — without re-running expensive inference.
+          stage - chunking, retrieval, reranking, or generation - without re-running expensive inference.
         </motion.p>
 
         <motion.div
@@ -325,7 +325,7 @@ export default function LandingPage() {
               <div key={String(cap)} className="contents">
                 <div className={`px-4 py-3 text-slate-300 ${i % 2 === 0 ? "bg-white/[0.01]" : ""}`}>{String(cap)}</div>
                 <div className={`px-4 py-3 text-center ${i % 2 === 0 ? "bg-white/[0.01]" : ""}`}>
-                  {ragas ? <CheckCircle2 className="h-4 w-4 text-slate-500 mx-auto" /> : <span className="text-slate-700">—</span>}
+                  {ragas ? <CheckCircle2 className="h-4 w-4 text-slate-500 mx-auto" /> : <span className="text-slate-700">-</span>}
                 </div>
                 <div className={`px-4 py-3 text-center ${i % 2 === 0 ? "bg-white/[0.01]" : ""}`}>
                   <CheckCircle2 className="h-4 w-4 text-emerald-400 mx-auto" />
@@ -446,7 +446,7 @@ export default function LandingPage() {
                 Ready to attribute your first failure?
               </h2>
               <p className="text-slate-400 mb-8 max-w-xl mx-auto">
-                Open the dashboard, run a query, and see which stage caused degradation —
+                Open the dashboard, run a query, and see which stage caused degradation -
                 down to a quality delta and a named chunk ID.
               </p>
               <div className="flex items-center justify-center gap-4">

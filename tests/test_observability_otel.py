@@ -1,4 +1,4 @@
-"""Tests for observability.otel — record_span_attributes."""
+"""Tests for observability.otel - record_span_attributes."""
 
 from unittest.mock import MagicMock
 

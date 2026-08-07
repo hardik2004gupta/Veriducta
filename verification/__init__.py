@@ -1,1 +1,1 @@
-"""Verification pipeline — claim integrity orchestration delegating to generation.entailment."""
+"""Verification pipeline - claim integrity orchestration delegating to generation.entailment."""

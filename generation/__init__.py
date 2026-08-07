@@ -1,1 +1,1 @@
-"""Generation pipeline — structured LLM output, NLI entailment, counterevidence retrieval."""
+"""Generation pipeline - structured LLM output, NLI entailment, counterevidence retrieval."""

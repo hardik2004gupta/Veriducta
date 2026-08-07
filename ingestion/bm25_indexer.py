@@ -93,7 +93,7 @@ class BM25Index:
         """
         if self._bm25 is None:
             raise IngestionError(
-                "Cannot save an empty BM25 index — call build() first.",
+                "Cannot save an empty BM25 index - call build() first.",
                 details={},
             )
         path = Path(path)
@@ -142,7 +142,7 @@ class BM25Index:
         """
         if self._bm25 is None:
             raise IngestionError(
-                "BM25 index not loaded — call build() or load() first.",
+                "BM25 index not loaded - call build() or load() first.",
                 details={},
             )
         tokens = _tokenise(query)

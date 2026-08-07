@@ -1,4 +1,4 @@
-"""High-level replay controller — the external entry point for the replay engine.
+"""High-level replay controller - the external entry point for the replay engine.
 
 :class:`ReplayController` wires together the :class:`~replay.ablation.VeriductaReplayEngine`,
 the :class:`~replay.loader.TraceLoader`, and the :class:`~replay.executor.ReplayExecutor`

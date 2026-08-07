@@ -140,7 +140,7 @@ function ClaimCard({ claim, index }: { claim: Claim; index: number }) {
               {claim.requires_expert_review && (
                 <div className="flex items-center gap-2 rounded-lg bg-amber-500/10 border border-amber-500/20 px-3 py-2">
                   <AlertTriangle className="h-4 w-4 text-amber-400 shrink-0" />
-                  <p className="text-xs text-amber-300">Flagged for expert review — contradiction or ambiguity detected.</p>
+                  <p className="text-xs text-amber-300">Flagged for expert review - contradiction or ambiguity detected.</p>
                 </div>
               )}
             </div>
@@ -194,15 +194,15 @@ function EvidencePanel({ traceId }: { traceId: string }) {
             <div className="flex items-center gap-3 mt-2">
               <div className="flex items-center gap-1">
                 <div className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
-                <span className="text-[10px] text-slate-500">BM25 {c.bm25_score?.toFixed(3) ?? "—"}</span>
+                <span className="text-[10px] text-slate-500">BM25 {c.bm25_score?.toFixed(3) ?? "-"}</span>
               </div>
               <div className="flex items-center gap-1">
                 <div className="h-1.5 w-1.5 rounded-full bg-violet-400" />
-                <span className="text-[10px] text-slate-500">dense {c.dense_score?.toFixed(3) ?? "—"}</span>
+                <span className="text-[10px] text-slate-500">dense {c.dense_score?.toFixed(3) ?? "-"}</span>
               </div>
               <div className="flex items-center gap-1">
                 <div className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                <span className="text-[10px] text-slate-500">RRF {c.rrf_score?.toFixed(4) ?? "—"}</span>
+                <span className="text-[10px] text-slate-500">RRF {c.rrf_score?.toFixed(4) ?? "-"}</span>
               </div>
             </div>
           </div>

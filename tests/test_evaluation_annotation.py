@@ -1,4 +1,4 @@
-"""Tests for evaluation/annotation.py — AnnotationLoader, AnnotationValidator,
+"""Tests for evaluation/annotation.py - AnnotationLoader, AnnotationValidator,
 AnnotationStatistics, and AnnotationExporter."""
 
 import json

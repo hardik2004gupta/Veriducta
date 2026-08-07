@@ -3,7 +3,7 @@
 Every corpus document must have a companion JSON sidecar that captures its
 identity, temporal validity, and version provenance.  The sidecar is the
 single source of truth for ``document_id``, ``effective_date``, and the
-supersession chain — all of which drive temporal filtering during retrieval.
+supersession chain - all of which drive temporal filtering during retrieval.
 
 Sidecars are stored at ``corpus/sidecars/{document_id}.json``.
 """

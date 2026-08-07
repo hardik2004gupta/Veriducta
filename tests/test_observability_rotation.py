@@ -1,4 +1,4 @@
-"""Tests for observability.rotation — LogRotator."""
+"""Tests for observability.rotation - LogRotator."""
 
 import gzip
 from pathlib import Path

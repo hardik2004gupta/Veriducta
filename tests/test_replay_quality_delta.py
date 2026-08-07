@@ -1,4 +1,4 @@
-"""Tests for replay.quality_delta — QualityDeltaCalculator."""
+"""Tests for replay.quality_delta - QualityDeltaCalculator."""
 
 import pytest
 

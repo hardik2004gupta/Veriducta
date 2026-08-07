@@ -1,15 +1,15 @@
-"""Replay package — causal ablation engine for Veriducta.
+"""Replay package - causal ablation engine for Veriducta.
 
 Public exports::
 
-    VeriductaReplayEngine  — BaseReplayEngine implementation (four-stage ablation)
-    ReplayController       — high-level orchestration entry point
-    TraceLoader            — evidence-log trace loader
-    ReplayExecutor         — deterministic stage-level executor
-    QualityDeltaCalculator — quality comparison computation
-    RootCauseAttributor    — stage attribution computation
-    ReplayReportAssembler  — report builder
-    ReplayConfigurationBuilder — fluent config builder
+    VeriductaReplayEngine  - BaseReplayEngine implementation (four-stage ablation)
+    ReplayController       - high-level orchestration entry point
+    TraceLoader            - evidence-log trace loader
+    ReplayExecutor         - deterministic stage-level executor
+    QualityDeltaCalculator - quality comparison computation
+    RootCauseAttributor    - stage attribution computation
+    ReplayReportAssembler  - report builder
+    ReplayConfigurationBuilder - fluent config builder
 
 Data models (re-exported from ``replay.models``)::
 

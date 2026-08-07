@@ -1,4 +1,4 @@
-"""Synthetic corruption dataset — seed data and builder for the benchmark.
+"""Synthetic corruption dataset - seed data and builder for the benchmark.
 
 :data:`CORRUPTIONS_SEED` contains 60 engineered failure cases covering four
 pipeline stages (retrieval, chunking, reranker, generation).
@@ -19,7 +19,7 @@ from replay.models import CorruptionCase
 logger = structlog.get_logger(__name__)
 
 # ---------------------------------------------------------------------------
-# Seed data — 60 corruption cases
+# Seed data - 60 corruption cases
 # 20 retrieval  (5 swap, 5 supersession_removal, 5 bm25_zeroing, 5 top_k_reduction)
 # 15 chunking   (all boundary_naive; first 10 are realistic boundary errors)
 # 15 reranker   (5 top1_forcing, 5 cross_encoder_bypass, 5 score_inversion)
@@ -64,7 +64,7 @@ CORRUPTIONS_SEED: list[dict[str, Any]] = [
             "replacement_chunk": "usgs-oil-formations-ch-0067",
             "swap_rank": 1,
         },
-        "notes": "Replacement chunk discusses millidarcy thresholds, not porosity — numerically confusing.",
+        "notes": "Replacement chunk discusses millidarcy thresholds, not porosity - numerically confusing.",
     },
     {
         "case_id": "corr-retrieval-003",
@@ -82,7 +82,7 @@ CORRUPTIONS_SEED: list[dict[str, Any]] = [
             "replacement_chunk": "api-5ct-2022-ch-0045",
             "swap_rank": 1,
         },
-        "notes": "P110 has 110,000 psi yield — answer with swapped chunk will state wrong grade properties.",
+        "notes": "P110 has 110,000 psi yield - answer with swapped chunk will state wrong grade properties.",
     },
     {
         "case_id": "corr-retrieval-004",
@@ -100,7 +100,7 @@ CORRUPTIONS_SEED: list[dict[str, Any]] = [
             "replacement_chunk": "epa-remed-ch-0056",
             "swap_rank": 1,
         },
-        "notes": "Industrial threshold is 750 mg/kg — answer with swapped chunk will cite wrong value.",
+        "notes": "Industrial threshold is 750 mg/kg - answer with swapped chunk will cite wrong value.",
     },
     {
         "case_id": "corr-retrieval-005",
@@ -433,7 +433,7 @@ CORRUPTIONS_SEED: list[dict[str, Any]] = [
         "corruption_parameters": {
             "boundary_aware": False,
             "split_location": "mid_conditional_list",
-            "affected_content": "condition 4 — control system failure trigger",
+            "affected_content": "condition 4 - control system failure trigger",
         },
         "notes": "The subheading appears as an inline bold phrase that naive tokenizer misclassifies as section break.",
     },
@@ -571,7 +571,7 @@ CORRUPTIONS_SEED: list[dict[str, Any]] = [
         "ground_truth_root_cause": "chunking",
         "is_realistic_boundary_error": False,
         "severity": "low",
-        "description": "Non-realistic boundary: deepwater cementing temperature clause is at a numbered section start — clean split that any chunker would make.",
+        "description": "Non-realistic boundary: deepwater cementing temperature clause is at a numbered section start - clean split that any chunker would make.",
         "corrupted_configuration": {"chunking": {"boundary_aware": False}},
         "expected_quality_delta": -0.12,
         "pipeline_trace_id": "",
@@ -589,7 +589,7 @@ CORRUPTIONS_SEED: list[dict[str, Any]] = [
         "ground_truth_root_cause": "chunking",
         "is_realistic_boundary_error": False,
         "severity": "medium",
-        "description": "Non-realistic variant: offshore permit agency list split at 'Environmental Permits' bold heading after a blank line — clear section boundary.",
+        "description": "Non-realistic variant: offshore permit agency list split at 'Environmental Permits' bold heading after a blank line - clear section boundary.",
         "corrupted_configuration": {"chunking": {"boundary_aware": False}},
         "expected_quality_delta": -0.20,
         "pipeline_trace_id": "",
@@ -625,7 +625,7 @@ CORRUPTIONS_SEED: list[dict[str, Any]] = [
         "ground_truth_root_cause": "chunking",
         "is_realistic_boundary_error": False,
         "severity": "low",
-        "description": "Non-realistic variant: BOP test interval conditions split at 'Testing Procedures' section title — unambiguous section boundary.",
+        "description": "Non-realistic variant: BOP test interval conditions split at 'Testing Procedures' section title - unambiguous section boundary.",
         "corrupted_configuration": {"chunking": {"boundary_aware": False}},
         "expected_quality_delta": -0.10,
         "pipeline_trace_id": "",

@@ -2,9 +2,9 @@
 
 ## Branch Strategy
 
-- `main` — stable, CI must pass
-- `phase/N-name` — one branch per build phase
-- `feat/short-description` — feature branches off the current phase branch
+- `main` - stable, CI must pass
+- `phase/N-name` - one branch per build phase
+- `feat/short-description` - feature branches off the current phase branch
 
 ## Commit Style
 

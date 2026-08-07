@@ -1,20 +1,20 @@
-# Veriducta — Key Achievements
+# Veriducta - Key Achievements
 
 ---
 
 ## Technical Achievements
 
-### 1. Causal Attribution Engine — Core Innovation
+### 1. Causal Attribution Engine - Core Innovation
 **What**: A four-stage ablation engine that identifies the root-cause pipeline stage for answer failures, using stored retrieval traces for replay without re-inference.
 
-**Why it's hard**: Most observability tools measure outcomes; attribution requires counterfactual reasoning over historical executions. Stage 3 (reranker) ablation in particular requires the full pre-reranking score list — otherwise you'd need to re-run the cross-encoder for every historical query investigated.
+**Why it's hard**: Most observability tools measure outcomes; attribution requires counterfactual reasoning over historical executions. Stage 3 (reranker) ablation in particular requires the full pre-reranking score list - otherwise you'd need to re-run the cross-encoder for every historical query investigated.
 
 **Result**: 73.3% root-cause accuracy on 60-case benchmark; 68.8% on the harder boundary-error subset. Both targets exceeded.
 
 ### 2. Four Metrics RAGAS Cannot Compute
 **What**: Omission rate (8.2%), causal attribution accuracy (73.3%), temporal-valid retrieval rate (94.1%), contradiction acknowledgment rate (91.7%).
 
-**Why it matters**: Faithfulness-based metrics cannot measure what was not said. Omission detection requires comparing the retrieved context against the expected completeness profile — which requires knowing what should have been retrieved (Stage 2 annotation) or detecting boundary splits (Stage 1 ablation).
+**Why it matters**: Faithfulness-based metrics cannot measure what was not said. Omission detection requires comparing the retrieved context against the expected completeness profile - which requires knowing what should have been retrieved (Stage 2 annotation) or detecting boundary splits (Stage 1 ablation).
 
 ### 3. O(1) Evidence Log Lookup
 **What**: JSONL append-only log with SQLite byte-offset index. Trace lookup is a single primary-key read + file seek.
@@ -51,7 +51,7 @@ Blocks merges that introduce:
 4. Root-cause accuracy drop > 5%
 5. Any unauthorized evidence exposure
 
-This gate ensures the pipeline cannot regress silently — every performance metric is gated.
+This gate ensures the pipeline cannot regress silently - every performance metric is gated.
 
 ### 9. Production Observability Stack
 - 7-span OTel hierarchy across all pipeline stages

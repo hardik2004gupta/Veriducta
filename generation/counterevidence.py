@@ -170,7 +170,7 @@ class CounterEvidenceSearcher:
         min_entities = self._settings.min_entities_for_search
         top_k = self._settings.counterevidence_top_k
 
-        # Step 1 — separate entity-rich and entity-sparse claims
+        # Step 1 - separate entity-rich and entity-sparse claims
         searchable = [c for c in claims if len(c.key_entities) >= min_entities]
         sparse = [c for c in claims if len(c.key_entities) < min_entities]
 
@@ -190,7 +190,7 @@ class CounterEvidenceSearcher:
             )
             return sparse_updated, []
 
-        # Step 2 — build contrastive query
+        # Step 2 - build contrastive query
         entities = _extract_entities(searchable, _DOMAIN_STOPWORDS)
         query = _build_contrastive_query(entities)
         logger.debug(
@@ -199,13 +199,13 @@ class CounterEvidenceSearcher:
             query_preview=query[:120],
         )
 
-        # Step 3 — BM25 retrieval with optional temporal filter
+        # Step 3 - BM25 retrieval with optional temporal filter
         raw_candidates: list[RetrievalCandidate] = self._retrieve(query)
         if self._filter_fn is not None:
             raw_candidates = self._filter_fn(raw_candidates, query_date)
         top_candidates = raw_candidates[:top_k]
 
-        # Step 4 — NLI batch inference: each candidate vs each searchable claim
+        # Step 4 - NLI batch inference: each candidate vs each searchable claim
         ce_candidates: list[CounterEvidenceCandidate] = []
         claim_updates: dict[str, dict[str, Any]] = {c.claim_id: {} for c in searchable}
 
@@ -278,7 +278,7 @@ class CounterEvidenceSearcher:
                 )
             )
 
-        # Step 5 — apply updates to searchable claims
+        # Step 5 - apply updates to searchable claims
         updated_searchable: list[Claim] = []
         for claim in searchable:
             updates = claim_updates.get(claim.claim_id, {})

@@ -1,4 +1,4 @@
-"""Tests for observability.evidence_log — EvidenceLogWriter."""
+"""Tests for observability.evidence_log - EvidenceLogWriter."""
 
 import gzip
 from collections.abc import Generator
@@ -115,7 +115,7 @@ def test_read_line_retrieves_correct_entry(writer: EvidenceLogWriter, tmp_path: 
 
 def test_read_line_from_compressed_file(tmp_path: Path) -> None:
     # Use a dedicated writer so we can close it (releasing the file lock)
-    # before manually compressing the JSONL — required on Windows.
+    # before manually compressing the JSONL - required on Windows.
     log_dir = tmp_path / "logs2"
     w = EvidenceLogWriter(log_dir=log_dir, db_path=tmp_path / "index2.db")
     trace = _make_retrieval_trace(query="archived")

@@ -58,7 +58,7 @@ def _softmax(logits: np.ndarray) -> np.ndarray:
 class NLIEntailmentVerifier:
     """Runs batch NLI inference to classify claims against supporting chunks.
 
-    Uses :func:`get_nli_model` internally — the model is a module singleton and
+    Uses :func:`get_nli_model` internally - the model is a module singleton and
     is never reloaded per-request.
 
     Args:

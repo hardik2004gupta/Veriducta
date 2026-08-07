@@ -1,4 +1,4 @@
-"""Benchmark runner — orchestrates the full evaluation pipeline.
+"""Benchmark runner - orchestrates the full evaluation pipeline.
 
 :class:`BenchmarkRunner` is the top-level orchestrator that combines:
 

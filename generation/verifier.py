@@ -1,4 +1,4 @@
-"""Claim verification orchestration — NLI entailment + counterevidence scan.
+"""Claim verification orchestration - NLI entailment + counterevidence scan.
 
 Implements :class:`~core.interfaces.BaseVerifier` by composing
 :class:`~generation.entailment.NLIEntailmentVerifier` and
@@ -117,11 +117,11 @@ class VeriductaVerifier(BaseVerifier):
                 # Build chunk text lookup from retrieval candidates
                 chunk_texts = _build_chunk_texts(retrieval_result)
 
-                # Stage 1 — NLI entailment on primary citations
+                # Stage 1 - NLI entailment on primary citations
                 with _tracer.start_as_current_span("veriducta.verification.entailment"):
                     claims_after_nli = self._nli.verify_claims(answer.claims, chunk_texts)
 
-                # Stage 2 — 5-step counterevidence scan
+                # Stage 2 - 5-step counterevidence scan
                 ce_candidates: list[CounterEvidenceCandidate] = []
                 if self._ce_searcher is not None:
                     with _tracer.start_as_current_span("veriducta.verification.counterevidence"):

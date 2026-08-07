@@ -8,11 +8,11 @@ This document explains the non-obvious design choices in Veriducta and the reaso
 
 **Decision**: `RetrievalTrace.pre_rerank_top40` stores the complete list of 40 candidates with all scores before the cross-encoder reranks them.
 
-**Why**: Stage 3 ablation needs to reconstruct retrieval contexts at different cutoffs (top-1, top-3, top-5, top-8) without re-running retrieval. Without the pre-reranking list, every ablation run would require re-querying Qdrant and BM25 — expensive, slow, and potentially non-deterministic (Qdrant's approximate nearest neighbour search is not guaranteed to be reproducible).
+**Why**: Stage 3 ablation needs to reconstruct retrieval contexts at different cutoffs (top-1, top-3, top-5, top-8) without re-running retrieval. Without the pre-reranking list, every ablation run would require re-querying Qdrant and BM25 - expensive, slow, and potentially non-deterministic (Qdrant's approximate nearest neighbour search is not guaranteed to be reproducible).
 
 With the stored top-40, the replay engine seeks to the evidence log at the byte offset, reads the trace, and reconstructs any context slice in O(1). No inference, no network calls.
 
-**Tradeoff**: The pre-rerank list adds ~2 KB to each evidence log entry. At 5,000 queries/day this is ~10 MB/day — negligible.
+**Tradeoff**: The pre-rerank list adds ~2 KB to each evidence log entry. At 5,000 queries/day this is ~10 MB/day - negligible.
 
 ---
 
@@ -20,7 +20,7 @@ With the stored top-40, the replay engine seeks to the evidence log at the byte 
 
 **Decision**: Reciprocal rank fusion uses k=60: `rrf_score = 1/(60 + rank)`.
 
-**Why**: k=60 is the value from Cormack, Clarke, and Buettcher (2009), which showed it performs well across a wide range of corpora without tuning. The implicit rank for candidates absent from one list is 101 (out of 100 candidates), which gives a score of `1/(60+101) = 0.0062` — low enough to deprioritise absent candidates without zeroing them.
+**Why**: k=60 is the value from Cormack, Clarke, and Buettcher (2009), which showed it performs well across a wide range of corpora without tuning. The implicit rank for candidates absent from one list is 101 (out of 100 candidates), which gives a score of `1/(60+101) = 0.0062` - low enough to deprioritise absent candidates without zeroing them.
 
 **Tradeoff**: Any change to k requires re-benchmarking the full 40-question golden set. The constant is documented in code with a comment pointing to the paper.
 
@@ -40,7 +40,7 @@ The query prefix `"Represent this sentence for searching relevant passages: "` i
 
 ## 4. Why a 3-class NLI heuristic?
 
-**Decision**: The NLI entailment checker produces three classes — supported, contradicted, ambiguous_conditional — rather than binary supported/unsupported.
+**Decision**: The NLI entailment checker produces three classes - supported, contradicted, ambiguous_conditional - rather than binary supported/unsupported.
 
 **Why**: Binary NLI misses the important middle case where a claim is conditionally true. For example: "Medical surveillance is required at exposures above the action level" is supported for construction (§1926.1153) but not for maritime (§1915.1153 uses a different threshold). A binary model marks this as supported. The 3-class heuristic marks it as `ambiguous_conditional` if `neutral > 0.40 AND contradiction between 0.30 and 0.70`, which triggers expert review.
 
@@ -54,7 +54,7 @@ The thresholds (entailment > 0.65, contradiction > 0.85, neutral > 0.40) are fro
 
 **Decision**: Evidence log is JSONL with a SQLite index storing `(trace_id, log_file, byte_offset)`.
 
-**Why**: The replay engine needs to fetch historical traces during ablation runs. A naïve implementation would scan the JSONL file linearly — O(n). With 5,000 queries/day, a 30-day log has 150,000 entries; linear scan would take seconds per lookup.
+**Why**: The replay engine needs to fetch historical traces during ablation runs. A naïve implementation would scan the JSONL file linearly - O(n). With 5,000 queries/day, a 30-day log has 150,000 entries; linear scan would take seconds per lookup.
 
 The SQLite index stores the byte offset where each trace starts in the JSONL file. Lookup is: `SELECT byte_offset FROM index WHERE trace_id = ?` (O(log n) with the index), then `lseek()` to that offset and read one line. Total: sub-millisecond.
 
@@ -66,7 +66,7 @@ The SQLite index stores the byte offset where each trace starts in the JSONL fil
 
 **Decision**: Boundary-aware and boundary-naive chunking produce two separate Qdrant collections, not two fields in one collection.
 
-**Why**: Stage 1 ablation requires swapping the entire retrieval collection. If both configurations share a collection, the ablation would need to filter by a chunking config field — which complicates the retrieval path and makes the temporal filter harder to apply consistently.
+**Why**: Stage 1 ablation requires swapping the entire retrieval collection. If both configurations share a collection, the ablation would need to filter by a chunking config field - which complicates the retrieval path and makes the temporal filter harder to apply consistently.
 
 Separate collections keep the retrieval interface clean: `VeriductaRetriever` receives a collection name and is unaware of chunking strategy. The replay engine swaps the collection name when running Stage 1.
 
@@ -86,7 +86,7 @@ Separate collections keep the retrieval interface clean: `VeriductaRetriever` re
 
 ---
 
-## 8. Why no `print()` — ever?
+## 8. Why no `print()` - ever?
 
 **Decision**: All logging goes through structlog, even in utility scripts.
 

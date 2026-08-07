@@ -50,7 +50,7 @@ class ReplayOverride(BaseModel):
     """A single documented parameter override in a replay run.
 
     Tracking overrides explicitly makes every replay deterministic and
-    auditable — the evidence log entry contains the full override list.
+    auditable - the evidence log entry contains the full override list.
     """
 
     parameter: str = Field(..., description="Dotted parameter name, e.g. 'retrieval.rrf_k'.")
@@ -71,7 +71,7 @@ class ReplayConfiguration(BaseModel):
     Holds per-stage parameter overrides and a list of
     :class:`ReplayOverride` records for audit purposes.  An empty
     ``ReplayConfiguration`` (all dicts empty) means "replay with the
-    original configuration" — a deterministic no-op.
+    original configuration" - a deterministic no-op.
     """
 
     config_id: str = Field(default_factory=lambda: str(uuid4()))

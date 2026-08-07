@@ -1,4 +1,4 @@
-# YouTube — Demo Script
+# YouTube - Demo Script
 
 *Short demo video: "Veriducta in 5 Minutes"*
 *Target: 4–6 minutes, screen recording only, minimal narration*
@@ -14,7 +14,7 @@ docker compose up -d qdrant minio
 make run
 ```
 
-"Starting the Veriducta stack — Qdrant, MinIO, and the FastAPI backend."
+"Starting the Veriducta stack - Qdrant, MinIO, and the FastAPI backend."
 
 [0:20] Open browser at localhost:3000. Dashboard loads.
 
@@ -30,7 +30,7 @@ Hit enter. Answer starts streaming.
 
 [0:55] Answer appears. Point out: mentions action level, mentions medical surveillance. Missing: the PEL value (50 µg/m³).
 
-"The answer looks plausible — but notice it's missing the permissible exposure limit itself. RAGAS would score this 0.82. Let's find out why."
+"The answer looks plausible - but notice it's missing the permissible exposure limit itself. RAGAS would score this 0.82. Let's find out why."
 
 [1:15] Click "Replay" button on the answer card (or navigate to Replay page, paste trace ID).
 
@@ -43,11 +43,11 @@ Hit enter. Answer starts streaming.
 
 [2:00] Attribution report complete. "Primary root cause: **chunking**. Confidence: 0.88."
 
-[2:10] Click "Evidence" in sidebar. Show the retrieval trace — scrollable list of candidates with BM25, dense, RRF, and reranker scores.
+[2:10] Click "Evidence" in sidebar. Show the retrieval trace - scrollable list of candidates with BM25, dense, RRF, and reranker scores.
 
-"You can see chunk 0042 ranked 3rd after reranking. Chunk 0041 ranked 12th — dropped at the top-8 cutoff. These two chunks contain the two halves of the same sentence."
+"You can see chunk 0042 ranked 3rd after reranking. Chunk 0041 ranked 12th - dropped at the top-8 cutoff. These two chunks contain the two halves of the same sentence."
 
-[2:35] Navigate to "Retrieval Inspector". Show the score breakdown bars. Highlight the temporal filter section — show 0 rejections on this query.
+[2:35] Navigate to "Retrieval Inspector". Show the score breakdown bars. Highlight the temporal filter section - show 0 rejections on this query.
 
 [2:55] Navigate back to the main terminal. Run:
 
@@ -72,6 +72,6 @@ Show 5 corruption cases being attributed. Show accuracy summary.
 - Record at 1920×1080, 60fps
 - Use dark OS theme (matches the UI)
 - Browser zoom: 90% to show more content
-- Have the query pre-typed — don't type it on camera (wastes time)
+- Have the query pre-typed - don't type it on camera (wastes time)
 - Have the benchmark pre-configured for 5 cases (full 60 takes too long for demo)
 - Edit out any API latency waits > 3s with a cut

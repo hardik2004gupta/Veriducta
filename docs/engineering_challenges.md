@@ -10,7 +10,7 @@ The hardest problems encountered building Veriducta, and how they were solved.
 
 **The solution**: Three-level approach:
 
-- **Stage 1 (chunking)**: No oracle needed. The counterfactual is structural — swap the chunking configuration. If boundary-aware chunking recovers Recall@5, chunking was the bottleneck, not retrieval quality.
+- **Stage 1 (chunking)**: No oracle needed. The counterfactual is structural - swap the chunking configuration. If boundary-aware chunking recovers Recall@5, chunking was the bottleneck, not retrieval quality.
 - **Stage 2 (retrieval)**: Inject gold `supporting_chunk_ids` from the human-annotated golden QA dataset. The oracle is the human annotator, not the system.
 - **Stage 3 (reranker)**: The oracle is the pre-reranking candidate list, stored at query time. Test whether the gold chunk was available but ranked too low.
 - **Stage 4 (generation)**: Replay with the original retrieval context and a baseline prompt. The quality delta is generation's contribution.
@@ -34,7 +34,7 @@ The key insight: the oracle for most stages is stored state, not external knowle
 }
 ```
 
-The temporal filter queries the graph for a given `query_date` and produces two lists: fully superseded documents and documents with partial supersession. Chunks from fully superseded documents are rejected. Chunks from partially superseded documents carry a `temporal_validity="superseded"` tag but are not rejected — they are demoted in RRF score by treating them as rank 101.
+The temporal filter queries the graph for a given `query_date` and produces two lists: fully superseded documents and documents with partial supersession. Chunks from fully superseded documents are rejected. Chunks from partially superseded documents carry a `temporal_validity="superseded"` tag but are not rejected - they are demoted in RRF score by treating them as rank 101.
 
 This was substantially more complex than the initial spec anticipated, requiring an additional 3 days of corpus annotation to map all supersession relationships.
 
@@ -64,7 +64,7 @@ This was enforced by `ruff --select I` (import order and cycle detection) as a C
 
 ## 4. Reproducible ablation without re-running inference
 
-**The problem**: The replay engine needs to test counterfactual retrieval contexts without making new LLM API calls. But the quality score for an ablated context requires knowing what the LLM would generate given that context — which requires an API call.
+**The problem**: The replay engine needs to test counterfactual retrieval contexts without making new LLM API calls. But the quality score for an ablated context requires knowing what the LLM would generate given that context - which requires an API call.
 
 **The solution**: Approximate quality scoring using overlap metrics between the ablated generation and the gold answer, rather than re-running full NLI entailment verification. The quality delta `Δq = q_ablated - q_original` is computed as:
 
@@ -77,7 +77,7 @@ Where:
 - `claim_overlap` = ROUGE-L between ablated answer and gold answer
 - `key_entity_coverage` = fraction of gold key entities present in ablated answer
 
-For Stage 4 (generation ablation), a new Claude API call is unavoidable — the quality delta is computed by re-running generation with a baseline prompt. But Stages 1–3 are inference-free.
+For Stage 4 (generation ablation), a new Claude API call is unavoidable - the quality delta is computed by re-running generation with a baseline prompt. But Stages 1–3 are inference-free.
 
 **Tradeoff**: The approximate quality score diverges from the full NLI-verified score on edge cases. The specification acknowledges this: "heuristic span attribution signals" carry a mandatory disclaimer in the API response.
 
@@ -90,7 +90,7 @@ For Stage 4 (generation ablation), a new Claude API call is unavoidable — the 
 **The solution**: Three-tier approach:
 
 1. `ignore_missing_imports = true` in `pyproject.toml` for packages with no stubs at all.
-2. Targeted `# type: ignore[specific-code]` with a comment explaining why (e.g., `# type: ignore[type-arg] — np.ndarray generic not available in this numpy version`).
+2. Targeted `# type: ignore[specific-code]` with a comment explaining why (e.g., `# type: ignore[type-arg] - np.ndarray generic not available in this numpy version`).
 3. Wrapper classes in `models/` that provide typed interfaces over untyped ML model calls:
    ```python
    def embed(self, texts: list[str]) -> list[list[float]]:
@@ -110,7 +110,7 @@ The constraint: `# type: ignore` without a specific error code is forbidden. Eve
 **The solution**:
 
 - In `VERIDUCTA_ENV=testing`, the evidence log writes to a per-test-session temporary directory (via `pytest` `tmp_path` fixture), never to the real evidence log directory.
-- The SQLite index uses `INSERT OR REPLACE` — if a `trace_id` is re-used (only possible in testing), the byte offset is updated, not duplicated.
+- The SQLite index uses `INSERT OR REPLACE` - if a `trace_id` is re-used (only possible in testing), the byte offset is updated, not duplicated.
 - Gzip rotation happens only after a full 24-hour period. Mid-day rotation is not allowed. This guarantees that a byte offset stored in SQLite always points to an uncompressed line in the active log file.
 
 ---
@@ -119,7 +119,7 @@ The constraint: `# type: ignore` without a specific error code is forbidden. Eve
 
 **The problem**: The replay engine needs to know which chunking configuration produced each ingested chunk. If chunking parameters change between ingestion runs, old traces may not be replayable with the same chunking setup.
 
-**The solution**: Every ingestion run produces a `ConfigurationSnapshot` — an immutable, SHA-256-hashed JSON record of all chunking parameters:
+**The solution**: Every ingestion run produces a `ConfigurationSnapshot` - an immutable, SHA-256-hashed JSON record of all chunking parameters:
 
 ```json
 {
@@ -144,7 +144,7 @@ The snapshot is stored at `config/chunking_snapshots/{hash}.json` and referenced
 
 1. **Obvious corruptions** (30%): Direct swaps of the top-1 retrieval result with a semantically unrelated chunk. The ablation engine should detect these with near-100% accuracy. If it doesn't, the basic mechanism is broken.
 
-2. **Realistic boundary-error corruptions** (25%): Boundary-naive chunking on documents where the boundary makes a measurable difference. The ablation engine must correctly attribute to chunking, not retrieval (since the BM25/dense scores are unchanged — only the chunk boundary position changes).
+2. **Realistic boundary-error corruptions** (25%): Boundary-naive chunking on documents where the boundary makes a measurable difference. The ablation engine must correctly attribute to chunking, not retrieval (since the BM25/dense scores are unchanged - only the chunk boundary position changes).
 
 3. **Subtle corruptions** (45%): Corruptions that change the reranker order without changing the retrieval set, or that use a marginally different generation prompt. These are the "boundary cases" that test the accuracy floor (≥ 0.65 for realistic boundary-error subset).
 

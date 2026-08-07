@@ -1,4 +1,4 @@
-"""Tests for replay.report — ReplayReportAssembler."""
+"""Tests for replay.report - ReplayReportAssembler."""
 
 from replay.models import QualityDelta, StageReplayResult
 from replay.report import ReplayReportAssembler

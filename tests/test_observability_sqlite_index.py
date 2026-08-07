@@ -1,4 +1,4 @@
-"""Tests for observability.sqlite_index — EvidenceIndex."""
+"""Tests for observability.sqlite_index - EvidenceIndex."""
 
 from collections.abc import Generator
 from pathlib import Path

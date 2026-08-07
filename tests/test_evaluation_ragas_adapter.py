@@ -17,7 +17,7 @@ class TestRAGASAdapter:
 
     def test_compute_when_unavailable_returns_empty(self):
         if _RAGAS_AVAILABLE:
-            pytest.skip("ragas is installed — skipping unavailability test")
+            pytest.skip("ragas is installed - skipping unavailability test")
         adapter = RAGASAdapter()
         result = adapter.compute(
             questions=["What is X?"],

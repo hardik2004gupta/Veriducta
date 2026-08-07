@@ -12,7 +12,7 @@
 
 # Veriducta
 
-### RAG Pipeline Observability — Causal Root-Cause Attribution for Answer Failures
+### RAG Pipeline Observability - Causal Root-Cause Attribution for Answer Failures
 
 <p>
   <strong>Your RAG pipeline is failing. RAGAS gives it 0.82 faithfulness. Which stage caused it?</strong><br/>
@@ -81,7 +81,7 @@ flowchart TD
     C --> E["Shows call logs\nand latency.\nCannot attribute\nstage failures."]
     D --> F["Stores complete\nreplayable trace.\nRuns four-stage\ncausal ablation."]
 
-    F --> G["✅ Root cause:\nRetrieval — Stage 2\nGold chunk was never\nin pre-rerank top-40"]
+    F --> G["✅ Root cause:\nRetrieval - Stage 2\nGold chunk was never\nin pre-rerank top-40"]
 
     style D fill:#7c3aed,color:#f3e8ff,stroke:#7c3aed
     style F fill:#7c3aed,color:#f3e8ff,stroke:#7c3aed
@@ -96,7 +96,7 @@ flowchart TD
 
 ## 📊 Evaluation Scorecard
 
-> 4 metrics RAGAS cannot compute. Root-cause accuracy ≥ 0.70 on the 60-case synthetic benchmark — exceeding the target threshold.
+> 4 metrics RAGAS cannot compute. Root-cause accuracy ≥ 0.70 on the 60-case synthetic benchmark - exceeding the target threshold.
 
 <br/>
 
@@ -106,18 +106,18 @@ flowchart TD
 |:---|:---:|:---:|:---:|
 | **Citation Faithfulness** | **87.1%** | 82.0% | |
 | **Recall@5** | **78.3%** | 74.0% | |
-| **Root-Cause Localization Accuracy** | **73.3%** | — | ✦ |
-| **Omission Rate** | **8.2%** | — | ✦ |
-| **Temporal-Valid Retrieval Rate** | **96.4%** | — | ✦ |
-| **Contradiction Acknowledgment Rate** | **89.1%** | — | ✦ |
-| **p50 / p95 Latency** | **2.8s / 7.2s** | — | |
-| **Mean Cost per Query** | **$0.0082** | — | |
+| **Root-Cause Localization Accuracy** | **73.3%** | - | ✦ |
+| **Omission Rate** | **8.2%** | - | ✦ |
+| **Temporal-Valid Retrieval Rate** | **96.4%** | - | ✦ |
+| **Contradiction Acknowledgment Rate** | **89.1%** | - | ✦ |
+| **p50 / p95 Latency** | **2.8s / 7.2s** | - | |
+| **Mean Cost per Query** | **$0.0082** | - | |
 
 </div>
 
 <br/>
 
-> **Key finding**: RAGAS scored an answer at **0.82 faithfulness** on a query about OSHA silica PELs. Veriducta identified it as a retrieval failure — the gold chunk (`osha-1926-1153-ch-0051`) was absent from the pre-rerank top-40, making a high faithfulness score meaningless.
+> **Key finding**: RAGAS scored an answer at **0.82 faithfulness** on a query about OSHA silica PELs. Veriducta identified it as a retrieval failure - the gold chunk (`osha-1926-1153-ch-0051`) was absent from the pre-rerank top-40, making a high faithfulness score meaningless.
 
 <br/>
 
@@ -138,7 +138,7 @@ BM25 + dense (BGE-large-en-v1.5) retrieval fused with Reciprocal Rank Fusion (k=
 <td width="50%">
 
 ### ⏪ Causal Replay Engine
-Four-stage gold ablation — chunking, retrieval, reranker, generation — with quality delta attribution per stage. Counterfactual replay without re-running expensive inference.
+Four-stage gold ablation - chunking, retrieval, reranker, generation - with quality delta attribution per stage. Counterfactual replay without re-running expensive inference.
 
 </td>
 </tr>
@@ -160,13 +160,13 @@ Four-stage gold ablation — chunking, retrieval, reranker, generation — with 
 <td width="50%">
 
 ### 🗂 Evidence Log (O(1) Lookup)
-Append-only JSONL evidence log with SQLite byte-offset index. Every retrieval trace — BM25 scores, dense scores, RRF ranks, full pre-reranking top-40 — stored and retrievable in sub-millisecond.
+Append-only JSONL evidence log with SQLite byte-offset index. Every retrieval trace - BM25 scores, dense scores, RRF ranks, full pre-reranking top-40 - stored and retrievable in sub-millisecond.
 
 </td>
 <td width="50%">
 
 ### 📐 Boundary-Aware Chunking
-Hierarchical parent-child chunking (1400–1600 token parents, 200–400 token children) that never splits across section boundaries — required for Stage 1 ablation to be meaningful.
+Hierarchical parent-child chunking (1400–1600 token parents, 200–400 token children) that never splits across section boundaries - required for Stage 1 ablation to be meaningful.
 
 </td>
 </tr>
@@ -198,7 +198,7 @@ Next.js 15 dashboard with Framer Motion animations, Recharts visualisations, and
 
 <img src="docs/assets/dashboard.png" alt="Veriducta Dashboard" width="1000" />
 
-*Veriducta Dashboard — Query Analysis, Replay Engine and Evaluation*
+*Veriducta Dashboard - Query Analysis, Replay Engine and Evaluation*
 
 </div>
 
@@ -233,7 +233,7 @@ graph TD
         CLI["CLI Scripts\nscripts/"]
     end
 
-    subgraph API["API — FastAPI port 8080"]
+    subgraph API["API - FastAPI port 8080"]
         APP["app.py\nLifespan · CORS · Request-ID"]
         QUERY["POST /query · POST /replay"]
     end
@@ -282,28 +282,28 @@ graph TD
 
 ```
 ┌───────────────────────────────────────────────────────────┐
-│  Layer 8 — API (api/)                                     │
+│  Layer 8 - API (api/)                                     │
 │  FastAPI application factory, routing, middleware, DI     │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 7 — Evaluation (evaluation/)                       │
+│  Layer 7 - Evaluation (evaluation/)                       │
 │  Runner, metrics, RAGAS baseline, CI regression gate      │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 6 — Causal Replay (replay/)                        │
+│  Layer 6 - Causal Replay (replay/)                        │
 │  Four-stage gold ablation, corruption runner              │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 5 — Verification (verification/)                   │
+│  Layer 5 - Verification (verification/)                   │
 │  Claim integrity orchestration, VerificationReport        │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 4 — Generation (generation/)                       │
+│  Layer 4 - Generation (generation/)                       │
 │  Claude Sonnet 4.6 · JSON schema enforcement · NLI        │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 3 — Retrieval (retrieval/)                         │
+│  Layer 3 - Retrieval (retrieval/)                         │
 │  BM25 + dense, RRF, temporal filter, reranker, expander   │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 2 — Ingestion (ingestion/)                         │
+│  Layer 2 - Ingestion (ingestion/)                         │
 │  PDF parsing, chunking, embedding, Qdrant upsert, BM25    │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 1 — Foundation                                     │
+│  Layer 1 - Foundation                                     │
 │  config · core · schemas · utils · storage                │
 │  observability · models                                   │
 └───────────────────────────────────────────────────────────┘
@@ -357,7 +357,7 @@ flowchart LR
 
 ## ⚡ The Replay Engine
 
-The core innovation of Veriducta. Given a failed answer and its `trace_id`, the replay engine runs four sequential ablation stages — each swapping gold-standard inputs and measuring the quality delta — to attribute the failure to a specific pipeline stage.
+The core innovation of Veriducta. Given a failed answer and its `trace_id`, the replay engine runs four sequential ablation stages - each swapping gold-standard inputs and measuring the quality delta - to attribute the failure to a specific pipeline stage.
 
 <br/>
 
@@ -365,7 +365,7 @@ The core innovation of Veriducta. Given a failed answer and its `trace_id`, the 
 flowchart TD
     FAIL["❌ Failed Answer\ntrace_id · question_id"] --> AE
 
-    subgraph AE["VeriductaReplayEngine — Four-Stage Causal Ablation"]
+    subgraph AE["VeriductaReplayEngine - Four-Stage Causal Ablation"]
         S1["Stage 1 · Chunking\nreplay_with_config(boundary_aware=True)\nMeasure Recall@5 delta\nChunking failure recovered → root cause = chunking"]
 
         S2["Stage 2 · Retrieval\nreplay_with_context(gold_chunks)\nInject gold supporting_chunk_ids\nLarge delta → root cause = retrieval"]
@@ -379,7 +379,7 @@ flowchart TD
 
     AE --> RR["ReplayReport\nstage_attributions · primary_root_cause"]
 
-    subgraph EL["Evidence Log — Read Only via O(1) SQLite lookup"]
+    subgraph EL["Evidence Log - Read Only via O(1) SQLite lookup"]
         TL["RetrievalTrace\npre_rerank_top40 · BM25 · dense · RRF scores"]
         GL["GenerationTrace\nretrieval_trace_id · tokens · cost"]
     end
@@ -428,7 +428,7 @@ A real output from the 60-case synthetic benchmark:
 }
 ```
 
-> RAGAS faithfulness scored this answer **0.82 — passing**. Veriducta correctly identified it as a retrieval failure. The gold chunk was never retrieved. The high faithfulness score was a false negative.
+> RAGAS faithfulness scored this answer **0.82 - passing**. Veriducta correctly identified it as a retrieval failure. The gold chunk was never retrieved. The high faithfulness score was a false negative.
 
 <br/>
 
@@ -436,10 +436,10 @@ A real output from the 60-case synthetic benchmark:
 
 | Stage | Counterfactual | What a large delta proves |
 |:---|:---|:---|
-| **Stage 1 — Chunking** | Swap to boundary-aware collection | A section boundary split critical content from its context |
-| **Stage 2 — Retrieval** | Inject gold `supporting_chunk_ids` | The right content exists but retrieval never found it |
-| **Stage 3 — Reranker** | Reconstruct context from stored `pre_rerank_top40` | Gold chunk was retrieved but buried below the cutoff |
-| **Stage 4 — Generation** | Replay with historical context + baseline prompt | LLM hallucinated or omitted despite having the right context |
+| **Stage 1 - Chunking** | Swap to boundary-aware collection | A section boundary split critical content from its context |
+| **Stage 2 - Retrieval** | Inject gold `supporting_chunk_ids` | The right content exists but retrieval never found it |
+| **Stage 3 - Reranker** | Reconstruct context from stored `pre_rerank_top40` | Gold chunk was retrieved but buried below the cutoff |
+| **Stage 4 - Generation** | Replay with historical context + baseline prompt | LLM hallucinated or omitted despite having the right context |
 
 <br/>
 
@@ -478,7 +478,7 @@ flowchart TD
         G5["Unauthorised evidence exposure > 0%"]
     end
 
-    RG -->|fails on any| GATES --> CI["exit 1 — CI fails"]
+    RG -->|fails on any| GATES --> CI["exit 1 - CI fails"]
 ```
 
 <br/>
@@ -504,7 +504,7 @@ flowchart TD
 <tr>
 <td width="50%">
 
-**Structured Logging — structlog**
+**Structured Logging - structlog**
 
 JSON Lines to stdout in production. Human-readable ConsoleRenderer in development. Every log line carries `request_id`, `trace_id`, `service`, `env`, `timestamp`.
 
@@ -582,17 +582,17 @@ Lookup: `SELECT byte_offset FROM index WHERE trace_id = ?` → `lseek()` → rea
 
 | Capability | RAGAS | LangSmith | Langfuse | Veriducta |
 |:---|:---:|:---:|:---:|:---:|
-| Faithfulness scoring | ✅ | — | — | ✅ |
-| Context recall | ✅ | — | — | ✅ |
-| LLM call tracing | — | ✅ | ✅ | ✅ |
-| Per-stage quality delta | — | — | — | ✅ |
-| Root-cause stage attribution | — | — | — | ✅ |
-| Counterfactual retrieval replay | — | — | — | ✅ |
-| Pre-reranking trace storage | — | — | — | ✅ |
-| Temporal-valid retrieval rate | — | — | — | ✅ |
-| Omission rate | — | — | — | ✅ |
-| Contradiction acknowledgment | — | — | — | ✅ |
-| CI regression gate | — | — | — | ✅ |
+| Faithfulness scoring | ✅ | - | - | ✅ |
+| Context recall | ✅ | - | - | ✅ |
+| LLM call tracing | - | ✅ | ✅ | ✅ |
+| Per-stage quality delta | - | - | - | ✅ |
+| Root-cause stage attribution | - | - | - | ✅ |
+| Counterfactual retrieval replay | - | - | - | ✅ |
+| Pre-reranking trace storage | - | - | - | ✅ |
+| Temporal-valid retrieval rate | - | - | - | ✅ |
+| Omission rate | - | - | - | ✅ |
+| Contradiction acknowledgment | - | - | - | ✅ |
+| CI regression gate | - | - | - | ✅ |
 
 </div>
 
@@ -675,7 +675,7 @@ Lookup: `SELECT byte_offset FROM index WHERE trace_id = ?` → `lseek()` → rea
 git clone https://github.com/hardik2004gupta/Veriducta.git
 cd veriducta
 
-# 2. Install Python dependencies (with uv — recommended)
+# 2. Install Python dependencies (with uv - recommended)
 uv pip install --system ".[dev]"
 
 # 3. Configure
@@ -705,7 +705,7 @@ cd frontend && npm install && npm run dev
 
 <br/>
 
-Start the entire stack — API, Qdrant, MinIO, OTel, Prometheus, Grafana — in one command:
+Start the entire stack - API, Qdrant, MinIO, OTel, Prometheus, Grafana - in one command:
 
 ```bash
 docker compose up -d --build
@@ -738,7 +738,7 @@ Stop: `make docker-down` · Wipe volumes: `docker compose down -v`
 
 The recommended split for a portfolio deployment:
 
-**Railway (API — needs persistent RAM for ML models)**
+**Railway (API - needs persistent RAM for ML models)**
 
 ```bash
 # railway.app/new → Deploy from GitHub
@@ -756,7 +756,7 @@ API__CORS_ORIGINS=["https://your-app.vercel.app"]
 railway run python scripts/ingest_corpus.py
 ```
 
-**Vercel (Frontend — free tier works)**
+**Vercel (Frontend - free tier works)**
 
 ```
 vercel.com/new → Import repo
@@ -765,7 +765,7 @@ Framework: Next.js (auto-detected)
 NEXT_PUBLIC_API_URL=https://your-railway-app.up.railway.app
 ```
 
-**Qdrant Cloud** — free 1 GB tier at cloud.qdrant.io covers the 50-document corpus.
+**Qdrant Cloud** - free 1 GB tier at cloud.qdrant.io covers the 50-document corpus.
 
 For Fly.io, Render, and VM deployment: see [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
 
@@ -778,17 +778,17 @@ For Fly.io, Render, and VM deployment: see [`docs/DEPLOYMENT.md`](docs/DEPLOYMEN
 
 | Variable | Required | Default | Description |
 |:---|:---:|:---:|:---|
-| `ANTHROPIC_API_KEY` | **Yes** | — | Claude API key |
+| `ANTHROPIC_API_KEY` | **Yes** | - | Claude API key |
 | `VERIDUCTA_ENV` | No | `development` | `development` / `testing` / `production` |
 | `VERIDUCTA__QDRANT__HOST` | No | `localhost` | Qdrant hostname |
 | `VERIDUCTA__QDRANT__PORT` | No | `6333` | Qdrant port |
-| `VERIDUCTA__QDRANT__API_KEY` | No | — | Qdrant Cloud API key |
+| `VERIDUCTA__QDRANT__API_KEY` | No | - | Qdrant Cloud API key |
 | `VERIDUCTA__MINIO__ENDPOINT` | No | `localhost:9000` | MinIO/S3 endpoint |
 | `VERIDUCTA__MINIO__ACCESS_KEY` | No | `minioadmin` | MinIO access key |
 | `VERIDUCTA__MINIO__SECRET_KEY` | No | `minioadmin` | MinIO secret key |
 | `API__CORS_ORIGINS` | No | `["*"]` | Lock down in production |
 | `LOG__FORMAT` | No | `json` | `json` or `console` |
-| `OTLP__ENDPOINT` | No | — | OTel Collector gRPC endpoint |
+| `OTLP__ENDPOINT` | No | - | OTel Collector gRPC endpoint |
 
 </details>
 
@@ -820,12 +820,12 @@ python scripts/check_regression_gate.py \
 
 ```
 veriducta/
-├── api/               FastAPI — routing, middleware, DI, exception map
+├── api/               FastAPI - routing, middleware, DI, exception map
 ├── config/            Pydantic Settings (lru_cached singleton)
 ├── core/              Exception hierarchy, abstract interfaces
 ├── schemas/           Shared Pydantic models (zero pipeline imports)
-├── models/            ML model wrappers — BGE, NLI, reranker
-├── utils/             Pure stateless helpers — hashing, IDs, timers
+├── models/            ML model wrappers - BGE, NLI, reranker
+├── utils/             Pure stateless helpers - hashing, IDs, timers
 ├── storage/           Qdrant + MinIO abstractions
 ├── observability/     Prometheus, OpenTelemetry, evidence log, SQLite
 ├── ingestion/         PDF → chunks → embeddings → Qdrant → BM25
@@ -891,7 +891,7 @@ make format                   # ruff format . && black .
 
 **Current status**: `801 passed · 1 skipped · 0 failed · 92.81% coverage`
 
-Coverage excludes: `core/interfaces.py` (abstract — no executable lines), `observability/tracing.py` (requires live OTLP), `observability/metrics.py` (Prometheus singleton registration).
+Coverage excludes: `core/interfaces.py` (abstract - no executable lines), `observability/tracing.py` (requires live OTLP), `observability/metrics.py` (Prometheus singleton registration).
 
 <br/>
 
@@ -904,9 +904,9 @@ Coverage excludes: `core/interfaces.py` (abstract — no executable lines), `obs
 
 <br/>
 
-Stage 3 ablation reconstructs retrieval contexts at cutoffs (top-1, top-3, top-5, top-8) from the stored candidates. Without the pre-reranking list, every ablation run requires re-querying Qdrant and BM25 — expensive, slow, and non-deterministic (Qdrant ANN is not guaranteed to be reproducible).
+Stage 3 ablation reconstructs retrieval contexts at cutoffs (top-1, top-3, top-5, top-8) from the stored candidates. Without the pre-reranking list, every ablation run requires re-querying Qdrant and BM25 - expensive, slow, and non-deterministic (Qdrant ANN is not guaranteed to be reproducible).
 
-With the stored top-40, the replay engine seeks to the evidence log at the byte offset and reconstructs any context slice in O(1). No inference, no network calls. The list adds ~2 KB per evidence log entry — negligible at scale.
+With the stored top-40, the replay engine seeks to the evidence log at the byte offset and reconstructs any context slice in O(1). No inference, no network calls. The list adds ~2 KB per evidence log entry - negligible at scale.
 
 </details>
 
@@ -915,7 +915,7 @@ With the stored top-40, the replay engine seeks to the evidence log at the byte 
 
 <br/>
 
-k=60 is the value from Cormack, Clarke, and Buettcher (2009). The implicit rank for candidates absent from one list is 101, giving `1/(60+101) = 0.0062` — low enough to deprioritise without zeroing. Any change to k requires re-benchmarking the full 40-question golden set.
+k=60 is the value from Cormack, Clarke, and Buettcher (2009). The implicit rank for candidates absent from one list is 101, giving `1/(60+101) = 0.0062` - low enough to deprioritise without zeroing. Any change to k requires re-benchmarking the full 40-question golden set.
 
 </details>
 
@@ -933,7 +933,7 @@ Binary NLI misses conditionally-valid claims. "Medical surveillance is required 
 
 <br/>
 
-The replay engine fetches historical traces during ablation. A naïve JSONL scan is O(n). At 5,000 queries/day, a 30-day log has 150,000 entries — linear scan takes seconds per lookup. The SQLite index stores `(trace_id, log_file, byte_offset)`. Lookup: `SELECT byte_offset WHERE trace_id = ?` → `lseek()` → read one line. Sub-millisecond regardless of log size.
+The replay engine fetches historical traces during ablation. A naïve JSONL scan is O(n). At 5,000 queries/day, a 30-day log has 150,000 entries - linear scan takes seconds per lookup. The SQLite index stores `(trace_id, log_file, byte_offset)`. Lookup: `SELECT byte_offset WHERE trace_id = ?` → `lseek()` → read one line. Sub-millisecond regardless of log size.
 
 </details>
 
@@ -942,7 +942,7 @@ The replay engine fetches historical traces during ablation. A naïve JSONL scan
 
 <br/>
 
-Stage 1 ablation swaps the entire retrieval collection. If both chunking configurations shared a collection, the ablation would need to filter by a chunking config field — complicating the retrieval path and the temporal filter. Separate collections keep `VeriductaRetriever` unaware of chunking strategy; the replay engine simply passes a different collection name.
+Stage 1 ablation swaps the entire retrieval collection. If both chunking configurations shared a collection, the ablation would need to filter by a chunking config field - complicating the retrieval path and the temporal filter. Separate collections keep `VeriductaRetriever` unaware of chunking strategy; the replay engine simply passes a different collection name.
 
 </details>
 
@@ -954,11 +954,11 @@ Stage 1 ablation swaps the entire retrieval collection. If both chunking configu
 
 | # | Limitation | Path Forward |
 |:---:|:---|:---|
-| 1 | **CPU-only inference** — All ML models run on CPU. p50 ~2.8s | `CROSS_ENCODER_DEVICE=cuda`; GPU reduces reranking 8× |
-| 2 | **Single-worker API** — One in-flight ML query at a time | N single-worker processes behind a load balancer; ~1.93 GB RAM each |
-| 3 | **BM25 in memory** — ~48 MB for 50 docs; OOMs at ~1000 docs | Switch to BM25S or Elasticsearch for large corpora |
-| 4 | **No authentication** — Evidence logs must not be HTTP-exposed | Add OAuth2 or API key gate before production exposure |
-| 5 | **BM25-only counterevidence** — Dense retrieval may surface additional contradictions | Enable hybrid counterevidence scan (documented, not yet implemented) |
+| 1 | **CPU-only inference** - All ML models run on CPU. p50 ~2.8s | `CROSS_ENCODER_DEVICE=cuda`; GPU reduces reranking 8× |
+| 2 | **Single-worker API** - One in-flight ML query at a time | N single-worker processes behind a load balancer; ~1.93 GB RAM each |
+| 3 | **BM25 in memory** - ~48 MB for 50 docs; OOMs at ~1000 docs | Switch to BM25S or Elasticsearch for large corpora |
+| 4 | **No authentication** - Evidence logs must not be HTTP-exposed | Add OAuth2 or API key gate before production exposure |
+| 5 | **BM25-only counterevidence** - Dense retrieval may surface additional contradictions | Enable hybrid counterevidence scan (documented, not yet implemented) |
 
 <br/>
 
@@ -973,7 +973,7 @@ Stage 1 ablation swaps the entire retrieval collection. If both chunking configu
 
 They trace LLM calls and record latency. They cannot answer: *"Which pipeline stage caused this failure?"*
 
-Veriducta stores the complete retrieval state — pre-reranking candidates with scores, temporal filter decisions, RRF ranks — and uses it to run ablations without any additional inference. LangSmith and Langfuse have no concept of counterfactual replay or quality delta attribution.
+Veriducta stores the complete retrieval state - pre-reranking candidates with scores, temporal filter decisions, RRF ranks - and uses it to run ablations without any additional inference. LangSmith and Langfuse have no concept of counterfactual replay or quality delta attribution.
 
 </details>
 
@@ -991,7 +991,7 @@ The backend is production-quality: fully typed, 92.8% test coverage, structured 
 
 <br/>
 
-Every query stores the full pre-reranking top-40 candidate list with scores in the evidence log. Stage 3 loads this list and reconstructs different retrieval contexts by slicing at top-1, top-3, top-5, and top-8 cutoffs — no inference needed. The quality delta at each cutoff reveals whether the reranker is burying the correct evidence.
+Every query stores the full pre-reranking top-40 candidate list with scores in the evidence log. Stage 3 loads this list and reconstructs different retrieval contexts by slicing at top-1, top-3, top-5, and top-8 cutoffs - no inference needed. The quality delta at each cutoff reveals whether the reranker is burying the correct evidence.
 
 </details>
 
@@ -1000,7 +1000,7 @@ Every query stores the full pre-reranking top-40 candidate list with scores in t
 
 <br/>
 
-A realistic boundary error is a chunking corruption case where the boundary-naive chunker splits a critical clause across chunk boundaries in a way that mirrors real-world PDF parsing failures — mid-sentence splits at page boundaries, tables cut across paragraph limits, or section headers separated from their content. 10 of the 15 chunking corruption cases are realistic boundary errors.
+A realistic boundary error is a chunking corruption case where the boundary-naive chunker splits a critical clause across chunk boundaries in a way that mirrors real-world PDF parsing failures - mid-sentence splits at page boundaries, tables cut across paragraph limits, or section headers separated from their content. 10 of the 15 chunking corruption cases are realistic boundary errors.
 
 </details>
 
@@ -1019,7 +1019,7 @@ A realistic boundary error is a chunking corruption case where the boundary-naiv
 
 ## 📍 Roadmap
 
-**Completed — all 18 phases implemented**
+**Completed - all 18 phases implemented**
 
 - [x] Foundation, configuration, FastAPI skeleton
 - [x] Document metadata, sidecar validation
@@ -1076,7 +1076,7 @@ A realistic boundary error is a chunking corruption case where the boundary-naiv
 
 ## 📄 License
 
-MIT — see [LICENSE](LICENSE)
+MIT - see [LICENSE](LICENSE)
 
 <br/>
 
@@ -1091,7 +1091,7 @@ MIT — see [LICENSE](LICENSE)
 <br/>
 
 If Veriducta helped you understand RAG failure attribution,<br/>
-or inspired your own observability work — a star means a lot.
+or inspired your own observability work - a star means a lot.
 
 <br/>
 

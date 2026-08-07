@@ -80,8 +80,8 @@ Optional body paragraph if the change needs explanation.
 
 **Bug confirmed**:
 ```
-Thanks for the report. Confirmed — [brief description of what's happening and why].
-Labeling as `bug`. [If fix is straightforward: "PR welcome — see FIRST_CONTRIBUTION.md"]. 
+Thanks for the report. Confirmed - [brief description of what's happening and why].
+Labeling as `bug`. [If fix is straightforward: "PR welcome - see FIRST_CONTRIBUTION.md"]. 
 [If complex: "This is on the roadmap for v1.x."]
 ```
 
@@ -94,7 +94,7 @@ If you'd like to implement this, see FIRST_CONTRIBUTION.md and GOOD_FIRST_ISSUES
 
 **Feature request out of scope**:
 ```
-Thanks for the suggestion. This is outside the v1.x scope — [brief reason].
+Thanks for the suggestion. This is outside the v1.x scope - [brief reason].
 It may be a good fit for the community to explore independently.
 Closing as `wontfix`.
 ```
@@ -112,8 +112,8 @@ If CI fails on `main` after a merge:
 
 Common CI failures:
 - **ruff format**: run `make format` locally before pushing
-- **mypy**: new third-party library added without a type stub — add `ignore_missing_imports = true` under `[[tool.mypy.overrides]]` in `pyproject.toml`
-- **pytest**: Qdrant connection timeout — the CI starts Qdrant via Docker service; check `docker-compose.ci.yml` if timeouts increase
+- **mypy**: new third-party library added without a type stub - add `ignore_missing_imports = true` under `[[tool.mypy.overrides]]` in `pyproject.toml`
+- **pytest**: Qdrant connection timeout - the CI starts Qdrant via Docker service; check `docker-compose.ci.yml` if timeouts increase
 
 ---
 

@@ -80,7 +80,7 @@ def test_filter_rejects_not_yet_effective() -> None:
 def test_filter_accepts_candidate_without_doc_id() -> None:
     graph = _MockVersionGraph(valid_docs=[])
     filt = TemporalFilter(graph)
-    # Candidate with no chunk — cannot determine validity
+    # Candidate with no chunk - cannot determine validity
     cand = RetrievalCandidate(chunk_id="orphan-ch-0000", bm25_score=1.0, bm25_rank=1)
     result = filt.apply([cand], "2024-01-01")
     assert len(result.accepted) == 1

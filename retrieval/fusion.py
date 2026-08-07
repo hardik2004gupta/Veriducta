@@ -59,7 +59,7 @@ def fuse(
 
         base = bm25_c if bm25_c is not None else dense_c
         if base is None:
-            continue  # unreachable — chunk_id is in at least one map
+            continue  # unreachable - chunk_id is in at least one map
 
         chunk = (bm25_c.chunk if bm25_c else None) or (dense_c.chunk if dense_c else None)
 

@@ -67,6 +67,6 @@ def require_context() -> RequestContext:
     ctx = _ctx_var.get()
     if ctx is None:
         raise RuntimeError(
-            "No active RequestContext — ensure ObservabilityMiddleware is registered."
+            "No active RequestContext - ensure ObservabilityMiddleware is registered."
         )
     return ctx

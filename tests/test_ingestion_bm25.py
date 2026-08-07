@@ -1,4 +1,4 @@
-"""Tests for ingestion/bm25_indexer.py — BM25 index build, serialisation, search."""
+"""Tests for ingestion/bm25_indexer.py - BM25 index build, serialisation, search."""
 
 from pathlib import Path
 

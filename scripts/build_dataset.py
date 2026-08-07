@@ -1,8 +1,8 @@
 """Build the evaluation dataset from seed data.
 
 Generates:
-  data/golden/golden_qa.jsonl       — 40 golden QA pairs
-  data/synthetic/corruptions.jsonl  — 60 synthetic corruption cases
+  data/golden/golden_qa.jsonl       - 40 golden QA pairs
+  data/synthetic/corruptions.jsonl  - 60 synthetic corruption cases
   data/annotations/annotation_schema.json
 
 Usage:

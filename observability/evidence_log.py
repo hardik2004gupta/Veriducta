@@ -32,7 +32,7 @@ logger = structlog.get_logger(__name__)
 class EvidenceLogWriter:
     """Thread-safe, append-only JSONL evidence log backed by an SQLite index.
 
-    Instances are process-scoped singletons — one per application process.
+    Instances are process-scoped singletons - one per application process.
 
     Args:
         log_dir: Directory for JSONL and compressed log files.
@@ -153,7 +153,7 @@ class EvidenceLogWriter:
         """Read a single JSONL entry at the given byte offset.
 
         Supports both ``.jsonl`` (direct seek) and ``.jsonl.gz`` (sequential
-        scan to offset — O(N) for historical compressed files).
+        scan to offset - O(N) for historical compressed files).
 
         Args:
             log_file: Filename (not full path) of the JSONL or gzip file.

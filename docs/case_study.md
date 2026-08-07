@@ -1,4 +1,4 @@
-# Case Study: Building Veriducta — From Diagnosis Gap to Causal Attribution
+# Case Study: Building Veriducta - From Diagnosis Gap to Causal Attribution
 
 ## Project Overview
 
@@ -16,7 +16,7 @@
 
 While evaluating a retrieval-augmented generation pipeline for technical regulatory documents, I hit a failure mode that no tool in my evaluation stack could explain.
 
-The pipeline was answering questions about OSHA 29 CFR 1926.1153 (the crystalline silica standard). RAGAS reported faithfulness scores between 0.78 and 0.89 — consistently above the "acceptable" threshold. Field engineers were flagging answers as unreliable.
+The pipeline was answering questions about OSHA 29 CFR 1926.1153 (the crystalline silica standard). RAGAS reported faithfulness scores between 0.78 and 0.89 - consistently above the "acceptable" threshold. Field engineers were flagging answers as unreliable.
 
 The disconnect was the same every time: the answers were **accurate but incomplete**. The permissible exposure limit (50 µg/m³) was missing from an answer about exposure thresholds. The 30-days-per-year trigger was missing from an answer about medical surveillance requirements. Every cited claim was correct. Something critical was always absent.
 
@@ -32,7 +32,7 @@ Standard observability tools showed nothing wrong. Retrieval was completing. Gen
 
 My first instinct was to add metrics. If faithfulness didn't catch omission, maybe an LLM-graded completeness score would.
 
-The problem: completeness requires knowing the ground truth. An LLM grading completeness would itself need to retrieve the complete answer — which circles back to the retrieval problem. You can't measure omission without an oracle, and calling a separate LLM for every evaluation query is expensive and introduces another failure mode.
+The problem: completeness requires knowing the ground truth. An LLM grading completeness would itself need to retrieve the complete answer - which circles back to the retrieval problem. You can't measure omission without an oracle, and calling a separate LLM for every evaluation query is expensive and introduces another failure mode.
 
 ### The Pivot: Causal Attribution Instead of Richer Metrics
 
@@ -40,7 +40,7 @@ The insight that changed the design: **attribution is harder than measurement, b
 
 A faithfulness score tells you the answer is poor. Causal attribution tells you *which component to fix*. These require completely different architectures.
 
-The right framing is forensic, not evaluative: given a historical trace, which stage — if changed — would have produced a materially better answer? This is a counterfactual question, not a measurement question. It requires replaying historical queries against modified pipeline configurations.
+The right framing is forensic, not evaluative: given a historical trace, which stage - if changed - would have produced a materially better answer? This is a counterfactual question, not a measurement question. It requires replaying historical queries against modified pipeline configurations.
 
 From there, the architecture followed: an append-only evidence log with complete retrieval traces, a SQLite byte-offset index for O(1) lookup, and a four-stage ablation engine that re-runs specific stages against historical data.
 
@@ -48,7 +48,7 @@ From there, the architecture followed: an append-only evidence log with complete
 
 The most non-obvious design decision in the entire system: storing the full pre-reranking top-40 candidate list with scores in every `RetrievalTrace`.
 
-The cross-encoder reranker (ms-marco-MiniLM-L-12-v2) processes 40 candidate-query pairs and re-orders them. Testing whether a different cutoff would have included the correct chunk requires those 40 scored candidates. Without storing them, Stage 3 ablation would need to re-run the cross-encoder for every historical query being investigated — approximately 1.1 seconds of CPU inference per query, per ablation run.
+The cross-encoder reranker (ms-marco-MiniLM-L-12-v2) processes 40 candidate-query pairs and re-orders them. Testing whether a different cutoff would have included the correct chunk requires those 40 scored candidates. Without storing them, Stage 3 ablation would need to re-run the cross-encoder for every historical query being investigated - approximately 1.1 seconds of CPU inference per query, per ablation run.
 
 Storing 40 scored candidates costs ~8KB of JSON per query. For a 60-case benchmark, this eliminates 66 cross-encoder inference calls. The tradeoff is trivial and I wish I'd identified it immediately; I spent two days building re-inference into the ablation engine before recognising that the data was already computable at trace time.
 
@@ -63,11 +63,11 @@ Question `qa-017`: *"What are the medical surveillance requirements triggered by
 The chunker split at a 512-token boundary mid-paragraph:
 
 ```
-[Chunk 0041 — ends here]
+[Chunk 0041 - ends here]
 ...engineering and work practice controls as specified in Table 1. Employers must
 initiate medical surveillance for employees exposed at or above the action level
 
-[Chunk 0042 — starts here]  
+[Chunk 0042 - starts here]  
 of 25 micrograms per cubic meter (μg/m³) as an 8-hour TWA for 30 or more days...
 ```
 
@@ -75,7 +75,7 @@ The phrase `"action level of 25 μg/m³"` is the operative regulatory threshold.
 
 The dense retrieval query `"medical surveillance trigger threshold"` retrieved chunk 0042 at rank 1 (the chunk that starts with the number `"of 25 micrograms"`). Chunk 0041 ranked 12th and was dropped by the cross-encoder.
 
-The generated answer cited chunk 0042's excerpt correctly — hence RAGAS faithfulness = 0.82. But the answer said "medical surveillance is required when workers are exposed above the action level" without specifying what the action level is, because the number and the definition of the number were in different chunks.
+The generated answer cited chunk 0042's excerpt correctly - hence RAGAS faithfulness = 0.82. But the answer said "medical surveillance is required when workers are exposed above the action level" without specifying what the action level is, because the number and the definition of the number were in different chunks.
 
 **Stage 1 ablation result:**
 
@@ -84,7 +84,7 @@ The generated answer cited chunk 0042's excerpt correctly — hence RAGAS faithf
 | Recall@5 | 0.45 | 0.80 |
 | Gold chunk in top-5 | No | Yes |
 | Quality score | 0.41 | 0.82 |
-| Quality delta | — | **+0.41** |
+| Quality delta | - | **+0.41** |
 
 Attribution threshold: 0.15. Delta 0.41 → **Chunking flagged as root cause, confidence 0.88.**
 
@@ -105,13 +105,13 @@ The eight-layer architecture enforces strict downward imports: schemas → utils
 
 Early in development, I violated this by having `retrieval/` import a schema that was defined in `generation/`. The import worked at module load time but caused a circular reference under specific import orderings. Python's import system deduplicates module loads, but the ordering matters for definitions.
 
-The fix: move shared schemas to `schemas/models.py` immediately when they're needed by more than one layer. The architectural constraint is not just stylistic — it's what prevents this entire class of bugs.
+The fix: move shared schemas to `schemas/models.py` immediately when they're needed by more than one layer. The architectural constraint is not just stylistic - it's what prevents this entire class of bugs.
 
 ### 2. Temporal Filter Silent Failure
 
 The version graph correctly identifies superseded documents. The temporal filter correctly rejects candidates from superseded documents. The silent failure: the filter was logging rejections at `DEBUG` level, which meant that in production log configurations, the rejections were invisible.
 
-An early evaluation run showed temporal-valid retrieval rate of 71% instead of the expected 90%+. The debug logs (once I turned them on) showed that the 1989 OSHA general industry standard was being retrieved alongside the superseded construction standard. Both were in Qdrant. Both were passing BM25 and dense retrieval. The temporal filter was rejecting them — but silently.
+An early evaluation run showed temporal-valid retrieval rate of 71% instead of the expected 90%+. The debug logs (once I turned them on) showed that the 1989 OSHA general industry standard was being retrieved alongside the superseded construction standard. Both were in Qdrant. Both were passing BM25 and dense retrieval. The temporal filter was rejecting them - but silently.
 
 Fix: raise temporal rejection log level to `INFO` and add explicit `temporal_rejections` to the `RetrievalResult` schema so they're visible in the frontend evidence browser. Temporal-valid retrieval rate after fix: 94.1%.
 
@@ -131,10 +131,10 @@ The updated thresholds reduced false positives by 60% on the validation set. Con
 Stage 4 (generation) ablation re-runs generation with the same retrieval context using a baseline prompt and computes the quality delta. The problem: LLM outputs are stochastic. A 0.02–0.05 quality delta between the original run and the Stage 4 replay might be signal (the prompt caused the failure) or might be noise (temperature variation).
 
 I tried two approaches:
-1. Running Stage 4 three times and averaging — helped but added 3× latency
-2. Widening the attribution threshold for Stage 4 — missed genuine generation failures
+1. Running Stage 4 three times and averaging - helped but added 3× latency
+2. Widening the attribution threshold for Stage 4 - missed genuine generation failures
 
-Final decision: accept 50% Stage 4 attribution accuracy as an honest limitation. The problem is not engineering — it's that generation-stage attribution without an oracle (a reference answer the LLM "should" produce) is genuinely ambiguous. The `ReplayReport` explicitly notes this with a confidence flag and a disclaimer in the heuristic signal report.
+Final decision: accept 50% Stage 4 attribution accuracy as an honest limitation. The problem is not engineering - it's that generation-stage attribution without an oracle (a reference answer the LLM "should" produce) is genuinely ambiguous. The `ReplayReport` explicitly notes this with a confidence flag and a disclaimer in the heuristic signal report.
 
 ### 5. SQLite Byte-Offset Index for JSONL
 
@@ -168,7 +168,7 @@ The tradeoff is well-documented: SQLite is the correct choice for read-heavy, si
 
 ### Synthetic Corruption Benchmark vs. Real-World Failures
 
-The 60-case benchmark uses synthetic corruptions (deliberately swapped chunks, forced reranker errors, truncated generation). This creates a cleaner signal than real-world failures — the ground-truth root cause is known by construction.
+The 60-case benchmark uses synthetic corruptions (deliberately swapped chunks, forced reranker errors, truncated generation). This creates a cleaner signal than real-world failures - the ground-truth root cause is known by construction.
 
 The limitation: synthetic corruptions may not reflect the distribution of real failures. The boundary-error subset (15 chunking cases) is the most realistic category and achieves 68.8% accuracy. Retrieval corruption cases (85%) are unrealistically clean. A v1.1 evaluation addition would include real-world failure cases from a production corpus.
 
@@ -197,19 +197,19 @@ Achieved: 68.8% (10.3/15 cases). The 4.7 misclassified cases were chunking failu
 
 ### 1. Constraints Enable Capabilities
 
-The eight-layer dependency constraint felt burdensome early in development. By Phase 10, it was the foundation of the replay engine. The replay engine can inject gold contexts into generation precisely because `generation/` has a well-defined interface that takes `context` as a parameter — not because it's aware of how retrieval works.
+The eight-layer dependency constraint felt burdensome early in development. By Phase 10, it was the foundation of the replay engine. The replay engine can inject gold contexts into generation precisely because `generation/` has a well-defined interface that takes `context` as a parameter - not because it's aware of how retrieval works.
 
 Good architecture constraints don't limit what you can build. They make specific capabilities easy that would otherwise be hard.
 
 ### 2. Trace at Inference Time
 
-Every piece of data the replay engine uses was computed at inference time and stored. The alternative — re-computing during ablation — would have required re-running expensive models and would have introduced variance into the counterfactual experiments.
+Every piece of data the replay engine uses was computed at inference time and stored. The alternative - re-computing during ablation - would have required re-running expensive models and would have introduced variance into the counterfactual experiments.
 
 Principle: during inference, store more than you think you need. The marginal cost of 8KB of extra JSON per query is zero. The cost of not having it during debugging is high.
 
 ### 3. Attribution Accuracy Is Bounded by Ground Truth Quality
 
-Stage 2 ablation requires gold `supporting_chunk_ids` — human annotation of which chunks should ground the correct answer. If the annotation is wrong, Stage 2 is wrong. The evaluation accuracy numbers are bounded by annotation quality, not just model quality.
+Stage 2 ablation requires gold `supporting_chunk_ids` - human annotation of which chunks should ground the correct answer. If the annotation is wrong, Stage 2 is wrong. The evaluation accuracy numbers are bounded by annotation quality, not just model quality.
 
 This is not a limitation to engineer away. It's an inherent property of causal attribution: you need ground truth to measure attribution accuracy. Acknowledge it, document it, and design annotation processes carefully.
 
@@ -240,7 +240,7 @@ Both are necessary. Neither is sufficient. The correct framing is not "which too
 | p50 query latency | < 4 s | **2.8 s** ✓ |
 | p95 query latency | < 10 s | **7.4 s** ✓ |
 | Test coverage | ≥ 80% | **92.81%** ✓ |
-| Faithfulness (citation entailment) | — | **84.2%** |
-| Temporal-valid retrieval rate | — | **94.1%** |
+| Faithfulness (citation entailment) | - | **84.2%** |
+| Temporal-valid retrieval rate | - | **94.1%** |
 
 All five CI regression gate conditions: **passing**.

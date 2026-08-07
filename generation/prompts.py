@@ -88,7 +88,7 @@ class PromptRegistry:
         candidates = [(v, p) for (n, v), p in self._store.items() if n == name]
         if not candidates:
             raise KeyError(f"No prompts registered with name {name!r}")
-        # Lexicographic max — adequate while version digits stay single-digit.
+        # Lexicographic max - adequate while version digits stay single-digit.
         return max(candidates, key=lambda t: t[0])[1]
 
     @property
@@ -105,7 +105,7 @@ _GENERATION_PROMPT_V1 = textwrap.dedent("""\
     You are Veriducta, a precision RAG pipeline answer generator.
 
     Your ONLY output must be a single valid JSON object. No markdown code fences,
-    no preamble, no explanation — output raw JSON only.
+    no preamble, no explanation - output raw JSON only.
 
     ## Required JSON structure
 
@@ -140,7 +140,7 @@ _GENERATION_PROMPT_V1 = textwrap.dedent("""\
     1. Every claim MUST reference a chunk_id that appears in the provided context.
     2. Every claim MUST have at least two key_entities (specific technical terms,
        not generic words like "document" or "section").
-    3. Produce one claim per distinct verifiable assertion — do not bundle multiple
+    3. Produce one claim per distinct verifiable assertion - do not bundle multiple
        facts into a single claim.
     4. Every chunk_id referenced in claims MUST appear in the citations list.
     5. Citation excerpts MUST be verbatim text from the chunk, under 50 tokens.

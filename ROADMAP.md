@@ -16,7 +16,7 @@
 
 ---
 
-## ✅ Completed — v1.0.0
+## ✅ Completed - v1.0.0
 
 ### Core Pipeline
 - ✅ Eight-layer architecture with strict dependency enforcement
@@ -66,7 +66,7 @@
 
 ---
 
-## 📋 Planned — v1.1 (next 30 days)
+## 📋 Planned - v1.1 (next 30 days)
 
 ### Frontend → Live
 - 📋 Wire `frontend/lib/api.ts` to all 8 pages (remove mock data)
@@ -86,7 +86,7 @@
 
 ---
 
-## 📋 Planned — v1.2 (next 90 days)
+## 📋 Planned - v1.2 (next 90 days)
 
 ### Performance
 - 📋 GPU-accelerated embedding via `sentence-transformers` CUDA backend
@@ -107,7 +107,7 @@
 
 ---
 
-## 📋 Planned — v2.0 (6+ months)
+## 📋 Planned - v2.0 (6+ months)
 
 ### Multi-LLM Support
 - 📋 Generator abstraction supporting GPT-4o, Gemini 1.5, Llama 3.1 (via Ollama)
@@ -164,4 +164,4 @@
 
 ---
 
-*This roadmap is updated with each major release. Items in "Ideas" and "Research" sections are speculative and may not be implemented. Contributions welcome — see [CONTRIBUTING.md](docs/CONTRIBUTING.md).*
+*This roadmap is updated with each major release. Items in "Ideas" and "Research" sections are speculative and may not be implemented. Contributions welcome - see [CONTRIBUTING.md](docs/CONTRIBUTING.md).*

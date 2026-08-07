@@ -9,7 +9,7 @@
 
 Veriducta is a RAG pipeline observability tool that answers the question no existing tool can:
 
-> *Given a failed answer, which pipeline stage caused the failure — chunking, retrieval, reranking, or generation — and by how much?*
+> *Given a failed answer, which pipeline stage caused the failure - chunking, retrieval, reranking, or generation - and by how much?*
 
 It builds a production-quality RAG pipeline over technical document corpora, instruments every stage with full causal traceability, and implements a four-stage gold ablation engine capable of root-cause attribution without re-running expensive inference on historical queries.
 
@@ -23,7 +23,7 @@ The core innovation. Veriducta stores a **complete, replayable trace** of every 
 
 - **Stage 1 (Chunking)**: Activates boundary-aware chunking; computes Recall@5 delta
 - **Stage 2 (Retrieval)**: Injects gold supporting chunks; computes quality delta
-- **Stage 3 (Reranker)**: Loads stored top-40 list; tests cutoff variants — no re-inference needed
+- **Stage 3 (Reranker)**: Loads stored top-40 list; tests cutoff variants - no re-inference needed
 - **Stage 4 (Generation)**: Replays with historical context and baseline prompt
 
 **Result**: 73.3% root-cause accuracy on a 60-case synthetic corruption benchmark (target: ≥ 70%).
@@ -67,7 +67,7 @@ Eight-page dashboard covering the full pipeline: live stats, latency charts, the
 
 ## Breaking Changes
 
-None — this is the initial public release.
+None - this is the initial public release.
 
 ---
 
@@ -77,7 +77,7 @@ None — this is the initial public release.
 2. **CPU-only inference**: Embedding, reranking, and NLI run on CPU. GPU acceleration is planned for v1.2.
 3. **Single-worker API**: `uvicorn` runs with `workers=1`. Async pipeline execution is planned for v2.0.
 4. **No authentication**: The API has no auth layer. Suitable for trusted local networks only.
-5. **Generation attribution noisiness**: Stage 4 ablation accuracy is 50% — LLM output variance makes generation-stage attribution harder than retrieval-stage attribution.
+5. **Generation attribution noisiness**: Stage 4 ablation accuracy is 50% - LLM output variance makes generation-stage attribution harder than retrieval-stage attribution.
 
 ---
 
@@ -108,12 +108,12 @@ make run
 
 ## Acknowledgements
 
-- [Anthropic](https://anthropic.com) — Claude Sonnet 4.6 API
-- [Qdrant](https://qdrant.tech) — vector database
-- [BAAI](https://huggingface.co/BAAI/bge-large-en-v1.5) — BGE-large-en-v1.5 embedding model
-- [Hugging Face](https://huggingface.co) — cross-encoder models (NLI, reranker)
-- Cormack, Clarke & Buettcher (2009) — Reciprocal Rank Fusion
-- Es et al. (2023) — RAGAS
+- [Anthropic](https://anthropic.com) - Claude Sonnet 4.6 API
+- [Qdrant](https://qdrant.tech) - vector database
+- [BAAI](https://huggingface.co/BAAI/bge-large-en-v1.5) - BGE-large-en-v1.5 embedding model
+- [Hugging Face](https://huggingface.co) - cross-encoder models (NLI, reranker)
+- Cormack, Clarke & Buettcher (2009) - Reciprocal Rank Fusion
+- Es et al. (2023) - RAGAS
 
 ---
 

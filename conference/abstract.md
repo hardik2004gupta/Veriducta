@@ -1,4 +1,4 @@
-# Conference — Abstract
+# Conference - Abstract
 
 *For CFP submissions at MLOps World, QCon AI, PyCon, NeurIPS workshops, ACL SRW, EMNLP industry track.*
 
@@ -12,7 +12,7 @@
 
 Retrieval-augmented generation (RAG) pipelines fail in ways that existing evaluation frameworks cannot explain. A faithfulness score indicates answer quality but does not identify whether the failure originated in document chunking, candidate retrieval, cross-encoder reranking, or language model generation.
 
-We present Veriducta, an observability system that stores complete, replayable retrieval traces at inference time and performs four-stage causal ablation to attribute answer failures to specific pipeline components. The system implements an evidence log with O(1) SQLite byte-offset indexing and requires no model re-inference for reranker ablation — cross-encoder scores are stored in every trace.
+We present Veriducta, an observability system that stores complete, replayable retrieval traces at inference time and performs four-stage causal ablation to attribute answer failures to specific pipeline components. The system implements an evidence log with O(1) SQLite byte-offset indexing and requires no model re-inference for reranker ablation - cross-encoder scores are stored in every trace.
 
 On a 60-case synthetic corruption benchmark covering four failure categories, Veriducta achieves 73.3% root-cause localization accuracy (≥70% target) and 68.8% accuracy on the harder boundary-error subset. We present four metrics absent from RAGAS: omission rate, causal attribution accuracy, temporal-valid retrieval rate, and contradiction acknowledgment rate.
 
@@ -24,7 +24,7 @@ On a 60-case synthetic corruption benchmark covering four failure categories, Ve
 
 **Abstract**:
 
-Retrieval-augmented generation (RAG) pipelines exhibit a diagnosis gap: existing evaluation tools measure answer faithfulness and context precision but cannot identify which pipeline stage — document chunking, hybrid retrieval, cross-encoder reranking, or language model generation — caused a specific answer failure. This distinction is critical for practitioners: chunking failures require a different remediation than reranking threshold errors.
+Retrieval-augmented generation (RAG) pipelines exhibit a diagnosis gap: existing evaluation tools measure answer faithfulness and context precision but cannot identify which pipeline stage - document chunking, hybrid retrieval, cross-encoder reranking, or language model generation - caused a specific answer failure. This distinction is critical for practitioners: chunking failures require a different remediation than reranking threshold errors.
 
 We present Veriducta, an RAG observability system built around three principles: (1) every retrieval decision is stored in an append-only evidence log at inference time, (2) a four-stage causal ablation engine runs counterfactual experiments against historical traces without re-running expensive inference, and (3) the full pre-reranking candidate list with cross-encoder scores is stored in every trace, enabling Stage 3 (reranker) ablation through pure data analysis.
 

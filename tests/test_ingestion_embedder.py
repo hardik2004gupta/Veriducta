@@ -1,4 +1,4 @@
-"""Tests for ingestion/embedder.py — embedding and Qdrant upsert (mocked)."""
+"""Tests for ingestion/embedder.py - embedding and Qdrant upsert (mocked)."""
 
 from unittest.mock import MagicMock
 

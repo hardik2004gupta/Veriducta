@@ -6,7 +6,7 @@ evidence log and maintains an in-process index for O(1) trace lookup.
 When an :class:`~observability.evidence_log.EvidenceLogWriter` is supplied,
 all writes are delegated to the fully instrumented Phase 14 implementation
 (SQLite byte-offset index, thread-safe locking, gzip rotation).  Without it,
-the writer falls back to plain file appends and in-memory caching — suitable
+the writer falls back to plain file appends and in-memory caching - suitable
 for Phase 2 integration tests and lightweight standalone usage.
 """
 

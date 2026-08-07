@@ -1,4 +1,4 @@
-# YouTube — Chapter Timestamps
+# YouTube - Chapter Timestamps
 
 *For the full 18–22 minute video*
 

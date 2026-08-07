@@ -1,1 +1,1 @@
-"""Core domain — exceptions, interfaces, and logging configuration."""
+"""Core domain - exceptions, interfaces, and logging configuration."""

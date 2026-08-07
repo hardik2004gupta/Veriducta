@@ -216,7 +216,7 @@ export default function SettingsPage() {
                   <div className="flex items-start gap-2 rounded-xl bg-amber-500/5 border border-amber-500/10 px-4 py-3">
                     <Info className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
                     <p className="text-xs text-amber-300/80 leading-relaxed">
-                      ML models are loaded once at startup. Changes to model selection require a server restart. The embedding model and NLI models run on CPU — ensure sufficient RAM (≥2.5 GB).
+                      ML models are loaded once at startup. Changes to model selection require a server restart. The embedding model and NLI models run on CPU - ensure sufficient RAM (≥2.5 GB).
                     </p>
                   </div>
                 </div>
@@ -245,7 +245,7 @@ export default function SettingsPage() {
                 <SettingRow label="RRF k constant" description="Reciprocal rank fusion constant. Standard value from Cormack et al. (2009) is 60. Changing requires re-benchmarking.">
                   <NumberInput value={rrfK} onChange={setRrfK} min={1} max={200} />
                 </SettingRow>
-                <SettingRow label="Reranker Input Size" description="Number of candidates fed to the cross-encoder. Stored in pre_rerank_top40 — must be exactly 40 to allow Stage 3 ablation without modification.">
+                <SettingRow label="Reranker Input Size" description="Number of candidates fed to the cross-encoder. Stored in pre_rerank_top40 - must be exactly 40 to allow Stage 3 ablation without modification.">
                   <NumberInput value={rerankerTopInput} onChange={setRerankerTopInput} min={10} max={100} step={5} />
                 </SettingRow>
                 <SettingRow label="Reranker Output (top-k)" description="Final number of chunks after reranking. Used as retrieval context for generation.">
@@ -328,10 +328,10 @@ export default function SettingsPage() {
                 <div className="py-4">
                   <div className="space-y-2">
                     {[
-                      "ANTHROPIC_API_KEY is the only secret — stored in .env, never logged",
+                      "ANTHROPIC_API_KEY is the only secret - stored in .env, never logged",
                       "Exception handlers never expose internal tracebacks to HTTP responses",
                       "Authentication is out of scope for the MVP",
-                      "Corpus documents are public-domain — no PII in corpus",
+                      "Corpus documents are public-domain - no PII in corpus",
                     ].map((note) => (
                       <div key={note} className="flex items-start gap-2 text-xs text-slate-500">
                         <CheckCircle2 className="h-3.5 w-3.5 text-slate-600 shrink-0 mt-0.5" />

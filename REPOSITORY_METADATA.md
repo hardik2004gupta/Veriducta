@@ -46,7 +46,7 @@ machine-learning
 
 ## OpenGraph / Social Preview Text
 
-**Title**: Veriducta — RAG Pipeline Attribution
+**Title**: Veriducta - RAG Pipeline Attribution
 
 **Description**:
 ```
@@ -73,9 +73,9 @@ Four-stage causal ablation engine. 73.3% accuracy. Open source.
 
 ---
 
-## GitHub Release — v1.0.0
+## GitHub Release - v1.0.0
 
-**Release title**: `v1.0.0 — Initial Release`
+**Release title**: `v1.0.0 - Initial Release`
 
 **Release tag**: `v1.0.0`
 
@@ -84,7 +84,7 @@ Four-stage causal ablation engine. 73.3% accuracy. Open source.
 ```markdown
 ## Veriducta v1.0.0
 
-First public release of Veriducta — a RAG pipeline observability tool that identifies which 
+First public release of Veriducta - a RAG pipeline observability tool that identifies which 
 pipeline stage (chunking, retrieval, reranking, or generation) caused an answer failure.
 
 ### Highlights

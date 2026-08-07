@@ -1,4 +1,4 @@
-"""Observability infrastructure — Prometheus metrics, OpenTelemetry tracing, evidence log."""
+"""Observability infrastructure - Prometheus metrics, OpenTelemetry tracing, evidence log."""
 
 from observability.context import (
     RequestContext,

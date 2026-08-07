@@ -1,6 +1,6 @@
 """Shared Pydantic schemas used across all pipeline stages.
 
-These are data-transfer objects and domain value types — they carry no
+These are data-transfer objects and domain value types - they carry no
 business logic. Concrete implementations fill them; abstract interfaces
 reference them.
 """
@@ -162,7 +162,7 @@ class Claim(BaseModel):
     citation: Citation | None = None
     key_entities: list[str] = Field(
         default_factory=list,
-        description="Specific technical entities in the claim — at least two.",
+        description="Specific technical entities in the claim - at least two.",
     )
     confidence: ConfidenceTag = ConfidenceTag.UNCERTAIN
     temporal_validity: TemporalValidityTag = TemporalValidityTag.UNKNOWN
@@ -324,7 +324,7 @@ class EvaluationMetrics(BaseModel):
 
 
 # ---------------------------------------------------------------------------
-# Pipeline trace (Phase 14 — unified evidence log entry)
+# Pipeline trace (Phase 14 - unified evidence log entry)
 # ---------------------------------------------------------------------------
 
 

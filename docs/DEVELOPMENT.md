@@ -52,8 +52,8 @@ The `VERIDUCTA_ENV` variable switches between `development`, `testing`, and `pro
 
 | Service    | URL                          | Credentials         |
 |------------|------------------------------|---------------------|
-| FastAPI    | http://localhost:8080/docs   | —                   |
-| Qdrant     | http://localhost:6333        | —                   |
+| FastAPI    | http://localhost:8080/docs   | -                   |
+| Qdrant     | http://localhost:6333        | -                   |
 | MinIO      | http://localhost:9001        | minioadmin/minioadmin |
-| Prometheus | http://localhost:9090        | —                   |
+| Prometheus | http://localhost:9090        | -                   |
 | Grafana    | http://localhost:3000        | admin/admin         |

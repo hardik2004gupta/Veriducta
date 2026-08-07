@@ -21,7 +21,7 @@ logger = structlog.get_logger(__name__)
 
 
 def _tokenise(text: str) -> list[str]:
-    """Lowercase whitespace tokeniser — must match ingestion/bm25_indexer exactly."""
+    """Lowercase whitespace tokeniser - must match ingestion/bm25_indexer exactly."""
     return text.lower().split()
 
 

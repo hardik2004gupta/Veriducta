@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "veriducta"
 version = "0.1.0"
-description = "RAG pipeline observability — causal root-cause attribution for answer failures"
+description = "RAG pipeline observability: causal root-cause attribution for answer failures"
 readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "MIT" }
@@ -34,9 +34,9 @@ dependencies = [
     "python-multipart>=0.0.12",
     "orjson>=3.10.0",
     "tenacity>=9.0.0",
-    # Phase 3 — Generation & Verification
+    # Phase 3 - Generation & Verification
     "anthropic>=0.40.0",
-    # Phase 1 — Ingestion pipeline
+    # Phase 1 - Ingestion pipeline
     "PyMuPDF>=1.24.0",
     "pdfplumber>=0.11.0",
     "networkx>=3.3",
@@ -186,7 +186,7 @@ addopts = [
 filterwarnings = [
     "ignore::DeprecationWarning",
     # StarletteDeprecationWarning is UserWarning subclass, triggered by httpx + starlette TestClient
-    # version incompatibility — irrelevant to application correctness.
+    # version incompatibility - irrelevant to application correctness.
     "ignore::starlette.exceptions.StarletteDeprecationWarning",
 ]
 
@@ -199,7 +199,7 @@ omit = [
     "htmlcov/*",
     ".venv/*",
     "*/conftest.py",
-    # Abstract interfaces — no executable lines
+    # Abstract interfaces - no executable lines
     "core/interfaces.py",
     # Observability requires live OTLP/Prometheus infrastructure
     "observability/tracing.py",

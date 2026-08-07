@@ -1,4 +1,4 @@
-"""High-level dataset manager — single entry point for the evaluation harness.
+"""High-level dataset manager - single entry point for the evaluation harness.
 
 :class:`DatasetManager` orchestrates loading, validation, annotation
 statistics, and export.  The evaluation runner and CLI scripts use this
@@ -56,7 +56,7 @@ class DatasetManager:
         self._corruption_cases: list[EvaluationCorruptionCase] = []
 
     # ------------------------------------------------------------------
-    # Loading — from seed (no disk I/O)
+    # Loading - from seed (no disk I/O)
     # ------------------------------------------------------------------
 
     def load_from_seed(self) -> None:
@@ -74,7 +74,7 @@ class DatasetManager:
         )
 
     # ------------------------------------------------------------------
-    # Loading — from JSONL files
+    # Loading - from JSONL files
     # ------------------------------------------------------------------
 
     def load_from_files(

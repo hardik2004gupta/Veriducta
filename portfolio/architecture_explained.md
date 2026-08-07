@@ -1,4 +1,4 @@
-# Veriducta — Architecture Explained
+# Veriducta - Architecture Explained
 
 *Plain-language walkthrough of every architectural decision.*
 
@@ -6,7 +6,7 @@
 
 ## Why Eight Layers?
 
-Most projects of this size don't need eight layers. Veriducta needs them because causal attribution requires substituting individual pipeline stages with counterfactual configurations — without affecting adjacent stages.
+Most projects of this size don't need eight layers. Veriducta needs them because causal attribution requires substituting individual pipeline stages with counterfactual configurations - without affecting adjacent stages.
 
 If retrieval and generation are coupled (e.g., the generator knows how retrieval works), you can't test "what would have happened if a different retrieval had run?" without changing the generator. The strict dependency constraint makes each layer independently substitutable.
 
@@ -26,11 +26,11 @@ The eight layers:
 
 The evidence log is the core design innovation. Without it, the replay engine would need to re-run inference to answer counterfactual questions, which is both slow and non-deterministic.
 
-**Append-only JSONL**: One JSON line per query, written once, never modified. Corrections go to a separate log. This is a deliberate constraint — immutability makes traces reliable for forensic use.
+**Append-only JSONL**: One JSON line per query, written once, never modified. Corrections go to a separate log. This is a deliberate constraint - immutability makes traces reliable for forensic use.
 
 **SQLite byte-offset index**: The index stores the exact file position of each entry. `SELECT byte_offset FROM traces WHERE trace_id = ?` → `file.seek(byte_offset)` → `file.readline()`. No full-file scan.
 
-**Why not a database?** A database (PostgreSQL) would store JSON blobs that require deserializing the full trace to find a specific field. The JSONL + index pattern gives the same O(1) lookup with smaller operational footprint. The evidence log is read-heavy and append-only — a perfect fit for this pattern.
+**Why not a database?** A database (PostgreSQL) would store JSON blobs that require deserializing the full trace to find a specific field. The JSONL + index pattern gives the same O(1) lookup with smaller operational footprint. The evidence log is read-heavy and append-only - a perfect fit for this pattern.
 
 ---
 
@@ -44,7 +44,7 @@ BM25 and dense retrieval have complementary failure modes.
 
 **RRF fusion** combines both ranked lists without requiring training data. The formula `1/(60 + rank)` gives higher weight to candidates that ranked well in both lists, and a meaningful fallback score (1/161) to candidates present in only one list.
 
-The `k=60` constant is from Cormack et al. (2009). Changing it without re-benchmarking is inadvisable — it was tuned for the distribution of rank gaps in combined ranked lists.
+The `k=60` constant is from Cormack et al. (2009). Changing it without re-benchmarking is inadvisable - it was tuned for the distribution of rank gaps in combined ranked lists.
 
 ---
 
@@ -66,7 +66,7 @@ After generation, every claim in the structured answer is verified against its c
 
 **3-class heuristic** (why 3 and not 2):
 
-Regulatory and technical documents contain conditional language that NLI models score ambiguously — not because they're uncertain, but because the language is genuinely conditional. `"Unless the employer can demonstrate..."` is not a contradiction; it's a condition. The `ambiguous-conditional` class captures these without flagging them as contradictions.
+Regulatory and technical documents contain conditional language that NLI models score ambiguously - not because they're uncertain, but because the language is genuinely conditional. `"Unless the employer can demonstrate..."` is not a contradiction; it's a condition. The `ambiguous-conditional` class captures these without flagging them as contradictions.
 
 **Counterevidence retrieval** (5-step algorithm): For claims with ≥ 2 key entities, the system constructs a contrastive BM25 query (`{entities} exception OR limitation OR superseded OR warning OR caution`) and retrieves the top 10 candidates. These candidates are then scored against the claims using the same NLI model. This catches cases where the corpus contains evidence that contradicts the answer, even if that evidence wasn't in the original retrieval context.
 
@@ -74,7 +74,7 @@ Regulatory and technical documents contain conditional language that NLI models 
 
 ## ConfigurationSnapshot Hashing
 
-Every pipeline stage that makes configuration-dependent decisions creates a `ConfigurationSnapshot` — an immutable, SHA-256 hashed record of its parameters.
+Every pipeline stage that makes configuration-dependent decisions creates a `ConfigurationSnapshot` - an immutable, SHA-256 hashed record of its parameters.
 
 **Why hashing**: The replay engine needs to determine whether a historical trace used the same chunking configuration as the current production configuration. Without a hash, this comparison is impossible (the configurations may have different in-memory representations but identical semantics, or vice versa).
 

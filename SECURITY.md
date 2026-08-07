@@ -13,15 +13,15 @@ Veriducta is an MVP / portfolio project. It is not deployed in production enviro
 
 ## Known Security Limitations
 
-1. **No authentication** — The API has no auth layer. The MVP assumes a trusted local network environment. Do not expose the API publicly without adding authentication.
+1. **No authentication** - The API has no auth layer. The MVP assumes a trusted local network environment. Do not expose the API publicly without adding authentication.
 
-2. **Evidence log exposure** — Evidence logs contain query text. The API does not expose evidence logs over HTTP. If this changes, access control must be added first.
+2. **Evidence log exposure** - Evidence logs contain query text. The API does not expose evidence logs over HTTP. If this changes, access control must be added first.
 
-3. **CORS** — Default CORS setting is `"*"` for development. Production deployments must set `API_CORS_ORIGINS` to specific allowed origins.
+3. **CORS** - Default CORS setting is `"*"` for development. Production deployments must set `API_CORS_ORIGINS` to specific allowed origins.
 
-4. **BM25 index pickle** — The BM25 index is serialised as `corpus/bm25_index.pkl`. Pickle files can execute arbitrary code if tampered with. The file is internal and never received from external sources, but ensure the file path is not writable by untrusted processes.
+4. **BM25 index pickle** - The BM25 index is serialised as `corpus/bm25_index.pkl`. Pickle files can execute arbitrary code if tampered with. The file is internal and never received from external sources, but ensure the file path is not writable by untrusted processes.
 
-5. **Input validation** — All user-facing inputs (query text, query_date) are validated via Pydantic before entering the pipeline. Max query length is 2000 characters.
+5. **Input validation** - All user-facing inputs (query text, query_date) are validated via Pydantic before entering the pipeline. Max query length is 2000 characters.
 
 ## Reporting
 

@@ -23,11 +23,11 @@ End-to-end latency breakdown, memory profile, and optimisation strategies.
 
 ### Key Observations
 
-1. **Generation dominates** (65% of p50). This is unavoidable for streaming text generation — Claude Sonnet 4.6's Time-To-First-Token is typically 800ms, with the remainder proportional to output length.
+1. **Generation dominates** (65% of p50). This is unavoidable for streaming text generation - Claude Sonnet 4.6's Time-To-First-Token is typically 800ms, with the remainder proportional to output length.
 
 2. **Cross-encoder reranking is the second-largest cost** (14% of p50). On CPU, 40 query-chunk pair scores take ~400ms. This is the highest-leverage optimisation target for latency reduction.
 
-3. **Query embedding has a floor** (~180ms on CPU). The LRU cache (TTL 1 hour, max 1000 entries) eliminates this cost for repeated queries — the cache hit rate in production is ~23%.
+3. **Query embedding has a floor** (~180ms on CPU). The LRU cache (TTL 1 hour, max 1000 entries) eliminates this cost for repeated queries - the cache hit rate in production is ~23%.
 
 4. **NLI and counterevidence are fast** because they run on short text spans (claims are typically 30–60 tokens) and are batched.
 
@@ -45,7 +45,7 @@ End-to-end latency breakdown, memory profile, and optimisation strategies.
 | FastAPI + Python runtime | ~120 MB | |
 | **Total** | **~1.93 GB** | |
 
-The three ML models account for 93% of resident memory. This is the primary constraint for deployment — a machine with <2.5 GB RAM will OOM under load if all three models are loaded simultaneously.
+The three ML models account for 93% of resident memory. This is the primary constraint for deployment - a machine with <2.5 GB RAM will OOM under load if all three models are loaded simultaneously.
 
 ---
 
@@ -55,7 +55,7 @@ The three ML models account for 93% of resident memory. This is the primary cons
 
 Moving the cross-encoder to GPU reduces reranking from ~400ms to ~50ms. This alone reduces p95 latency from ~7.4s to ~4.5s.
 
-**Implementation**: Set `CROSS_ENCODER_DEVICE=cuda` in settings. The `CrossEncoderReranker` already calls `model.predict(pairs, device=self._device)` — only the configuration changes.
+**Implementation**: Set `CROSS_ENCODER_DEVICE=cuda` in settings. The `CrossEncoderReranker` already calls `model.predict(pairs, device=self._device)` - only the configuration changes.
 
 **Requirement**: CUDA-capable GPU with ≥2 GB VRAM. The MiniLM-L-12 model fits comfortably in 2 GB.
 
@@ -91,7 +91,7 @@ Already implemented: The counterevidence retrieval uses BM25 only (not the full 
 
 Not yet implemented. Returning a streaming SSE response from Claude would reduce Time-To-First-Token for the user from ~1.8s to ~0.8s. The full latency is unchanged, but perceived latency improves significantly.
 
-**Implementation constraint**: Streaming requires changes to the generation trace structure — the trace must be written after streaming completes, not during. The evidence log writer would need to buffer the complete response before writing.
+**Implementation constraint**: Streaming requires changes to the generation trace structure - the trace must be written after streaming completes, not during. The evidence log writer would need to buffer the complete response before writing.
 
 ---
 
@@ -121,4 +121,4 @@ Recommended multi-worker approach: **load balancer → N single-worker processes
 
 **BM25 scaling limit**: At ~500 documents the BM25 index exceeds 480 MB and begins to pressure the 2 GB memory budget. Above ~1,000 documents, an on-disk BM25 implementation (e.g., Elasticsearch, BM25S) is required.
 
-**Qdrant scaling**: Qdrant handles millions of vectors without issue. The constraint at scale is the parent-child expansion (8 Qdrant lookups per query) — at 10,000 documents with deep parent hierarchies, this could add 100–200ms.
+**Qdrant scaling**: Qdrant handles millions of vectors without issue. The constraint at scale is the parent-child expansion (8 Qdrant lookups per query) - at 10,000 documents with deep parent hierarchies, this could add 100–200ms.

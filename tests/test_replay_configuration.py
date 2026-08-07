@@ -1,4 +1,4 @@
-"""Tests for replay.configuration — ReplayConfigurationBuilder."""
+"""Tests for replay.configuration - ReplayConfigurationBuilder."""
 
 from replay.configuration import ReplayConfigurationBuilder
 from replay.models import ReplayConfiguration

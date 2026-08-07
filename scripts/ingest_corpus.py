@@ -87,7 +87,7 @@ def main(argv: list[str] | None = None) -> int:
     failed = [r for r in results if not r.success]
     if failed:
         for r in failed:
-            print(f"  FAILED: {r.document_id} — {r.error}", file=sys.stderr)
+            print(f"  FAILED: {r.document_id} - {r.error}", file=sys.stderr)
         total = len(results)
         print(f"\nIngestion: {total - len(failed)}/{total} succeeded.", file=sys.stderr)
         return 1

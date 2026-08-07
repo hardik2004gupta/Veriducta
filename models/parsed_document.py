@@ -1,6 +1,6 @@
 """ParsedDocument dataclass produced by the PDF parser.
 
-Plain dataclasses — not Pydantic models — because this intermediate
+Plain dataclasses - not Pydantic models - because this intermediate
 representation lives only in memory during ingestion and is never
 serialised to the evidence log.
 """
@@ -48,7 +48,7 @@ class ParsedDocument:
     :class:`ingestion.chunker.HierarchicalChunker`.
 
     Args:
-        document_id: Stable document identifier — matches the sidecar file.
+        document_id: Stable document identifier - matches the sidecar file.
         filename: Basename of the source PDF.
         page_count: Total page count.
         text_blocks: All text blocks in reading order (across all pages).

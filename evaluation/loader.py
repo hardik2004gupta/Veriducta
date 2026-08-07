@@ -1,7 +1,7 @@
 """Low-level dataset file I/O for the evaluation harness.
 
 :class:`DatasetLoader` reads JSONL and JSON files from disk and deserialises
-them into typed Pydantic models.  It does not perform semantic validation —
+them into typed Pydantic models.  It does not perform semantic validation -
 use :class:`~evaluation.validation.DatasetValidator` for that.
 """
 

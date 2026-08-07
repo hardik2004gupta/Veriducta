@@ -36,10 +36,10 @@ const REGRESSION_GATES = [
 const RAGAS_ROWS = [
   { metric: "Faithfulness (citation entailment)", ragas: "0.82", ours: "0.871", better: true },
   { metric: "Context Recall", ragas: "0.74", ours: "0.783", better: true },
-  { metric: "Omission Rate", ragas: "—", ours: "8.2%", better: true, exclusive: true },
-  { metric: "Causal Attribution Accuracy", ragas: "—", ours: "73.3%", better: true, exclusive: true },
-  { metric: "Temporal-Valid Retrieval Rate", ragas: "—", ours: "96.4%", better: true, exclusive: true },
-  { metric: "Contradiction Acknowledgment Rate", ragas: "—", ours: "89.1%", better: true, exclusive: true },
+  { metric: "Omission Rate", ragas: "-", ours: "8.2%", better: true, exclusive: true },
+  { metric: "Causal Attribution Accuracy", ragas: "-", ours: "73.3%", better: true, exclusive: true },
+  { metric: "Temporal-Valid Retrieval Rate", ragas: "-", ours: "96.4%", better: true, exclusive: true },
+  { metric: "Contradiction Acknowledgment Rate", ragas: "-", ours: "89.1%", better: true, exclusive: true },
 ];
 
 // ── Radar chart data ──────────────────────────────────────────────────────────
@@ -194,15 +194,15 @@ export default function EvaluationPage() {
                   {row.exclusive && <Badge variant="muted" className="text-[10px] px-1.5 py-0">exclusive</Badge>}
                 </div>
                 <div className="flex items-center justify-center">
-                  {row.ragas === "—" ? (
-                    <span className="text-slate-700 text-sm">—</span>
+                  {row.ragas === "-" ? (
+                    <span className="text-slate-700 text-sm">-</span>
                   ) : (
                     <span className="text-sm text-slate-400 font-mono">{row.ragas}</span>
                   )}
                 </div>
                 <div className="flex items-center justify-center gap-2">
                   <span className="text-sm text-emerald-400 font-semibold font-mono">{row.ours}</span>
-                  {row.better && row.ragas !== "—" && (
+                  {row.better && row.ragas !== "-" && (
                     <TrendingUp className="h-3.5 w-3.5 text-emerald-400" />
                   )}
                   {row.exclusive && (

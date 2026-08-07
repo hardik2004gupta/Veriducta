@@ -1,4 +1,4 @@
-"""Regression gate — enforces five blocking quality thresholds between runs.
+"""Regression gate - enforces five blocking quality thresholds between runs.
 
 Five blocking conditions (CLAUDE.md Phase 18):
 
@@ -91,7 +91,7 @@ class RegressionEngine:
         """
         violations: list[RegressionViolation] = []
 
-        # Condition 1 — faithfulness drop
+        # Condition 1 - faithfulness drop
         faith_drop = (
             baseline.answer_quality.citation_entailment_rate
             - current.answer_quality.citation_entailment_rate
@@ -107,7 +107,7 @@ class RegressionEngine:
                 )
             )
 
-        # Condition 2 — Recall@5 drop
+        # Condition 2 - Recall@5 drop
         r5_drop = baseline.retrieval.recall_at_5 - current.retrieval.recall_at_5
         if r5_drop > self._recall5_drop_max:
             violations.append(
@@ -120,7 +120,7 @@ class RegressionEngine:
                 )
             )
 
-        # Condition 3 — p95 latency increase (fractional)
+        # Condition 3 - p95 latency increase (fractional)
         p95_base = baseline.operational.p95_latency_ms
         p95_cur = current.operational.p95_latency_ms
         if p95_base > 0.0:
@@ -136,7 +136,7 @@ class RegressionEngine:
                     )
                 )
 
-        # Condition 4 — root-cause accuracy drop
+        # Condition 4 - root-cause accuracy drop
         rca_drop = (
             baseline.causal_attribution.root_cause_localization_accuracy
             - current.causal_attribution.root_cause_localization_accuracy
@@ -152,7 +152,7 @@ class RegressionEngine:
                 )
             )
 
-        # Condition 5 — unauthorised evidence exposure
+        # Condition 5 - unauthorised evidence exposure
         if unauthorised_exposure_rate > self._evidence_exposure_max:
             violations.append(
                 RegressionViolation(
@@ -169,7 +169,7 @@ class RegressionEngine:
             summary = "All regression gates passed."
         else:
             names = ", ".join(v.condition for v in violations)
-            summary = f"Regression FAILED — {len(violations)} violation(s): {names}"
+            summary = f"Regression FAILED - {len(violations)} violation(s): {names}"
 
         logger.info(
             "regression_gate_result",

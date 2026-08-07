@@ -68,7 +68,7 @@ class TemporalFilter:
         """Filter *candidates* against *query_date*.
 
         Candidates missing chunk metadata (no ``chunk`` object or no
-        ``document_id``) are accepted with a warning — they cannot be
+        ``document_id``) are accepted with a warning - they cannot be
         classified without document metadata.
 
         Args:

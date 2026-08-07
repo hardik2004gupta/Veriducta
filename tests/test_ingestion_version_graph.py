@@ -1,4 +1,4 @@
-"""Tests for ingestion/version_graph.py — temporal validity graph."""
+"""Tests for ingestion/version_graph.py - temporal validity graph."""
 
 from pathlib import Path
 

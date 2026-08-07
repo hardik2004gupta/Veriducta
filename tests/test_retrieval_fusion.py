@@ -1,4 +1,4 @@
-"""Tests for retrieval/fusion.py — pure function, no mocks needed."""
+"""Tests for retrieval/fusion.py - pure function, no mocks needed."""
 
 import pytest
 

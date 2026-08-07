@@ -1,4 +1,4 @@
-"""Tests for evaluation/golden.py — GOLDEN_QA_SEED and GoldenDatasetBuilder."""
+"""Tests for evaluation/golden.py - GOLDEN_QA_SEED and GoldenDatasetBuilder."""
 
 from pathlib import Path
 

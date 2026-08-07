@@ -40,7 +40,7 @@ def configure_tracing() -> None:
         exporter = OTLPSpanExporter(endpoint=settings.observability.otlp_endpoint)
         provider.add_span_processor(BatchSpanProcessor(exporter))
     except Exception:
-        # OTel setup must never crash the application — log and continue without export.
+        # OTel setup must never crash the application - log and continue without export.
         _log.warning("OTLP exporter unavailable; traces will not be exported.")
 
     trace.set_tracer_provider(provider)

@@ -1,4 +1,4 @@
-# CLAUDE.md — Veriducta Engineering Specification
+# CLAUDE.md - Veriducta Engineering Specification
 
 **Authoritative reference for all Claude Code sessions working on this repository.**
 
@@ -27,13 +27,13 @@ Demonstrate three things simultaneously:
 2. The causal replay engine correctly identifies the root-cause stage on a 60-case synthetic
    corruption benchmark with ≥ 0.70 overall accuracy and ≥ 0.65 on realistic boundary-error cases.
 3. Every metric in the reliability scorecard is computed, reproducible, and compared against a
-   RAGAS baseline — including four metrics RAGAS cannot compute.
+   RAGAS baseline - including four metrics RAGAS cannot compute.
 
 ### Core Innovation
 
-Veriducta stores a **complete, replayable trace** of every retrieval decision — BM25 scores,
+Veriducta stores a **complete, replayable trace** of every retrieval decision - BM25 scores,
 dense scores, RRF ranks, the full pre-reranking top-40 candidate list with scores, temporal filter
-decisions — so the replay engine can test counterfactuals without re-running expensive inference.
+decisions - so the replay engine can test counterfactuals without re-running expensive inference.
 This is what makes causal attribution possible without an oracle.
 
 ### Success Criteria (from spec)
@@ -54,35 +54,35 @@ This is what makes causal attribution possible without an oracle.
 
 ```
 ┌───────────────────────────────────────────────────────────┐
-│  Layer 8 — API (api/)                                     │
+│  Layer 8 - API (api/)                                     │
 │  FastAPI application factory, HTTP routing, middleware     │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 7 — Evaluation (evaluation/)                       │
+│  Layer 7 - Evaluation (evaluation/)                       │
 │  Evaluation runner, metrics computation, RAGAS baseline,  │
 │  regression gate, evaluation report writer                │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 6 — Causal Replay (replay/)                        │
+│  Layer 6 - Causal Replay (replay/)                        │
 │  Four-stage gold ablation, heuristic span attribution,    │
 │  synthetic corruption runner                              │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 5 — Verification (verification/)                   │
+│  Layer 5 - Verification (verification/)                   │
 │  Claim-level NLI entailment checking, counterevidence     │
 │  retrieval, VerificationReport assembly                   │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 4 — Generation (generation/)                       │
+│  Layer 4 - Generation (generation/)                       │
 │  Claude Sonnet 4.6 structured generation, JSON schema     │
 │  enforcement, generation trace logging                    │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 3 — Retrieval (retrieval/)                         │
+│  Layer 3 - Retrieval (retrieval/)                         │
 │  BM25 + dense hybrid retrieval, RRF fusion, temporal      │
 │  filtering, cross-encoder reranking, parent-child          │
 │  expansion, TraceableRetriever                            │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 2 — Ingestion (ingestion/)                         │
+│  Layer 2 - Ingestion (ingestion/)                         │
 │  PDF parsing, hierarchical chunking, embedding,           │
 │  Qdrant upsert, version graph, BM25 index                 │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 1 — Foundation                                     │
+│  Layer 1 - Foundation                                     │
 │  config/ · core/ · schemas/ · utils/ · storage/           │
 │  observability/ · models/                                 │
 └───────────────────────────────────────────────────────────┘
@@ -174,7 +174,7 @@ veriducta/
 
 | Field | Value |
 |---|---|
-| **Purpose** | HTTP interface — routing, middleware, DI, exception mapping |
+| **Purpose** | HTTP interface - routing, middleware, DI, exception mapping |
 | **Phase created** | 0 |
 | **Owner** | Stable across all phases |
 | **Allowed imports** | `config`, `core`, `schemas`, `observability` (cross-cutting) |
@@ -335,7 +335,7 @@ veriducta/
 
 Prefer composing small single-purpose objects. The `VeriductaRetriever` composes
 `BM25Retriever`, `DenseRetriever`, `RRFusion`, `TemporalFilter`, `CrossEncoderReranker`,
-and `ParentChildExpander` — it does not inherit from any of them.
+and `ParentChildExpander` - it does not inherit from any of them.
 
 ### Dependency Injection
 
@@ -347,7 +347,7 @@ module-level Prometheus singletons).
 ### Immutable Configuration
 
 `Settings` is constructed once at startup via `get_settings()` (`lru_cache(maxsize=1)`).
-Pipeline steps receive configuration as `ConfigurationSnapshot` objects — immutable, hashable,
+Pipeline steps receive configuration as `ConfigurationSnapshot` objects - immutable, hashable,
 serialisable. Configuration snapshots are hashed at creation time. Never pass mutable config dicts
 through pipeline boundaries.
 
@@ -551,7 +551,7 @@ observability ──────────────────────
 3. `core` imports only `config`.
 4. Data flows **downward** only. No layer may import from a layer above it.
 5. `api` may import from any layer but contains no business logic.
-6. `observability` is a cross-cutting concern — any layer may import it, but it never
+6. `observability` is a cross-cutting concern - any layer may import it, but it never
    imports pipeline packages.
 7. Circular imports are a build error (enforced by `ruff --select I`).
 
@@ -579,9 +579,9 @@ in pipeline packages subclass these.
 **Purpose**: Parse a raw PDF into a structured representation.
 **Implemented by**: `ingestion.parser.PyMuPDFParser` (Phase 2)
 **Methods**:
-- `parse(source: str) -> ParsedDocument` — receives absolute file path; returns `ParsedDocument`
+- `parse(source: str) -> ParsedDocument` - receives absolute file path; returns `ParsedDocument`
   dataclass containing per-page text blocks, linearised tables as Markdown, and page metadata.
-- `supports(mime_type: str) -> bool` — returns True for `"application/pdf"`.
+- `supports(mime_type: str) -> bool` - returns True for `"application/pdf"`.
 **Lifecycle**: Instantiated once per ingestion run. Stateless.
 
 ### `BaseChunker`
@@ -589,12 +589,12 @@ in pipeline packages subclass these.
 **Purpose**: Split a `ParsedDocument` into hierarchical `Chunk` objects.
 **Implemented by**: `ingestion.chunker.HierarchicalChunker` (Phase 3)
 **Methods**:
-- `chunk(document: ParsedDocument, config: ChunkingConfig) -> list[Chunk]` — returns ordered
+- `chunk(document: ParsedDocument, config: ChunkingConfig) -> list[Chunk]` - returns ordered
   list of child chunks. Each child carries a `parent_chunk_id` pointing to its parent chunk.
   When `boundary_aware=True`, the chunker never splits a child chunk across a detected section
   boundary. Chunk IDs follow the format `{document_id}-ch-{zero_padded_index}`.
   Parent IDs follow `{document_id}-par-{zero_padded_index}`.
-- `snapshot() -> ConfigurationSnapshot` — returns a serialisable, hashed config snapshot.
+- `snapshot() -> ConfigurationSnapshot` - returns a serialisable, hashed config snapshot.
   Snapshots are stored at `config/chunking_snapshots/{hash}.json`.
 **Lifecycle**: Instantiated with a `ChunkingConfig`. Call `snapshot()` before calling `chunk()`.
 
@@ -604,10 +604,10 @@ in pipeline packages subclass these.
 **Implemented by**: `models.embedding.BGELargeEmbedding` (Phase 5)
 **Model**: `BAAI/bge-large-en-v1.5` (dimension: 1024)
 **Methods**:
-- `embed(texts: list[str]) -> list[list[float]]` — batch size of 32 is the default.
+- `embed(texts: list[str]) -> list[list[float]]` - batch size of 32 is the default.
   Query embedding uses the recommended prefix: `"Represent this sentence for searching relevant passages: "`.
-- `dimension: int` — property returning 1024.
-- `model_id: str` — property returning `"BAAI/bge-large-en-v1.5"`.
+- `dimension: int` - property returning 1024.
+- `model_id: str` - property returning `"BAAI/bge-large-en-v1.5"`.
 **Lifecycle**: Load once at module level. Never reload per-request.
 
 ### `BaseRetriever`
@@ -615,11 +615,11 @@ in pipeline packages subclass these.
 **Purpose**: Execute hybrid retrieval and return a fully traced `RetrievalResult`.
 **Implemented by**: `retrieval.retriever.VeriductaRetriever` (Phase 10)
 **Methods**:
-- `retrieve(query, query_date, top_k=8) -> RetrievalResult` — runs BM25 (top-100) + dense
+- `retrieve(query, query_date, top_k=8) -> RetrievalResult` - runs BM25 (top-100) + dense
   (top-100) → RRF fusion → temporal filter → cross-encoder reranking (top-40 input, top-8 output)
   → parent-child expansion. Emits OpenTelemetry spans. Writes `RetrievalTrace` to evidence log.
-- `get_trace(trace_id: str) -> RetrievalTrace` — O(1) lookup via SQLite index.
-- `replay_with_config(trace_id, config_override) -> RetrievalResult` — re-runs retrieval for a
+- `get_trace(trace_id: str) -> RetrievalTrace` - O(1) lookup via SQLite index.
+- `replay_with_config(trace_id, config_override) -> RetrievalResult` - re-runs retrieval for a
   historical query using an alternative `ConfigurationSnapshot`. Used by Stage 1 and Stage 3
   of the ablation engine.
 **Lifecycle**: Instantiated once per application process. Holds references to all sub-components.
@@ -629,10 +629,10 @@ in pipeline packages subclass these.
 **Purpose**: Produce a structured, citation-grounded answer from a retrieval context.
 **Implemented by**: `generation.generator.VeriductaGenerator` (Phase 11/13)
 **Methods**:
-- `generate(query, context) -> StructuredAnswer` — calls Claude Sonnet 4.6 (`claude-sonnet-4-6`)
+- `generate(query, context) -> StructuredAnswer` - calls Claude Sonnet 4.6 (`claude-sonnet-4-6`)
   with `max_tokens=2048`. Validates JSON response against output schema. Retries up to 2 times
   on schema validation failure. Logs tokens, cost, and latency.
-- `replay_with_context(query, context_override, config_override) -> StructuredAnswer` — re-runs
+- `replay_with_context(query, context_override, config_override) -> StructuredAnswer` - re-runs
   generation with substitute context or configuration. Used by Stage 2 and Stage 4 ablation.
 **Lifecycle**: Instantiated once per application process.
 
@@ -641,7 +641,7 @@ in pipeline packages subclass these.
 **Purpose**: Verify all claims in a `StructuredAnswer` and produce a `VerificationReport`.
 **Implemented by**: `generation.verifier.VeriductaVerifier` (Phase 13)
 **Methods**:
-- `verify(answer, retrieval_result) -> VerificationReport` — runs NLI entailment checking on all
+- `verify(answer, retrieval_result) -> VerificationReport` - runs NLI entailment checking on all
   claims, then runs the 5-step counterevidence scan for claims with ≥ 2 key entities.
   Claims with < 2 entities receive `verification_status="not_searched"` with reason
   `"insufficient_entity_signal"`.
@@ -652,10 +652,10 @@ in pipeline packages subclass these.
 **Purpose**: Execute four-stage causal ablation to attribute answer failures.
 **Implemented by**: `replay.ablation.VeriductaReplayEngine` (Phase 17)
 **Methods**:
-- `run_ablation(trace_id, question_id) -> ReplayReport` — executes all four ablation stages
+- `run_ablation(trace_id, question_id) -> ReplayReport` - executes all four ablation stages
   sequentially. Returns a `ReplayReport` with per-stage quality deltas and a primary root-cause
   label.
-- `run_corruption(corruption_case) -> ReplayReport` — executes ablation on a single case from
+- `run_corruption(corruption_case) -> ReplayReport` - executes ablation on a single case from
   `data/synthetic_corruptions/corruptions.jsonl`.
 **Lifecycle**: Instantiated once per evaluation run.
 
@@ -664,10 +664,10 @@ in pipeline packages subclass these.
 **Purpose**: Generic key-value / object store for arbitrary byte payloads.
 **Implemented by**: `storage.minio_storage.MinIOStorage` (Phase 5)
 **Methods**:
-- `put(key, value, *, content_type)` — store bytes under key.
-- `get(key) -> bytes` — retrieve bytes; raises `NotFoundError` if absent.
-- `delete(key)` — delete object.
-- `exists(key) -> bool` — check existence without fetching payload.
+- `put(key, value, *, content_type)` - store bytes under key.
+- `get(key) -> bytes` - retrieve bytes; raises `NotFoundError` if absent.
+- `delete(key)` - delete object.
+- `exists(key) -> bool` - check existence without fetching payload.
 **Lifecycle**: Instantiated once; client connection is pooled.
 
 ---
@@ -675,7 +675,7 @@ in pipeline packages subclass these.
 ## 8. Shared Models
 
 All shared schemas live in `schemas/models.py`. They are Pydantic `BaseModel` subclasses.
-They carry no business logic — only field declarations and Pydantic validators.
+They carry no business logic - only field declarations and Pydantic validators.
 
 ### Enumerations
 
@@ -716,9 +716,9 @@ Links a claim to its supporting chunk. Contains `chunk_id`, `document_id`, `exce
 ### `Claim`
 
 A single verifiable assertion. Key fields:
-- `citation_chunk_id`: required — points to the primary supporting chunk
+- `citation_chunk_id`: required - points to the primary supporting chunk
 - `key_entities`: list of ≥ 2 specific technical terms (required for counterevidence scan)
-- `nli_*_probability`: populated by `entailment.py` — never populated by the generator
+- `nli_*_probability`: populated by `entailment.py` - never populated by the generator
 - `requires_expert_review`: set to `True` if any claim is `contradicted` or
   `ambiguous_conditional`
 
@@ -730,7 +730,7 @@ was absent from a particular retrieval list (e.g., absent from BM25 results but 
 ### `RetrievalResult`
 
 The final output of `BaseRetriever.retrieve()`. Contains `candidates` (top-k after reranking),
-`pre_rerank_top40` (full pre-reranking list — essential for Stage 3 replay), and
+`pre_rerank_top40` (full pre-reranking list - essential for Stage 3 replay), and
 `temporal_rejections` (for audit).
 
 ### `RetrievalTrace` / `GenerationTrace`
@@ -771,7 +771,7 @@ Settings                          (env prefix: VERIDUCTA_)
 ```python
 from config.settings import get_settings
 
-settings = get_settings()  # lru_cache — same object every call
+settings = get_settings()  # lru_cache - same object every call
 settings.qdrant.host  # "localhost"
 settings.anthropic.model  # "claude-sonnet-4-6"
 settings.is_testing  # bool property
@@ -893,7 +893,7 @@ Key metric families:
 Implemented in Phase 14 at `observability/evidence_log.py`.
 
 Structure:
-- Active file: `evidence_logs/YYYY-MM-DD.jsonl` — one JSON Lines entry per query
+- Active file: `evidence_logs/YYYY-MM-DD.jsonl` - one JSON Lines entry per query
 - Compressed files: `evidence_logs/YYYY-MM-DD.jsonl.gz` after 24 hours
 - SQLite index: `evidence_logs/index.db` with schema:
   `(trace_id, log_file, byte_offset, query_hash, created_at, quality_score, flagged_as_failure)`
@@ -990,7 +990,7 @@ the corresponding phase is implemented. Use `pytest-asyncio` for async tests.
 
 ### Mocking Policy
 
-- **Never mock the core pipeline logic** — integration tests must use real pipeline code.
+- **Never mock the core pipeline logic** - integration tests must use real pipeline code.
 - **Mock external services** (Anthropic API, Qdrant, MinIO) only when testing failure paths
   that cannot be triggered with real services in CI.
 - **Use `pytest-mock` or `unittest.mock.patch`** for external API calls in unit tests.
@@ -1001,9 +1001,9 @@ the corresponding phase is implemented. Use `pytest-asyncio` for async tests.
 
 - Minimum: **80%** (configured in `pyproject.toml`)
 - Excluded from coverage:
-  - `core/interfaces.py` (abstract — no executable lines)
+  - `core/interfaces.py` (abstract - no executable lines)
   - `observability/tracing.py` (requires live OTLP)
-  - `observability/metrics.py` (Prometheus singletons — registration-only)
+  - `observability/metrics.py` (Prometheus singletons - registration-only)
 
 ### Test Naming
 
@@ -1072,11 +1072,11 @@ Every Claude Code session working on this repository MUST:
 1. **Read `CLAUDE.md` in full** before making any changes.
 2. **Run `git status`** to understand the current working tree state.
 3. **Identify the target phase** from the Phase Roadmap (Section 15).
-4. **Read only files relevant to the current task** — do not read the entire repository.
+4. **Read only files relevant to the current task** - do not read the entire repository.
 5. **Inspect the existing implementation** before adding anything new.
-6. **Never rewrite a working module** — extend it or add a new module.
-7. **Never regenerate Phase 0 infrastructure** — the foundation is complete.
-8. **Implement only the current phase** — do not skip ahead.
+6. **Never rewrite a working module** - extend it or add a new module.
+7. **Never regenerate Phase 0 infrastructure** - the foundation is complete.
+8. **Implement only the current phase** - do not skip ahead.
 
 ### Before Finishing Any Session
 
@@ -1103,35 +1103,35 @@ Every session ends with:
 
 ## 15. Phase Roadmap
 
-**Phase 0** (complete): Engineering foundation — repository structure, FastAPI skeleton,
+**Phase 0** (complete): Engineering foundation - repository structure, FastAPI skeleton,
 configuration, interfaces, schemas, utilities, Docker, CI.
 
 ---
 
-### Phase 1 — Document Metadata & Sidecar Schema
+### Phase 1 - Document Metadata & Sidecar Schema
 
 **Objective**: Define and validate the JSON sidecar format for every corpus document.
 
 **Primary modules**:
-- `ingestion/sidecar.py` — sidecar schema, `validate_sidecar()`, file I/O
-- `schemas/models.py` — extend `DocumentMetadata` with JSON schema validator
+- `ingestion/sidecar.py` - sidecar schema, `validate_sidecar()`, file I/O
+- `schemas/models.py` - extend `DocumentMetadata` with JSON schema validator
 
 **Expected outputs**:
 - `corpus/sidecars/{document_id}.json` for each screened document
-- `scripts/validate_sidecars.py` — CLI that validates all sidecars and reports failures
+- `scripts/validate_sidecars.py` - CLI that validates all sidecars and reports failures
 - Unit tests: malformed sidecars rejected, all required fields validated
 
 **Dependencies**: Phase 0
 
 ---
 
-### Phase 2 — PDF Parser
+### Phase 2 - PDF Parser
 
 **Objective**: Extract structured text and table content from PDF files.
 
 **Primary modules**:
-- `ingestion/parser.py` — `PyMuPDFParser(BaseParser)` using `fitz.open()`
-- `models/parsed_document.py` — `ParsedDocument` dataclass (page text blocks + linearised tables + metadata)
+- `ingestion/parser.py` - `PyMuPDFParser(BaseParser)` using `fitz.open()`
+- `models/parsed_document.py` - `ParsedDocument` dataclass (page text blocks + linearised tables + metadata)
 
 **Expected outputs**:
 - Per-page text extraction preserving page number metadata
@@ -1143,12 +1143,12 @@ configuration, interfaces, schemas, utilities, Docker, CI.
 
 ---
 
-### Phase 3 — Hierarchical Chunker
+### Phase 3 - Hierarchical Chunker
 
 **Objective**: Implement boundary-aware parent-child chunking with configuration snapshot.
 
 **Primary modules**:
-- `ingestion/chunker.py` — `HierarchicalChunker(BaseChunker)`
+- `ingestion/chunker.py` - `HierarchicalChunker(BaseChunker)`
 
 **Key specification** (from `Veriducta MVP.pdf`):
 - Parent chunks: 1400–1600 tokens assembled at section boundaries
@@ -1169,12 +1169,12 @@ configuration, interfaces, schemas, utilities, Docker, CI.
 
 ---
 
-### Phase 4 — Version Graph
+### Phase 4 - Version Graph
 
 **Objective**: Build a temporal validity graph over the corpus.
 
 **Primary modules**:
-- `ingestion/version_graph.py` — networkx DiGraph
+- `ingestion/version_graph.py` - networkx DiGraph
 
 **Key specification**:
 - `build_version_graph(sidecar_dir) -> nx.DiGraph`
@@ -1192,13 +1192,13 @@ configuration, interfaces, schemas, utilities, Docker, CI.
 
 ---
 
-### Phase 5 — Embedding Pipeline & Qdrant Upsert
+### Phase 5 - Embedding Pipeline & Qdrant Upsert
 
 **Objective**: Embed all child chunks and upsert to Qdrant.
 
 **Primary modules**:
-- `models/embedding.py` — `BGELargeEmbedding(BaseEmbeddingModel)` wrapping `BAAI/bge-large-en-v1.5`
-- `ingestion/embedder.py` — batch embedding (size 32) + Qdrant upsert
+- `models/embedding.py` - `BGELargeEmbedding(BaseEmbeddingModel)` wrapping `BAAI/bge-large-en-v1.5`
+- `ingestion/embedder.py` - batch embedding (size 32) + Qdrant upsert
 
 **Key specification**:
 - Qdrant collection: `veriducta_chunks`, cosine distance, dimension 1024
@@ -1212,14 +1212,14 @@ configuration, interfaces, schemas, utilities, Docker, CI.
 
 ---
 
-### Phase 6 — BM25 Index & Ingestion Orchestrator
+### Phase 6 - BM25 Index & Ingestion Orchestrator
 
 **Objective**: Build BM25 index and wire the complete ingestion pipeline.
 
 **Primary modules**:
-- `ingestion/bm25_indexer.py` — `rank_bm25.BM25Okapi` over all child chunk texts
-- `ingestion/ingestor.py` — orchestrates parse → chunk → embed → upsert → version graph → BM25
-- `scripts/ingest_corpus.py` — CLI entry point
+- `ingestion/bm25_indexer.py` - `rank_bm25.BM25Okapi` over all child chunk texts
+- `ingestion/ingestor.py` - orchestrates parse → chunk → embed → upsert → version graph → BM25
+- `scripts/ingest_corpus.py` - CLI entry point
 
 **Key specification**:
 - BM25 index serialised to `corpus/bm25_index.pkl`
@@ -1231,14 +1231,14 @@ configuration, interfaces, schemas, utilities, Docker, CI.
 
 ---
 
-### Phase 7 — BM25 & Dense Retrieval Modules
+### Phase 7 - BM25 & Dense Retrieval Modules
 
 **Objective**: Implement the two base retrieval components.
 
 **Primary modules**:
-- `retrieval/bm25_retriever.py` — loads `corpus/bm25_index.pkl`, tokenises query, returns top-100
+- `retrieval/bm25_retriever.py` - loads `corpus/bm25_index.pkl`, tokenises query, returns top-100
   as `list[(chunk_id, bm25_score, bm25_rank)]`
-- `retrieval/dense_retriever.py` — loads `BGELargeEmbedding`, implements LRU cache (TTL 1 hour)
+- `retrieval/dense_retriever.py` - loads `BGELargeEmbedding`, implements LRU cache (TTL 1 hour)
   keyed on query hash, queries Qdrant with `limit=100`
 
 **Key specification**:
@@ -1249,35 +1249,35 @@ configuration, interfaces, schemas, utilities, Docker, CI.
 
 ---
 
-### Phase 8 — RRF Fusion & Temporal Filter
+### Phase 8 - RRF Fusion & Temporal Filter
 
 **Objective**: Implement score fusion and temporal validity filtering.
 
 **Primary modules**:
-- `retrieval/fusion.py` — RRF with `k=60`, formula: `1/(60 + rank)`, implicit rank 101 for absent candidates
-- `retrieval/temporal_filter.py` — standalone utility; rejects chunks where `effective_date > query_date`
+- `retrieval/fusion.py` - RRF with `k=60`, formula: `1/(60 + rank)`, implicit rank 101 for absent candidates
+- `retrieval/temporal_filter.py` - standalone utility; rejects chunks where `effective_date > query_date`
   or document has a superseding document with `effective_date ≤ query_date`
 
 **Key specification**:
-- Rejection reasons: `"not_yet_effective"` or `"superseded"` — must be logged in `RetrievalCandidate.rejection_reason`
+- Rejection reasons: `"not_yet_effective"` or `"superseded"` - must be logged in `RetrievalCandidate.rejection_reason`
 - Temporal filter must use the version graph (Phase 4)
 
 **Dependencies**: Phases 4, 7
 
 ---
 
-### Phase 9 — Cross-Encoder Reranker & Parent-Child Expander
+### Phase 9 - Cross-Encoder Reranker & Parent-Child Expander
 
 **Objective**: Implement reranking and context expansion.
 
 **Primary modules**:
-- `retrieval/reranker.py` — `cross-encoder/ms-marco-MiniLM-L-12-v2`; batch inference over top-40 RRF candidates
-- `retrieval/expander.py` — fetches parent chunk from Qdrant for each of top-8 post-rerank chunks;
+- `retrieval/reranker.py` - `cross-encoder/ms-marco-MiniLM-L-12-v2`; batch inference over top-40 RRF candidates
+- `retrieval/expander.py` - fetches parent chunk from Qdrant for each of top-8 post-rerank chunks;
   constructs context as `child_chunk_text\n\n[SECTION]\nparent_section_text`
 
 **Key specification**:
 - Full pre-reranking top-40 list (with scores) MUST be stored in `RetrievalTrace.pre_rerank_top40`
-  — this is what allows Stage 3 ablation without re-running inference
+  - this is what allows Stage 3 ablation without re-running inference
 - Reranker returns all 40 with scores and `post_rerank_rank`
 
 **New deps**: `sentence-transformers` (cross-encoder)
@@ -1285,12 +1285,12 @@ configuration, interfaces, schemas, utilities, Docker, CI.
 
 ---
 
-### Phase 10 — TraceableRetriever & Integration Tests
+### Phase 10 - TraceableRetriever & Integration Tests
 
 **Objective**: Assemble the complete retrieval pipeline and verify with 5 queries.
 
 **Primary modules**:
-- `retrieval/retriever.py` — `VeriductaRetriever(BaseRetriever)` orchestrating all sub-components
+- `retrieval/retriever.py` - `VeriductaRetriever(BaseRetriever)` orchestrating all sub-components
 - Emit OTel spans for each sub-stage
 - Write `RetrievalTrace` to the evidence log (stub in Phase 10; full implementation in Phase 14)
 - Implement `replay_with_config()` for counterfactual retrieval
@@ -1303,13 +1303,13 @@ configuration, interfaces, schemas, utilities, Docker, CI.
 
 ---
 
-### Phase 11 — Structured Generator & System Prompt
+### Phase 11 - Structured Generator & System Prompt
 
 **Objective**: Implement LLM generation with JSON schema enforcement.
 
 **Primary modules**:
-- `generation/generator.py` — `VeriductaGenerator(BaseGenerator)`
-- `generation/prompts.py` — system prompt (tested on 10 representative contexts; must achieve
+- `generation/generator.py` - `VeriductaGenerator(BaseGenerator)`
+- `generation/prompts.py` - system prompt (tested on 10 representative contexts; must achieve
   ≥ 9/10 first-try schema compliance before Phase 12 begins)
 
 **Key specification**:
@@ -1323,12 +1323,12 @@ configuration, interfaces, schemas, utilities, Docker, CI.
 
 ---
 
-### Phase 12 — NLI Entailment Checker
+### Phase 12 - NLI Entailment Checker
 
 **Objective**: Implement the 3-class NLI heuristic for claim verification.
 
 **Primary modules**:
-- `generation/entailment.py` — `cross-encoder/nli-deberta-v3-base`, batch inference
+- `generation/entailment.py` - `cross-encoder/nli-deberta-v3-base`, batch inference
 
 **3-class heuristic** (exact thresholds from spec):
 - `supported`: entailment probability > 0.65
@@ -1343,13 +1343,13 @@ configuration, interfaces, schemas, utilities, Docker, CI.
 
 ---
 
-### Phase 13 — Counterevidence Retrieval & TraceableGenerator
+### Phase 13 - Counterevidence Retrieval & TraceableGenerator
 
 **Objective**: Implement the 5-step counterevidence scan and assemble the full verifier.
 
 **Primary modules**:
-- `generation/counterevidence.py` — 5-step algorithm (exact implementation below)
-- `generation/verifier.py` — `VeriductaVerifier(BaseVerifier)`, `VeriductaGenerator` wired
+- `generation/counterevidence.py` - 5-step algorithm (exact implementation below)
+- `generation/verifier.py` - `VeriductaVerifier(BaseVerifier)`, `VeriductaGenerator` wired
 
 **5-step counterevidence algorithm** (from spec):
 1. Extract `key_entities` from all claims; flatten, deduplicate, remove domain stopwords.
@@ -1368,12 +1368,12 @@ reason `"insufficient_entity_signal"`.
 
 ---
 
-### Phase 14 — OpenTelemetry Instrumentation & Evidence Log
+### Phase 14 - OpenTelemetry Instrumentation & Evidence Log
 
 **Objective**: Full OTel span hierarchy and evidence log with SQLite index.
 
 **Primary modules**:
-- `observability/evidence_log.py` — JSONL writer, gzip rotation, SQLite index reader/writer
+- `observability/evidence_log.py` - JSONL writer, gzip rotation, SQLite index reader/writer
 - Wire OTel spans into `retrieval/retriever.py`, `generation/generator.py`, `generation/verifier.py`
 
 **Evidence log spec**:
@@ -1386,13 +1386,13 @@ reason `"insufficient_entity_signal"`.
 
 ---
 
-### Phase 15 — Prometheus Metrics & Grafana Dashboard
+### Phase 15 - Prometheus Metrics & Grafana Dashboard
 
 **Objective**: Wire all metric definitions into pipeline stages; verify Grafana dashboard.
 
 **Primary modules**:
 - Wire `observability/metrics.py` counters and histograms into ingestion, retrieval, and generation
-- `docker/grafana/provisioning/dashboards/veriducta.json` — Grafana dashboard JSON
+- `docker/grafana/provisioning/dashboards/veriducta.json` - Grafana dashboard JSON
 
 **Expected outputs**:
 - `http://localhost:8000/metrics` returns all defined metric families after a pipeline run
@@ -1402,14 +1402,14 @@ reason `"insufficient_entity_signal"`.
 
 ---
 
-### Phase 16 — Golden QA Dataset & Synthetic Corruption Benchmark
+### Phase 16 - Golden QA Dataset & Synthetic Corruption Benchmark
 
 **Objective**: Complete the annotation dataset and build all 60 corruption cases.
 
 **Primary modules / data files**:
-- `data/golden_qa.jsonl` — 40 questions with supporting chunk IDs, counterevidence chunk IDs,
+- `data/golden_qa.jsonl` - 40 questions with supporting chunk IDs, counterevidence chunk IDs,
   temporal validity tag, difficulty label, failure mode label, domain tag, annotator notes
-- `data/synthetic_corruptions/corruptions.jsonl` — 60 cases:
+- `data/synthetic_corruptions/corruptions.jsonl` - 60 cases:
   - 20 retrieval corruptions (swap, supersession removal, BM25 zeroing, top-k reduction)
   - 15 chunking corruptions (boundary-naive collection activation)
   - 15 reranker corruptions (top-1 forcing, cross-encoder bypass, score inversion)
@@ -1420,14 +1420,14 @@ reason `"insufficient_entity_signal"`.
 
 ---
 
-### Phase 17 — Causal Replay Engine
+### Phase 17 - Causal Replay Engine
 
 **Objective**: Implement the four-stage ablation engine and synthetic corruption runner.
 
 **Primary modules**:
-- `replay/ablation.py` — `VeriductaReplayEngine(BaseReplayEngine)`
-- `replay/heuristic.py` — `HeuristicSignalReport` with 3 signals + disclaimer language
-- `replay/corruption.py` — iterates `corruptions.jsonl`, runs ablation, records attributed stage
+- `replay/ablation.py` - `VeriductaReplayEngine(BaseReplayEngine)`
+- `replay/heuristic.py` - `HeuristicSignalReport` with 3 signals + disclaimer language
+- `replay/corruption.py` - iterates `corruptions.jsonl`, runs ablation, records attributed stage
 
 **Four-stage ablation** (from spec):
 - Stage 1 (chunking): if document in chunking failure corpus, `replay_with_config()` with boundary-aware collection; compute Recall@5 delta
@@ -1443,19 +1443,19 @@ reason `"insufficient_entity_signal"`.
 
 ---
 
-### Phase 18 — Evaluation Harness, RAGAS Baseline & CI Regression Gate
+### Phase 18 - Evaluation Harness, RAGAS Baseline & CI Regression Gate
 
 **Objective**: Complete evaluation pipeline, RAGAS comparison, and regression gate.
 
 **Primary modules**:
-- `evaluation/runner.py` — runs all 40 gold questions + 60 corruption cases
-- `evaluation/metrics.py` — computes full `EvaluationMetrics` (all four groups)
-- `evaluation/report.py` — writes `evaluation_report_{timestamp}.json` and
+- `evaluation/runner.py` - runs all 40 gold questions + 60 corruption cases
+- `evaluation/metrics.py` - computes full `EvaluationMetrics` (all four groups)
+- `evaluation/report.py` - writes `evaluation_report_{timestamp}.json` and
   `evaluation_summary_{timestamp}.txt`
-- `scripts/check_regression_gate.py` — reads current report vs. `ci_baseline.json`;
+- `scripts/check_regression_gate.py` - reads current report vs. `ci_baseline.json`;
   exits 1 on blocking regressions (faithfulness drop, Recall@5 drop, p95 latency increase,
   root-cause accuracy drop, unauthorised evidence exposure)
-- `.github/workflows/regression_gate.yml` — CI workflow
+- `.github/workflows/regression_gate.yml` - CI workflow
 
 **Five blocking regression conditions**:
 1. Faithfulness (citation entailment rate) drops > 2% from baseline
@@ -1465,7 +1465,7 @@ reason `"insufficient_entity_signal"`.
 5. Unauthorised evidence exposure rate > 0%
 
 **Additional deliverables**:
-- `ci_baseline.json` — first complete evaluation run stored as regression reference
+- `ci_baseline.json` - first complete evaluation run stored as regression reference
 - Complete `README.md` with actual evaluation numbers, RAGAS comparison table, known limitations
 - Technical blog post (`docs/blog_post.md`)
 
@@ -1563,7 +1563,7 @@ No async inference: LLM calls, embedding, and cross-encoder inference are synchr
 
 - All user-facing input (query text, `query_date`) must be validated via Pydantic before
   entering the pipeline.
-- `query_date` must parse via `utils.datetime_utils.parse_iso_date()` — reject malformed dates.
+- `query_date` must parse via `utils.datetime_utils.parse_iso_date()` - reject malformed dates.
 - Query text: strip, enforce non-empty, enforce max 2000 characters.
 
 ### Serialisation Safety
@@ -1653,7 +1653,7 @@ The five-layer diagram must remain accurate.
 
 ```
 1. Read CLAUDE.md fully.
-2. git status — understand working tree state.
+2. git status - understand working tree state.
 3. Identify which Phase is being implemented.
 4. Read only files relevant to the current task.
 5. Check if interfaces relevant to the phase are already defined in core/interfaces.py.
@@ -1662,15 +1662,15 @@ The five-layer diagram must remain accurate.
 
 ### What Claude Must NEVER Do
 
-- **Never regenerate the repository** — Phase 0 infrastructure is complete and correct.
-- **Never rewrite a completed phase** — extend it, or add alongside it.
-- **Never skip a phase** — phases have dependencies; out-of-order implementation breaks the spec.
+- **Never regenerate the repository** - Phase 0 infrastructure is complete and correct.
+- **Never rewrite a completed phase** - extend it, or add alongside it.
+- **Never skip a phase** - phases have dependencies; out-of-order implementation breaks the spec.
 - **Never commit without running all four checks** (ruff, black, mypy, pytest).
 - **Never add `# type: ignore` without a comment explaining why** it is necessary.
-- **Never use `print()`** — use structlog.
-- **Never add TODO comments** — implement it or don't; incomplete stubs are worse than nothing.
-- **Never mock Qdrant in integration tests** — use a real Qdrant instance.
-- **Never hardcode file paths** — use `utils.filesystem.project_root()` or configured paths.
+- **Never use `print()`** - use structlog.
+- **Never add TODO comments** - implement it or don't; incomplete stubs are worse than nothing.
+- **Never mock Qdrant in integration tests** - use a real Qdrant instance.
+- **Never hardcode file paths** - use `utils.filesystem.project_root()` or configured paths.
 - **Never mutate a `ConfigurationSnapshot`** after creation.
 
 ### What Claude Should Always Do
@@ -1682,7 +1682,7 @@ The five-layer diagram must remain accurate.
   implementations must honour it exactly.
 - **Maintain backwards compatibility within a phase**: don't rename functions that tests already call.
 - **Add tests for every new behaviour**: no new function ships without a test.
-- **Update `schemas/models.py`** when new data types are needed by the current phase —
+- **Update `schemas/models.py`** when new data types are needed by the current phase -
   but only add fields, never remove or rename existing ones.
 
 ### End-of-Session Required Output
@@ -1694,7 +1694,7 @@ Every session ends with this exact structure:
 [2–3 sentences describing what was built or changed]
 
 ## Files Changed
-- path/to/file.py — [one-line description of change]
+- path/to/file.py - [one-line description of change]
 - ...
 
 ## Tests Run
@@ -1709,5 +1709,5 @@ mypy: [pass / N errors]
 
 ---
 
-*End of CLAUDE.md — Veriducta Engineering Specification*
+*End of CLAUDE.md - Veriducta Engineering Specification*
 *Generated after Phase 0 completion. Update this document when architecture changes.*

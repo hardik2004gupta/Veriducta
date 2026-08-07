@@ -1,4 +1,4 @@
-# Veriducta — Deployment Guide
+# Veriducta - Deployment Guide
 
 ---
 
@@ -303,7 +303,7 @@ fly deploy
 
 | Variable | Required | Default | Description |
 |---|---|---|---|
-| `ANTHROPIC_API_KEY` | Yes | — | Claude API key |
+| `ANTHROPIC_API_KEY` | Yes | - | Claude API key |
 | `VERIDUCTA_ENV` | No | `development` | Set to `production` |
 | `VERIDUCTA__QDRANT__HOST` | No | `localhost` | Qdrant hostname |
 | `VERIDUCTA__QDRANT__PORT` | No | `6333` | Qdrant port |
@@ -315,7 +315,7 @@ fly deploy
 | `API__CORS_ORIGINS` | No | `["*"]` | Allowed CORS origins (restrict in production) |
 | `LOG__LEVEL` | No | `INFO` | Log level |
 | `LOG__FORMAT` | No | `json` | `json` or `console` |
-| `OTLP__ENDPOINT` | No | — | OTel Collector gRPC endpoint |
+| `OTLP__ENDPOINT` | No | - | OTel Collector gRPC endpoint |
 
 ---
 
@@ -326,7 +326,7 @@ fly deploy
 The v1.0 API runs single-worker (`workers=1`). ML models are loaded once per process and are not safe for concurrent writes. In practice, this means one in-flight query at a time for the ML-heavy operations (embedding, reranking, NLI).
 
 For higher throughput:
-1. Run multiple API instances behind a load balancer (each loads its own models — ~2GB RAM per instance)
+1. Run multiple API instances behind a load balancer (each loads its own models - ~2GB RAM per instance)
 2. Move ML inference to a dedicated model server (Triton, vLLM, or sentence-transformers serving)
 3. Use async pipeline execution (planned for v2.0)
 

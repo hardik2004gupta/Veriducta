@@ -5,11 +5,11 @@ import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: {
-    default: "Veriducta — RAG Pipeline Observability",
+    default: "Veriducta - RAG Pipeline Observability",
     template: "%s | Veriducta",
   },
   description:
-    "Causal root-cause attribution for RAG answer failures. Identify which pipeline stage — chunking, retrieval, reranking, or generation — caused a degraded answer.",
+    "Causal root-cause attribution for RAG answer failures. Identify which pipeline stage - chunking, retrieval, reranking, or generation - caused a degraded answer.",
   keywords: [
     "RAG",
     "LLM",
@@ -24,14 +24,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "Veriducta — RAG Pipeline Observability",
+    title: "Veriducta - RAG Pipeline Observability",
     description:
       "Root-cause every failed RAG answer. Causal attribution across chunking, retrieval, reranking, and generation.",
     siteName: "Veriducta",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Veriducta — RAG Pipeline Observability",
+    title: "Veriducta - RAG Pipeline Observability",
     description: "Root-cause every failed RAG answer with four-stage causal ablation.",
   },
   robots: {

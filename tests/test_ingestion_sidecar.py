@@ -1,4 +1,4 @@
-"""Tests for ingestion/sidecar.py — schema validation and file I/O."""
+"""Tests for ingestion/sidecar.py - schema validation and file I/O."""
 
 import json
 from pathlib import Path

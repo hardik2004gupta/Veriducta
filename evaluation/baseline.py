@@ -33,13 +33,13 @@ class BaselineResult:
 class BaselineRunner:
     """Run and collect results for alternative pipeline configurations.
 
-    Standard baseline labels (all optional — register only what is needed):
+    Standard baseline labels (all optional - register only what is needed):
 
-    - ``dense_only``   — dense retrieval, no BM25
-    - ``bm25_only``    — BM25 retrieval, no dense
-    - ``hybrid``       — BM25 + dense RRF, no cross-encoder reranker
-    - ``no_reranker``  — full hybrid, reranker disabled
-    - ``no_replay``    — full pipeline without the causal replay step
+    - ``dense_only``   - dense retrieval, no BM25
+    - ``bm25_only``    - BM25 retrieval, no dense
+    - ``hybrid``       - BM25 + dense RRF, no cross-encoder reranker
+    - ``no_reranker``  - full hybrid, reranker disabled
+    - ``no_replay``    - full pipeline without the causal replay step
 
     Callers register runners via :meth:`register` and then call :meth:`run_all`.
     """

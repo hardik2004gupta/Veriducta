@@ -1,4 +1,4 @@
-"""Tests for replay.loader — TraceLoader and GoldenAnnotation."""
+"""Tests for replay.loader - TraceLoader and GoldenAnnotation."""
 
 import json
 from collections.abc import Generator

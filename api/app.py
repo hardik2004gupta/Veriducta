@@ -46,7 +46,7 @@ def create_app() -> FastAPI:
     app = FastAPI(
         title="Veriducta",
         description=(
-            "RAG pipeline observability — causal root-cause attribution for answer failures."
+            "RAG pipeline observability - causal root-cause attribution for answer failures."
         ),
         version="0.1.0",
         docs_url="/docs" if not settings.is_production else None,

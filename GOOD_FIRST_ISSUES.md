@@ -6,11 +6,11 @@ Pre-analyzed tasks for first-time contributors. Each entry includes: what to cha
 
 ## Documentation (no code required)
 
-### GFI-001 — Add curl examples to API docs
+### GFI-001 - Add curl examples to API docs
 
 **What**: Add `curl` command examples for all API endpoints to `docs/api_reference.md` (or create it).
 
-**Where**: `api/routers/` — read each route handler; document the request format and response schema.
+**Where**: `api/routers/` - read each route handler; document the request format and response schema.
 
 **Test**: Not required for documentation-only changes.
 
@@ -18,13 +18,13 @@ Pre-analyzed tasks for first-time contributors. Each entry includes: what to cha
 
 ---
 
-### GFI-002 — Add docstrings to private helper functions
+### GFI-002 - Add docstrings to private helper functions
 
 **What**: Several private functions in `utils/` and `ingestion/` are missing docstrings. Add one-line docstrings explaining the input/output contract.
 
 **Where**: Run `grep -rn "def _" utils/ ingestion/ retrieval/` and identify functions without docstrings.
 
-**Rule**: Private functions don't require Args/Returns/Raises format — a single sentence is sufficient.
+**Rule**: Private functions don't require Args/Returns/Raises format - a single sentence is sufficient.
 
 **Test**: Not required.
 
@@ -32,7 +32,7 @@ Pre-analyzed tasks for first-time contributors. Each entry includes: what to cha
 
 ## Tests (add coverage without changing functionality)
 
-### GFI-003 — Test temporal filter with future effective date
+### GFI-003 - Test temporal filter with future effective date
 
 **What**: Add a test that verifies chunks with `effective_date` in the future (relative to `query_date`) are rejected with reason `"not_yet_effective"`.
 
@@ -50,7 +50,7 @@ def test_temporal_filter_future_document_rejected_with_correct_reason():
 
 ---
 
-### GFI-004 — Test ConfigurationSnapshot immutability
+### GFI-004 - Test ConfigurationSnapshot immutability
 
 **What**: Add a test that verifies a `ConfigurationSnapshot` cannot be mutated after creation (Pydantic frozen model).
 
@@ -66,7 +66,7 @@ def test_configuration_snapshot_is_immutable():
 
 ---
 
-### GFI-005 — Test RRF fusion with absent candidates
+### GFI-005 - Test RRF fusion with absent candidates
 
 **What**: Add a test verifying that a candidate present in only one ranked list (BM25 but not dense, or dense but not BM25) receives the correct implicit rank (101) in the absent list and the correct RRF score.
 
@@ -78,7 +78,7 @@ def test_configuration_snapshot_is_immutable():
 
 ## Frontend (TypeScript/Next.js, no backend required)
 
-### GFI-006 — Add loading skeleton to Evidence Log page
+### GFI-006 - Add loading skeleton to Evidence Log page
 
 **What**: The Evidence Log page (`frontend/app/(app)/evidence/page.tsx`) shows a blank state while data loads. Add a skeleton loader component.
 
@@ -90,7 +90,7 @@ def test_configuration_snapshot_is_immutable():
 
 ---
 
-### GFI-007 — Add keyboard shortcut for Ask page
+### GFI-007 - Add keyboard shortcut for Ask page
 
 **What**: Add a global keyboard shortcut (e.g., `/` to focus the search input on the Ask page) similar to how many developer tools work.
 
@@ -104,7 +104,7 @@ def test_configuration_snapshot_is_immutable():
 
 ## Small Code Improvements
 
-### GFI-008 — Add `--dry-run` flag to validate_sidecars.py
+### GFI-008 - Add `--dry-run` flag to validate_sidecars.py
 
 **What**: `scripts/validate_sidecars.py` validates sidecars and reports errors but always returns exit code 0. Add a `--dry-run` flag that prints what would be done without making changes (currently no changes are made anyway, but the flag signals intent) and a `--strict` flag that exits 1 on any validation error.
 
@@ -112,23 +112,23 @@ def test_configuration_snapshot_is_immutable():
 
 **How**: Use `argparse` (already in stdlib). `--strict` exits with code 1 if any sidecar fails validation.
 
-**Test**: `tests/test_scripts.py` — test that `--strict` exits 1 with an intentionally malformed sidecar.
+**Test**: `tests/test_scripts.py` - test that `--strict` exits 1 with an intentionally malformed sidecar.
 
 ---
 
-### GFI-009 — Add `chunk_count` to ingestion log output
+### GFI-009 - Add `chunk_count` to ingestion log output
 
 **What**: After a successful ingestion run, log the total number of chunks created (child + parent separately) alongside the document count.
 
-**Where**: `ingestion/ingestor.py` — find the final log line after ingestion completes.
+**Where**: `ingestion/ingestor.py` - find the final log line after ingestion completes.
 
 **How**: Add `child_chunk_count` and `parent_chunk_count` as structured key-value pairs in the existing structlog call.
 
-**Test**: `tests/test_ingestion.py` — verify the log event is emitted with the correct chunk counts on a small test corpus.
+**Test**: `tests/test_ingestion.py` - verify the log event is emitted with the correct chunk counts on a small test corpus.
 
 ---
 
-### GFI-010 — Add type annotation to evidence log reader
+### GFI-010 - Add type annotation to evidence log reader
 
 **What**: `observability/evidence_log.py` has one function where the return type annotation uses `dict` without type parameters. Add full type parameters.
 
@@ -140,7 +140,7 @@ def test_configuration_snapshot_is_immutable():
 
 ## Multi-LLM Support (larger, good for contributors with LLM API experience)
 
-### GFI-011 — Add OpenAI generator adapter
+### GFI-011 - Add OpenAI generator adapter
 
 **What**: Implement `generation/openai_generator.py` as a concrete implementation of `BaseGenerator` using the OpenAI Python SDK.
 
@@ -150,6 +150,6 @@ def test_configuration_snapshot_is_immutable():
 
 **Config**: Add `OpenAISettings` to `config/settings.py` with `model`, `api_key`, `max_tokens` fields.
 
-**Test**: `tests/test_generation.py` — mock the OpenAI API call; verify the `StructuredAnswer` schema matches the Anthropic generator's output.
+**Test**: `tests/test_generation.py` - mock the OpenAI API call; verify the `StructuredAnswer` schema matches the Anthropic generator's output.
 
 **Note**: This is a larger contribution (~200 lines). Comment on the issue before starting so no one else works on it simultaneously.

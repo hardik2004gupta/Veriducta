@@ -351,7 +351,7 @@ class ReplayExecutor:
                 config=config,
                 quality_delta=self._calc.neutral_delta(),
                 success=False,
-                error="pre_rerank_top40 is empty — Stage 3 requires it",
+                error="pre_rerank_top40 is empty - Stage 3 requires it",
             )
 
         original_snap = self._calc.snapshot_from_report(original_verification)
@@ -385,7 +385,7 @@ class ReplayExecutor:
         latency_ms = (time.monotonic() - start) * 1000.0
 
         # Invert the best delta: if a smaller cutoff is better, the original
-        # reranking was suboptimal — attribute as degradation.
+        # reranking was suboptimal - attribute as degradation.
         # (best_delta > 0 means the replay is better than original → original was worse).
         return StageReplayResult(
             stage=STAGE3,

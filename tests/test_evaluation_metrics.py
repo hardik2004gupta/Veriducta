@@ -97,7 +97,7 @@ class TestNdcg:
         assert _ndcg([], k=5) == pytest.approx(0.0)
 
     def test_k_cutoff_applied(self):
-        # Relevant item at rank 4, k=3 — should not be counted
+        # Relevant item at rank 4, k=3 - should not be counted
         assert _ndcg([0, 0, 0, 1], k=3) == pytest.approx(0.0)
 
 

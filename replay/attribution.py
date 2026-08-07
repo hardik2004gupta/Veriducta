@@ -5,7 +5,7 @@ and produces a :class:`~replay.models.StageAttribution` that assigns percentage
 responsibility to each pipeline stage.
 
 Attribution percentages are computed from the absolute **degradation** at each
-stage (negative ``overall_delta`` values only — improvements are ignored for
+stage (negative ``overall_delta`` values only - improvements are ignored for
 attribution purposes).  If no stage caused any degradation the attribution is
 all-zero and the root cause is ``RootCauseStage.UNKNOWN``.
 """

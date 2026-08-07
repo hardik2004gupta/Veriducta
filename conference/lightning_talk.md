@@ -1,4 +1,4 @@
-# Conference — Lightning Talk Script
+# Conference - Lightning Talk Script
 
 *5 minutes. For MLOps World, local AI meetups, hackathon pitches.*
 
@@ -6,15 +6,15 @@
 
 ## Slides (10 slides, 30 seconds each)
 
-### Slide 1 — Hook
+### Slide 1 - Hook
 
 **Title**: "RAGAS: 0.82. Answer: Wrong."
 
-**Say**: "This happened to me. My RAG pipeline answered a question about OSHA silica exposure limits with a faithfulness score of 0.82. The answer was missing the permissible exposure limit — the primary regulatory threshold. No alert. No trace. No idea why."
+**Say**: "This happened to me. My RAG pipeline answered a question about OSHA silica exposure limits with a faithfulness score of 0.82. The answer was missing the permissible exposure limit - the primary regulatory threshold. No alert. No trace. No idea why."
 
 ---
 
-### Slide 2 — The Problem
+### Slide 2 - The Problem
 
 **Title**: "Four stages. Which one broke?"
 
@@ -22,7 +22,7 @@
 
 ---
 
-### Slide 3 — The Insight
+### Slide 3 - The Insight
 
 **Title**: "Store everything. Replay later."
 
@@ -30,7 +30,7 @@
 
 ---
 
-### Slide 4 — The Critical Detail
+### Slide 4 - The Critical Detail
 
 **Title**: "Pre-reranking top-40: 8KB per query. Saves 264 model calls."
 
@@ -38,7 +38,7 @@
 
 ---
 
-### Slide 5 — Four-Stage Ablation
+### Slide 5 - Four-Stage Ablation
 
 **Title**: "Stage 1: Chunking. Stage 2: Retrieval. Stage 3: Reranker. Stage 4: Generation."
 
@@ -46,7 +46,7 @@
 
 ---
 
-### Slide 6 — The Worked Case
+### Slide 6 - The Worked Case
 
 **Title**: "Chunk 0041 ends. Chunk 0042 begins. The sentence is split."
 
@@ -54,7 +54,7 @@
 
 ---
 
-### Slide 7 — The Fix
+### Slide 7 - The Fix
 
 **Title**: "Recall@5: 0.45 → 0.80"
 
@@ -62,7 +62,7 @@
 
 ---
 
-### Slide 8 — Benchmark Results
+### Slide 8 - Benchmark Results
 
 **Title**: "73.3% overall. 68.8% on boundary-errors. Both targets met."
 
@@ -70,7 +70,7 @@
 
 ---
 
-### Slide 9 — What RAGAS Misses
+### Slide 9 - What RAGAS Misses
 
 **Title**: "4 metrics RAGAS can't compute."
 
@@ -78,7 +78,7 @@
 
 ---
 
-### Slide 10 — CTA
+### Slide 10 - CTA
 
 **Title**: "github.com/hardik2004gupta/Veriducta · MIT"
 
@@ -105,7 +105,7 @@
 
 ## Notes
 
-- Practice the chunk split explanation — it's the core narrative and needs to be crisp
+- Practice the chunk split explanation - it's the core narrative and needs to be crisp
 - Have the GitHub URL on every slide (people photograph the screen during the talk)
-- Slide 4 (pre-reranking top-40) will get the most technical questions — have the answer ready
+- Slide 4 (pre-reranking top-40) will get the most technical questions - have the answer ready
 - The "64 cross-encoder calls → 8KB per query" tradeoff is the most memorable engineering insight

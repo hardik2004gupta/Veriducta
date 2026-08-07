@@ -42,7 +42,7 @@ def _compress(source: Path, dest: Path) -> None:
 class LogRotator:
     """Manages daily JSONL evidence log files with optional size-based rotation.
 
-    Exactly one file is active at any moment — ``YYYY-MM-DD.jsonl`` for today.
+    Exactly one file is active at any moment - ``YYYY-MM-DD.jsonl`` for today.
     When the date changes, the previous file is compressed to
     ``YYYY-MM-DD.jsonl.gz`` on the next :meth:`compress_stale` call.
     Within a single day, sequential size-based rotation creates

@@ -1,1 +1,1 @@
-"""FastAPI application package — HTTP entry point, routing, middleware, and DI."""
+"""FastAPI application package - HTTP entry point, routing, middleware, and DI."""

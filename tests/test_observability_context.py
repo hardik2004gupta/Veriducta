@@ -1,4 +1,4 @@
-"""Tests for observability.context — RequestContext and contextvar helpers."""
+"""Tests for observability.context - RequestContext and contextvar helpers."""
 
 import time
 from datetime import UTC, datetime

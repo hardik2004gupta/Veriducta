@@ -1,4 +1,4 @@
-"""Tests for ingestion/chunker.py — hierarchical parent-child chunking."""
+"""Tests for ingestion/chunker.py - hierarchical parent-child chunking."""
 
 from pathlib import Path
 
@@ -104,7 +104,7 @@ def test_snapshot_save_writes_file(tmp_path: Path) -> None:
 
 
 # ---------------------------------------------------------------------------
-# HierarchicalChunker.chunk — basic
+# HierarchicalChunker.chunk - basic
 # ---------------------------------------------------------------------------
 
 

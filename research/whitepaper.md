@@ -14,7 +14,7 @@ Retrieval-augmented generation (RAG) pipelines exhibit a diagnosis gap: current 
 
 RAG pipelines compose four separable stages: document chunking, hybrid retrieval, cross-encoder reranking, and language model generation. Failures in any stage can produce answers that score well on faithfulness metrics while being operationally incorrect.
 
-Consider a chunking boundary that splits a regulatory threshold across two chunks: the label ("action level") lands in chunk i, and the quantity ("25 µg/m³") lands in chunk i+1. Dense retrieval may retrieve chunk i+1 (the numeric content) without chunk i (its defining context). The generated answer cites chunk i+1 correctly — RAGAS faithfulness is high — but the answer is missing the label that makes the threshold actionable.
+Consider a chunking boundary that splits a regulatory threshold across two chunks: the label ("action level") lands in chunk i, and the quantity ("25 µg/m³") lands in chunk i+1. Dense retrieval may retrieve chunk i+1 (the numeric content) without chunk i (its defining context). The generated answer cites chunk i+1 correctly - RAGAS faithfulness is high - but the answer is missing the label that makes the threshold actionable.
 
 Existing RAG evaluation tools (RAGAS, Es et al. 2023; TruLens, Halloran et al. 2023; DeepEval) measure faithfulness, relevance, and context precision. None provide causal attribution: which stage, if changed, would have produced a better answer?
 
@@ -83,7 +83,7 @@ Append-only JSONL evidence log (`evidence_logs/YYYY-MM-DD.jsonl`) with gzip rota
 
 ## 4. Causal Ablation Engine
 
-### 4.1 Stage 1 — Chunking Attribution
+### 4.1 Stage 1 - Chunking Attribution
 
 **Objective**: Test whether a boundary-aware chunking configuration would have improved retrieval.
 
@@ -93,7 +93,7 @@ Append-only JSONL evidence log (`evidence_logs/YYYY-MM-DD.jsonl`) with gzip rota
 
 **Limitation**: Requires maintaining a separate Qdrant collection for the boundary-aware configuration.
 
-### 4.2 Stage 2 — Retrieval Attribution
+### 4.2 Stage 2 - Retrieval Attribution
 
 **Objective**: Test whether providing gold context would have improved generation.
 
@@ -103,7 +103,7 @@ Append-only JSONL evidence log (`evidence_logs/YYYY-MM-DD.jsonl`) with gzip rota
 
 **Limitation**: Oracle-dependent. Requires human-annotated supporting chunk IDs. This stage cannot be run on unannotated production queries.
 
-### 4.3 Stage 3 — Reranker Attribution
+### 4.3 Stage 3 - Reranker Attribution
 
 **Objective**: Test whether a wider reranker cutoff would have included the correct chunk.
 
@@ -113,7 +113,7 @@ Append-only JSONL evidence log (`evidence_logs/YYYY-MM-DD.jsonl`) with gzip rota
 
 **Key property**: No model re-inference. All cross-encoder scores were stored at inference time. Stage 3 is a data analysis step, not an inference step.
 
-### 4.4 Stage 4 — Generation Attribution
+### 4.4 Stage 4 - Generation Attribution
 
 **Objective**: Test whether the generation stage introduced the failure given correct context.
 
@@ -175,8 +175,8 @@ Both targets met: ≥70% overall (73.3%), ≥65% boundary-error (68.8%).
 | Metric | RAGAS | Veriducta |
 |---|---|---|
 | Citation entailment (faithfulness) | ✓ (0.831) | ✓ (0.842) |
-| Context recall | ✓ | — |
-| Answer relevance | ✓ | — |
+| Context recall | ✓ | - |
+| Answer relevance | ✓ | - |
 | Omission rate | ✗ | ✓ (8.2%) |
 | Causal attribution accuracy | ✗ | ✓ (73.3%) |
 | Temporal-valid retrieval rate | ✗ | ✓ (94.1%) |

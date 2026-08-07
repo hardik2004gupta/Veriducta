@@ -1,4 +1,4 @@
-"""Tests for replay.ablation — VeriductaReplayEngine."""
+"""Tests for replay.ablation - VeriductaReplayEngine."""
 
 from collections.abc import Generator
 from pathlib import Path

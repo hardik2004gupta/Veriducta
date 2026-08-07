@@ -1,10 +1,10 @@
-# YouTube — Thumbnail Text
+# YouTube - Thumbnail Text
 
 *Options for the full video thumbnail. Dark background, high contrast, readable at mobile scale.*
 
 ---
 
-## Option 1 — Problem-focused
+## Option 1 - Problem-focused
 
 **Main text**: "RAGAS: 0.82 ✓"
 **Subtext**: "Answer: WRONG ✗"
@@ -12,7 +12,7 @@
 
 ---
 
-## Option 2 — Solution-focused
+## Option 2 - Solution-focused
 
 **Main text**: "Which stage broke your RAG?"
 **Subtext**: "73.3% attribution accuracy"
@@ -20,7 +20,7 @@
 
 ---
 
-## Option 3 — Technical-focused
+## Option 3 - Technical-focused
 
 **Main text**: "4-stage RAG attribution"
 **Subtext**: "No re-inference needed"
@@ -28,7 +28,7 @@
 
 ---
 
-## Option 4 — Curiosity-focused
+## Option 4 - Curiosity-focused
 
 **Main text**: "RAGAS missed this."
 **Subtext**: "My tool didn't."

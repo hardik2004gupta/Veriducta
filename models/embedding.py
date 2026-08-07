@@ -18,7 +18,7 @@ _DIMENSION = 1024
 _ENCODE_BATCH_SIZE = 32
 _QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
 
-# Module-level singleton — loaded once, held for the process lifetime.
+# Module-level singleton - loaded once, held for the process lifetime.
 _model_instance: "BGELargeEmbedding | None" = None
 
 

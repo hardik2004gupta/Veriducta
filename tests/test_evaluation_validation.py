@@ -1,4 +1,4 @@
-"""Tests for evaluation/validation.py — DatasetValidator."""
+"""Tests for evaluation/validation.py - DatasetValidator."""
 
 from evaluation.schemas import (
     EvaluationCorruptionCase,

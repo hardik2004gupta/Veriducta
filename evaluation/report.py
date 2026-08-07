@@ -1,4 +1,4 @@
-"""Evaluation report writer — JSON, Markdown, CSV, and HTML output formats.
+"""Evaluation report writer - JSON, Markdown, CSV, and HTML output formats.
 
 :class:`ReportWriter` writes the output of a :class:`~evaluation.benchmark.BenchmarkResult`
 to disk in one or more formats.  All methods are side-effect free except for file I/O.
@@ -319,7 +319,7 @@ class ReportWriter:
             '<html lang="en">\n'
             "<head>\n"
             '<meta charset="utf-8">\n'
-            f"<title>Veriducta Evaluation Report — {result.run_id}</title>\n"
+            f"<title>Veriducta Evaluation Report - {result.run_id}</title>\n"
             "<style>\n"
             "body{font-family:system-ui,sans-serif;max-width:900px;"
             "margin:2rem auto;padding:0 1rem}\n"

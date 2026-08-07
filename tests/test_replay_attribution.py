@@ -1,4 +1,4 @@
-"""Tests for replay.attribution — RootCauseAttributor."""
+"""Tests for replay.attribution - RootCauseAttributor."""
 
 import pytest
 

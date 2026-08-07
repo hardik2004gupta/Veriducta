@@ -4,28 +4,28 @@
 
 ```
 ┌───────────────────────────────────────────────────────────┐
-│  Layer 8 — API (api/)                                     │
+│  Layer 8 - API (api/)                                     │
 │  FastAPI application factory, routing, middleware, DI     │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 7 — Evaluation (evaluation/)                       │
+│  Layer 7 - Evaluation (evaluation/)                       │
 │  Runner, metrics, RAGAS baseline, CI regression gate      │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 6 — Causal Replay (replay/)                        │
+│  Layer 6 - Causal Replay (replay/)                        │
 │  Four-stage gold ablation, corruption runner              │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 5 — Verification (verification/)                   │
+│  Layer 5 - Verification (verification/)                   │
 │  Claim integrity orchestration, VerificationReport        │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 4 — Generation (generation/)                       │
+│  Layer 4 - Generation (generation/)                       │
 │  Claude structured output, NLI, counterevidence           │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 3 — Retrieval (retrieval/)                         │
+│  Layer 3 - Retrieval (retrieval/)                         │
 │  BM25 + dense, RRF, temporal filter, reranker, expander   │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 2 — Ingestion (ingestion/)                         │
+│  Layer 2 - Ingestion (ingestion/)                         │
 │  PDF parsing, chunking, embedding, Qdrant upsert, BM25    │
 ├───────────────────────────────────────────────────────────┤
-│  Layer 1 — Foundation                                     │
+│  Layer 1 - Foundation                                     │
 │  config · core · schemas · utils · storage                │
 │  observability · models                                   │
 └───────────────────────────────────────────────────────────┘
@@ -36,7 +36,7 @@ Data flows strictly downward. No layer may import from a layer above it.
 
 ---
 
-## Diagram 1 — Overall System Architecture
+## Diagram 1 - Overall System Architecture
 
 ```mermaid
 graph TD
@@ -45,7 +45,7 @@ graph TD
         CLI["CLI Scripts\nscripts/"]
     end
 
-    subgraph API["API Layer — FastAPI (port 8000)"]
+    subgraph API["API Layer - FastAPI (port 8000)"]
         APP["app.py\nLifespan · CORS · Request-ID middleware"]
         HEALTH["GET /health\nGET /version"]
         QUERY["POST /query\nPOST /replay"]
@@ -90,7 +90,7 @@ graph TD
 
 ---
 
-## Diagram 2 — Retrieval Pipeline
+## Diagram 2 - Retrieval Pipeline
 
 ```mermaid
 flowchart LR
@@ -115,7 +115,7 @@ flowchart LR
 
 ---
 
-## Diagram 3 — Generation & Verification Pipeline
+## Diagram 3 - Generation & Verification Pipeline
 
 ```mermaid
 flowchart TD
@@ -154,7 +154,7 @@ flowchart TD
 
 ---
 
-## Diagram 4 — Causal Replay Engine (Four-Stage Ablation)
+## Diagram 4 - Causal Replay Engine (Four-Stage Ablation)
 
 ```mermaid
 flowchart TD
@@ -162,13 +162,13 @@ flowchart TD
 
     subgraph AE["VeriductaReplayEngine"]
 
-        S1["Stage 1 — Chunking\nreplay_with_config(boundary_aware=True)\ncompute Recall@5 delta\n↓ if delta > threshold → root cause = chunking"]
+        S1["Stage 1 - Chunking\nreplay_with_config(boundary_aware=True)\ncompute Recall@5 delta\n↓ if delta > threshold → root cause = chunking"]
 
-        S2["Stage 2 — Retrieval\nreplay_with_context(gold_chunks)\ncompute quality delta\n↓ if delta > threshold → root cause = retrieval"]
+        S2["Stage 2 - Retrieval\nreplay_with_context(gold_chunks)\ncompute quality delta\n↓ if delta > threshold → root cause = retrieval"]
 
-        S3["Stage 3 — Reranker\nload pre_rerank_top40 from trace\ntest top-1/3/5/8 cutoffs\ncompute quality deltas\n↓ if delta > threshold → root cause = reranking"]
+        S3["Stage 3 - Reranker\nload pre_rerank_top40 from trace\ntest top-1/3/5/8 cutoffs\ncompute quality deltas\n↓ if delta > threshold → root cause = reranking"]
 
-        S4["Stage 4 — Generation\nreplay_with_context(historical context)\nbaseline prompt\ncompute quality delta\n↓ if delta > threshold → root cause = generation"]
+        S4["Stage 4 - Generation\nreplay_with_context(historical context)\nbaseline prompt\ncompute quality delta\n↓ if delta > threshold → root cause = generation"]
 
         S1 --> S2 --> S3 --> S4
     end
@@ -190,7 +190,7 @@ flowchart TD
 
 ---
 
-## Diagram 5 — Evaluation Pipeline
+## Diagram 5 - Evaluation Pipeline
 
 ```mermaid
 flowchart TD
@@ -231,7 +231,7 @@ flowchart TD
 
 ---
 
-## Diagram 6 — Deployment Architecture
+## Diagram 6 - Deployment Architecture
 
 ```mermaid
 graph TD
@@ -328,7 +328,7 @@ Tests run without any live ML models or services.
 
 All pipeline components implement abstract interfaces defined in `core/interfaces.py`.
 This allows the causal replay engine to swap configurations without re-running expensive
-components — for example, substituting a stored pre-reranking trace (40 candidates with
+components - for example, substituting a stored pre-reranking trace (40 candidates with
 scores) instead of re-running cross-encoder inference for Stage 3 ablation.
 
 ---

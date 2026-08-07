@@ -1,4 +1,4 @@
-"""Tests for observability.middleware — ObservabilityMiddleware."""
+"""Tests for observability.middleware - ObservabilityMiddleware."""
 
 import pytest
 from starlette.applications import Starlette

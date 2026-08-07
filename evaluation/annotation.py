@@ -1,4 +1,4 @@
-"""Annotation utilities — loading, validation, export, and statistics.
+"""Annotation utilities - loading, validation, export, and statistics.
 
 Annotations are stored as a JSON Schema document that describes the expected
 structure of each golden QA item field.  This module provides helpers to load
@@ -242,7 +242,7 @@ class AnnotationValidator:
                 item_id=item.question_id,
                 message=(
                     f"{item.question_id!r} has review_status='draft' "
-                    "— not yet approved for evaluation"
+                    "- not yet approved for evaluation"
                 ),
             )
             for item in items
@@ -419,12 +419,12 @@ class AnnotationExporter:
         Returns:
             Multi-section Markdown string.
         """
-        sections: list[str] = ["# Veriducta Golden QA — Annotation Review\n"]
+        sections: list[str] = ["# Veriducta Golden QA - Annotation Review\n"]
         for item in items:
             chunk_ids = ", ".join(item.supporting_chunk_ids) or "*(none)*"
             entities = ", ".join(item.expected_entities) or "*(none)*"
             sections.append(
-                f"## {item.question_id} — {item.difficulty.upper()} — {item.domain}\n\n"
+                f"## {item.question_id} - {item.difficulty.upper()} - {item.domain}\n\n"
                 f"**Question:** {item.question}\n\n"
                 f"**Gold Answer:** {item.gold_answer}\n\n"
                 f"**Supporting Chunks:** {chunk_ids}\n\n"

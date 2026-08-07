@@ -25,7 +25,7 @@ Complete all items before tagging:
 - [ ] All CI checks pass on `main`: ruff, black, mypy, pytest
 - [ ] Coverage ≥ 80%
 - [ ] No uncommitted changes on `main`
-- [ ] `make test` output: `X passed, Y failed` — Y must be 0
+- [ ] `make test` output: `X passed, Y failed` - Y must be 0
 - [ ] All blocking regression gate conditions pass
 
 ### Documentation
@@ -38,7 +38,7 @@ Complete all items before tagging:
   - Clear headline of what's new
   - Known limitations updated
   - Installation steps verified
-- [ ] `ROADMAP.md` updated — completed items checked off, new planned items added
+- [ ] `ROADMAP.md` updated - completed items checked off, new planned items added
 - [ ] `VERSION` updated to the new version number
 - [ ] `README.md` version badge and evaluation numbers reflect current state
 
@@ -58,7 +58,7 @@ Complete all items before tagging:
 # Update VERSION
 echo "1.1.0" > VERSION
 
-# Update CHANGELOG.md — move [Unreleased] to [1.1.0] with today's date
+# Update CHANGELOG.md - move [Unreleased] to [1.1.0] with today's date
 # Update RELEASE_NOTES.md
 ```
 
@@ -77,7 +77,7 @@ Verify the CI run on the release commit passes all checks before tagging.
 ### 4. Tag the release
 
 ```bash
-git tag -a v1.1.0 -m "Release v1.1.0 — [one-line summary of what's new]"
+git tag -a v1.1.0 -m "Release v1.1.0 - [one-line summary of what's new]"
 git push origin v1.1.0
 ```
 
@@ -85,7 +85,7 @@ git push origin v1.1.0
 
 ```bash
 gh release create v1.1.0 \
-  --title "v1.1.0 — [Short headline]" \
+  --title "v1.1.0 - [Short headline]" \
   --notes-file RELEASE_NOTES.md
 ```
 
@@ -114,9 +114,9 @@ git push origin fix/critical-bug
 echo "1.0.1" > VERSION
 # Update CHANGELOG with the patch
 git commit -m "chore(release): v1.0.1"
-git tag -a v1.0.1 -m "Release v1.0.1 — [fix description]"
+git tag -a v1.0.1 -m "Release v1.0.1 - [fix description]"
 git push origin main v1.0.1
-gh release create v1.0.1 --title "v1.0.1 — [Fix description]" --notes "[Brief fix description]"
+gh release create v1.0.1 --title "v1.0.1 - [Fix description]" --notes "[Brief fix description]"
 ```
 
 ---

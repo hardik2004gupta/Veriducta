@@ -1,4 +1,4 @@
-"""VeriductaRetriever — full hybrid retrieval pipeline orchestrator.
+"""VeriductaRetriever - full hybrid retrieval pipeline orchestrator.
 
 Composes BM25, dense, temporal filter, RRF fusion, cross-encoder reranking,
 and parent-child expansion into a single :meth:`retrieve` call.  Every

@@ -1,4 +1,4 @@
-"""Tests for ingestion/ingestor.py — orchestrator (with mocked embedder)."""
+"""Tests for ingestion/ingestor.py - orchestrator (with mocked embedder)."""
 
 import json
 from pathlib import Path
@@ -62,7 +62,7 @@ def _make_settings(tmp_path: Path) -> IngestionSettings:
 
 
 # ---------------------------------------------------------------------------
-# Ingestor.ingest_document — no embedder (test mode)
+# Ingestor.ingest_document - no embedder (test mode)
 # ---------------------------------------------------------------------------
 
 

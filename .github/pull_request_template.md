@@ -10,7 +10,7 @@ Phase:
 ## Changes
 
 <!-- List the files changed and what changed in each -->
-- `path/to/file.py` — description
+- `path/to/file.py` - description
 
 ## Testing
 
@@ -29,14 +29,14 @@ Phase:
 
 <!-- Did any abstract interface in core/interfaces.py change? If yes: -->
 - [ ] No interface changes
-- [ ] Interface changed — all concrete implementations updated
+- [ ] Interface changed - all concrete implementations updated
 
 ## Schema Changes
 
 <!-- Did schemas/models.py change? -->
 - [ ] No schema changes
 - [ ] Fields added (backwards compatible)
-- [ ] Fields renamed/removed — migration documented
+- [ ] Fields renamed/removed - migration documented
 
 ## Notes for Reviewer
 

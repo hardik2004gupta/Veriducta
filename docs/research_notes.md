@@ -52,7 +52,7 @@ Surveys fact-checking approaches including claim decomposition and evidence retr
 ### Hierarchical Chunking
 **Edge, J., et al. (2024)**. From Local to Global: A Graph RAG Approach to Query-Focused Summarization. *arXiv:2404.16130*.
 
-While focused on graph-based RAG, this paper discusses the limitations of flat chunking for documents with hierarchical structure. Veriducta's parent-child chunking scheme addresses the same limitation differently — by preserving the hierarchical structure in the Qdrant payload rather than a graph.
+While focused on graph-based RAG, this paper discusses the limitations of flat chunking for documents with hierarchical structure. Veriducta's parent-child chunking scheme addresses the same limitation differently - by preserving the hierarchical structure in the Qdrant payload rather than a graph.
 
 ### The Chunking Problem
 **Gao, Y., et al. (2024)**. Retrieval-Augmented Generation for Large Language Models: A Survey. *arXiv:2312.10997*.
@@ -71,7 +71,7 @@ Establishes faithfulness, answer relevance, context precision, and context recal
 ### Causal Attribution in ML
 **Peters, J.M., Janzing, D., & Schölkopf, B. (2017)**. *Elements of Causal Inference: Foundations and Learning Algorithms*. MIT Press.
 
-The theoretical basis for counterfactual attribution. Veriducta's ablation approach is a form of structural causal model evaluation — fix one variable (inject gold inputs at a stage) and measure the effect on the output.
+The theoretical basis for counterfactual attribution. Veriducta's ablation approach is a form of structural causal model evaluation - fix one variable (inject gold inputs at a stage) and measure the effect on the output.
 
 ---
 

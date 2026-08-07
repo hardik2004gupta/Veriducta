@@ -39,7 +39,7 @@ class _CacheEntry:
 class _QueryEmbeddingCache:
     """LRU cache with TTL for query embedding vectors.
 
-    Thread-unsafe — use only within a single-threaded request context.
+    Thread-unsafe - use only within a single-threaded request context.
 
     Args:
         max_size: Maximum number of entries; 0 disables caching.
@@ -79,7 +79,7 @@ class _QueryEmbeddingCache:
 
     @property
     def size(self) -> int:
-        """Current number of unexpired entries (approximate — no sweep)."""
+        """Current number of unexpired entries (approximate - no sweep)."""
         return len(self._store)
 
 

@@ -1,4 +1,4 @@
-# Veriducta — System Design Walkthrough
+# Veriducta - System Design Walkthrough
 
 *For system design interviews, whiteboard sessions, and technical deep-dives.*
 
@@ -40,11 +40,11 @@ Every step produces a typed output that is the typed input to the next step. No 
 
 ### Three stores
 
-**Qdrant** — vector index for dense retrieval. Collection: `veriducta_chunks`. 1024-dim cosine. Each point payload: chunk_id, text, parent_chunk_id, token_count, effective_date, expiry_date.
+**Qdrant** - vector index for dense retrieval. Collection: `veriducta_chunks`. 1024-dim cosine. Each point payload: chunk_id, text, parent_chunk_id, token_count, effective_date, expiry_date.
 
-**MinIO** — object store for raw PDFs and configuration snapshots.
+**MinIO** - object store for raw PDFs and configuration snapshots.
 
-**Evidence log** — where causal attribution lives:
+**Evidence log** - where causal attribution lives:
 - `evidence_logs/YYYY-MM-DD.jsonl`: append-only, one JSON object per query
 - `evidence_logs/index.db`: SQLite, schema: `(trace_id TEXT PK, log_file TEXT, byte_offset INTEGER, ...)`
 - Lookup: `SELECT byte_offset, log_file FROM traces WHERE trace_id = ?` → seek → read one line
@@ -67,7 +67,7 @@ Append-only writes are the fastest possible write pattern. JSONL is human-readab
 2. The gold annotations for the query (from `data/golden_qa.jsonl`)
 3. Access to the chunking variants (both boundary-aware and boundary-naive Qdrant collections)
 
-### Stage 1 — Chunking Attribution
+### Stage 1 - Chunking Attribution
 
 ```
 load trace → get chunking config hash from trace
@@ -77,9 +77,9 @@ if document in chunking_failure_corpus:
     if delta > 0.15: attribute to chunking
 ```
 
-This works because the chunking config hash in the trace tells us whether boundary-aware chunking was used. If it wasn't, we can test it without re-ingesting — we maintain a separate Qdrant collection for boundary-aware chunks.
+This works because the chunking config hash in the trace tells us whether boundary-aware chunking was used. If it wasn't, we can test it without re-ingesting - we maintain a separate Qdrant collection for boundary-aware chunks.
 
-### Stage 2 — Retrieval Attribution
+### Stage 2 - Retrieval Attribution
 
 ```
 gold_chunks = load_gold_annotations(question_id).supporting_chunk_ids
@@ -90,7 +90,7 @@ if delta > 0.15: attribute to retrieval
 
 This requires gold annotation. Stage 2 is oracle-dependent by design. It's the most reliable stage precisely because the counterfactual is known.
 
-### Stage 3 — Reranker Attribution
+### Stage 3 - Reranker Attribution
 
 ```
 candidates = trace.pre_rerank_top40  # loaded from evidence log
@@ -103,7 +103,7 @@ if quality_at_8 - quality_at_1 > 0.15: attribute to reranker
 
 No re-inference. The cross-encoder scores are in the trace. Stage 3 is the cheapest ablation stage to run.
 
-### Stage 4 — Generation Attribution
+### Stage 4 - Generation Attribution
 
 ```
 replay_with_context(
@@ -138,9 +138,9 @@ if deltas[primary] < ATTRIBUTION_THRESHOLD:
 |---|---|---|
 | BM25 retrieval | 45ms p50 | 50MB (index) |
 | Dense retrieval | 680ms p50 | 1.3GB (model) |
-| RRF + temporal filter | 8ms p50 | — |
+| RRF + temporal filter | 8ms p50 | - |
 | Cross-encoder reranking | 950ms p50 | 90MB (model) |
-| Claude generation | 800ms p50 | — (API) |
+| Claude generation | 800ms p50 | - (API) |
 | NLI verification | 180ms p50 | 350MB (model) |
 | **End-to-end** | **2.8s p50** | **~1.93GB** |
 
@@ -150,9 +150,9 @@ if deltas[primary] < ATTRIBUTION_THRESHOLD:
 
 **Primary bottleneck**: dense embedding inference (680ms) and cross-encoder reranking (950ms) both run on CPU.
 
-**Mitigation 1 (implemented)**: LRU embedding cache on query hash — TTL 1 hour, 1000 entries max. Repeat queries skip embedding inference entirely.
+**Mitigation 1 (implemented)**: LRU embedding cache on query hash - TTL 1 hour, 1000 entries max. Repeat queries skip embedding inference entirely.
 
-**Mitigation 2 (planned v1.2)**: GPU acceleration — expected 8–10× improvement, bringing p95 below 2 seconds.
+**Mitigation 2 (planned v1.2)**: GPU acceleration - expected 8–10× improvement, bringing p95 below 2 seconds.
 
 **Mitigation 3 (available)**: Reduce reranker input from 40 → 20 candidates. Tradeoff: ~25% reduction in Stage 3 attribution quality.
 

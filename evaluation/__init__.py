@@ -1,4 +1,4 @@
-"""Evaluation harness — dataset management, metrics, baselines, regression, and reporting.
+"""Evaluation harness - dataset management, metrics, baselines, regression, and reporting.
 
 Public surface for the evaluation package.  CLI scripts and external callers import
 from this module rather than from individual sub-modules.

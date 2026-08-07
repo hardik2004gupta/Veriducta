@@ -164,7 +164,7 @@ class TestBenchmarkRunner:
         path = tmp_path / "report.json"
         path.write_text(json.dumps(data), encoding="utf-8")
         # _load_baseline_metrics expects raw metrics, not nested under "metrics"
-        # The method tries model_validate on the full dict — let's verify
+        # The method tries model_validate on the full dict - let's verify
         loaded = benchmark._load_baseline_metrics(path)
         # The full report has extra keys; model_validate still works since
         # EvaluationMetrics has model_config extra="ignore" or the keys align

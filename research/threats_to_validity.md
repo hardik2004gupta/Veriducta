@@ -1,4 +1,4 @@
-# Research — Threats to Validity
+# Research - Threats to Validity
 
 *Analysis of threats to internal and external validity for the Veriducta evaluation.*
 
@@ -70,9 +70,9 @@
 
 ### 6. Synthetic vs. Real Corruptions
 
-**Threat**: The corruption benchmark uses synthetic corruptions — mechanistically applied transformations. Real production failures may be qualitatively different from synthetic corruptions: the corruption distribution may not match the natural failure distribution.
+**Threat**: The corruption benchmark uses synthetic corruptions - mechanistically applied transformations. Real production failures may be qualitatively different from synthetic corruptions: the corruption distribution may not match the natural failure distribution.
 
-**Manifestation**: The benchmark includes forced top-1 ranking for reranker corruption. In production, reranker errors are subtler — score compression near the cutoff boundary, not forced rank inversions. The synthetic version may be easier for Stage 3 to detect than real reranker failures.
+**Manifestation**: The benchmark includes forced top-1 ranking for reranker corruption. In production, reranker errors are subtler - score compression near the cutoff boundary, not forced rank inversions. The synthetic version may be easier for Stage 3 to detect than real reranker failures.
 
 **Mitigation**: The benchmark includes a "realistic boundary-error" flag to distinguish natural-distribution cases (drawn from real corpus documents) from artificially extreme corruptions. The boundary-error accuracy (68.8%) is presented separately.
 

@@ -1,4 +1,4 @@
-"""Tests for evaluation/corruptions.py — CORRUPTIONS_SEED and CorruptionDatasetBuilder."""
+"""Tests for evaluation/corruptions.py - CORRUPTIONS_SEED and CorruptionDatasetBuilder."""
 
 from pathlib import Path
 

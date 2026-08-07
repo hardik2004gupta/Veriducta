@@ -1,4 +1,4 @@
-"""Tests for evaluation/schemas.py — enumerations, models, and field rules."""
+"""Tests for evaluation/schemas.py - enumerations, models, and field rules."""
 
 import pytest
 from pydantic import ValidationError as PydanticValidationError

@@ -1,10 +1,10 @@
-# LinkedIn — Carousel Content
+# LinkedIn - Carousel Content
 
 *10-slide carousel: "Why your RAG pipeline fails and how to find out which part is responsible"*
 
 ---
 
-## Slide 1 — Hook (Cover)
+## Slide 1 - Hook (Cover)
 
 **Headline**: Your RAG pipeline failed. RAGAS says it's fine.
 
@@ -14,7 +14,7 @@
 
 ---
 
-## Slide 2 — The Problem
+## Slide 2 - The Problem
 
 **Headline**: The diagnosis gap in RAG evaluation
 
@@ -27,23 +27,23 @@
 
 ---
 
-## Slide 3 — The Four Failure Modes
+## Slide 3 - The Four Failure Modes
 
 **Headline**: Which stage failed?
 
 **Body**:
 Every bad RAG answer comes from one of four places:
 
-① Chunking — critical clause split across a boundary
-② Retrieval — right chunk exists but wasn't fetched
-③ Reranking — right chunk in top-40, but dropped at cutoff
-④ Generation — context was right, LLM used it wrong
+① Chunking - critical clause split across a boundary
+② Retrieval - right chunk exists but wasn't fetched
+③ Reranking - right chunk in top-40, but dropped at cutoff
+④ Generation - context was right, LLM used it wrong
 
 **Visual**: 4 boxes in a pipeline diagram, each with a question mark
 
 ---
 
-## Slide 4 — Why This Matters
+## Slide 4 - Why This Matters
 
 **Headline**: Wrong diagnosis = wrong fix
 
@@ -56,7 +56,7 @@ Every bad RAG answer comes from one of four places:
 
 ---
 
-## Slide 5 — The Solution: Replayable Traces
+## Slide 5 - The Solution: Replayable Traces
 
 **Headline**: Store everything. Replay later.
 
@@ -72,7 +72,7 @@ Includes:
 
 ---
 
-## Slide 6 — Stage 1: Chunking
+## Slide 6 - Stage 1: Chunking
 
 **Headline**: Did chunking cause this failure?
 
@@ -87,7 +87,7 @@ Delta: +0.41 → chunking is root cause ✓
 
 ---
 
-## Slide 7 — Stage 3: Reranker (No Re-Inference!)
+## Slide 7 - Stage 3: Reranker (No Re-Inference!)
 
 **Headline**: Was the right answer in the top-40?
 
@@ -102,7 +102,7 @@ If quality improves at a wider cutoff: reranker threshold is root cause.
 
 ---
 
-## Slide 8 — The Benchmark
+## Slide 8 - The Benchmark
 
 **Headline**: How accurate is the attribution?
 
@@ -121,7 +121,7 @@ Target was ≥ 70%. ✓
 
 ---
 
-## Slide 9 — Metrics RAGAS Can't Compute
+## Slide 9 - Metrics RAGAS Can't Compute
 
 **Headline**: What RAGAS misses
 
@@ -138,7 +138,7 @@ Target was ≥ 70%. ✓
 
 ---
 
-## Slide 10 — Call to Action
+## Slide 10 - Call to Action
 
 **Headline**: Built for engineers who need to know *why*
 
@@ -149,7 +149,7 @@ Open source · MIT License
 
 🔗 github.com/hardik2004gupta/Veriducta
 
-"If you've built a RAG pipeline and haven't answered 'which stage caused that failure?' — this was built for you."
+"If you've built a RAG pipeline and haven't answered 'which stage caused that failure?' - this was built for you."
 
 **Visual**: GitHub repo screenshot or architecture diagram
 

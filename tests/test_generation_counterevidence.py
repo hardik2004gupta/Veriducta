@@ -205,7 +205,7 @@ def test_search_missing_chunk_text_skipped() -> None:
     settings = _make_settings(min_entities=2)
     cand = _make_candidate("doc-ch-0000", "text")
     mock_bm25 = MagicMock(return_value=[cand])
-    chunk_texts: dict[str, str] = {}  # empty — no text available
+    chunk_texts: dict[str, str] = {}  # empty - no text available
     nli = MagicMock()
 
     searcher = CounterEvidenceSearcher(

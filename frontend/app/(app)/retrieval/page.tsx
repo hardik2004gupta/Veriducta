@@ -14,7 +14,7 @@ import type { RetrievalCandidate } from "@/types";
 
 function ScoreBar({ value, max, color }: { value: number | null | undefined; max: number; color: "cyan" | "violet" | "emerald" | "amber" }) {
   if (value === null || value === undefined) {
-    return <span className="text-xs text-slate-700">—</span>;
+    return <span className="text-xs text-slate-700">-</span>;
   }
   return (
     <div className="flex items-center gap-2">
@@ -63,7 +63,7 @@ function CandidateRow({ candidate, rank, isRejected = false }: {
               <ScoreBar value={candidate.rerank_score} max={15} color="amber" />
             </div>
           ) : (
-            <div className="w-32 text-xs text-slate-700">—</div>
+            <div className="w-32 text-xs text-slate-700">-</div>
           )}
         </div>
 
@@ -96,8 +96,8 @@ function CandidateRow({ candidate, rank, isRejected = false }: {
                   {[
                     { label: "Document ID", value: candidate.document_id },
                     { label: "Temporal tag", value: candidate.temporal_validity ?? "valid" },
-                    { label: "Token count", value: candidate.token_count?.toString() ?? "—" },
-                    { label: "Post-rerank rank", value: candidate.post_rerank_rank?.toString() ?? "—" },
+                    { label: "Token count", value: candidate.token_count?.toString() ?? "-" },
+                    { label: "Post-rerank rank", value: candidate.post_rerank_rank?.toString() ?? "-" },
                   ].map(({ label, value }) => (
                     <div key={label} className="flex justify-between text-xs">
                       <span className="text-slate-500">{label}</span>

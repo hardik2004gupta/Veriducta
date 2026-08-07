@@ -1,4 +1,4 @@
-"""Tests for evaluation/export.py — DatasetExporter."""
+"""Tests for evaluation/export.py - DatasetExporter."""
 
 import json
 from pathlib import Path

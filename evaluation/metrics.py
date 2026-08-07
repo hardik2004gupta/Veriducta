@@ -59,7 +59,7 @@ def _ndcg(relevance: list[int], k: int) -> float:
 class MetricsComputer:
     """Compute all evaluation metrics from raw run results and golden annotations.
 
-    All methods are pure — no side effects, no I/O.  The public entry point is
+    All methods are pure - no side effects, no I/O.  The public entry point is
     :meth:`compute`, which returns a fully-populated :class:`EvaluationMetrics`.
     """
 

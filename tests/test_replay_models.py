@@ -1,4 +1,4 @@
-"""Tests for replay.models — data model validation."""
+"""Tests for replay.models - data model validation."""
 
 from datetime import datetime
 

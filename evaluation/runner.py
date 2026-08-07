@@ -1,4 +1,4 @@
-"""Evaluation runner — executes golden QA and corruption benchmark queries.
+"""Evaluation runner - executes golden QA and corruption benchmark queries.
 
 :class:`EvaluationRunner` drives the retrieval → generation → verification pipeline
 for each golden QA item and collects per-query results.  It also wraps the replay

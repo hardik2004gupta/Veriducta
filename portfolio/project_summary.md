@@ -1,8 +1,8 @@
-# Veriducta — Project Summary
+# Veriducta - Project Summary
 
 ## One-Line Description
 
-A RAG pipeline observability tool that identifies *which pipeline stage* (chunking, retrieval, reranking, or generation) caused a specific answer failure — with 73.3% attribution accuracy on a 60-case benchmark.
+A RAG pipeline observability tool that identifies *which pipeline stage* (chunking, retrieval, reranking, or generation) caused a specific answer failure - with 73.3% attribution accuracy on a 60-case benchmark.
 
 ---
 
@@ -53,7 +53,7 @@ Every query stores the full pre-reranking top-40 candidate list with cross-encod
 - **Stage 4**: Replay with historical context and baseline prompt
 
 ### 3. Boundary-Aware Hierarchical Chunking
-Parent chunks (1400–1600 tokens) assembled at section boundaries. Child chunks (200–400 tokens) never split across detected section boundary markers. Configuration snapshots are SHA-256 hashed and immutable — enabling comparison between historical runs with different chunking configs.
+Parent chunks (1400–1600 tokens) assembled at section boundaries. Child chunks (200–400 tokens) never split across detected section boundary markers. Configuration snapshots are SHA-256 hashed and immutable - enabling comparison between historical runs with different chunking configs.
 
 ### 4. Four Metrics RAGAS Cannot Compute
 - Omission rate (8.2%)
@@ -91,7 +91,7 @@ Each layer is independently testable. The replay engine can substitute any layer
 
 - Designing and building a production-quality ML-backed API from scratch under strict architectural constraints
 - Cross-domain implementation: information retrieval, NLP, LLM integration, observability, frontend
-- Causal reasoning about system failures — moving beyond measurement to attribution
+- Causal reasoning about system failures - moving beyond measurement to attribution
 - End-to-end engineering: Docker infrastructure, CI/CD, type safety, 80%+ test coverage
 - Technical communication: architecture diagrams, blog post, benchmark methodology
 

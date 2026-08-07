@@ -1,4 +1,4 @@
-"""VeriductaReplayEngine — four-stage gold ablation engine.
+"""VeriductaReplayEngine - four-stage gold ablation engine.
 
 Implements :class:`~core.interfaces.BaseReplayEngine` by composing
 :class:`~replay.loader.TraceLoader`, :class:`~replay.executor.ReplayExecutor`,
@@ -6,15 +6,15 @@ and :class:`~replay.report.ReplayReportAssembler`.
 
 Four-stage ablation:
 
-1. **Chunking** — replay retrieval with boundary-naive config. Tests whether
+1. **Chunking** - replay retrieval with boundary-naive config. Tests whether
    chunking failures prevented the relevant text from entering the retrieval
    candidates.
-2. **Retrieval** — inject gold supporting chunks. Tests whether the retrieval
+2. **Retrieval** - inject gold supporting chunks. Tests whether the retrieval
    component missed the relevant text despite it being correctly chunked.
-3. **Reranker** — test different top-N cutoffs from ``pre_rerank_top40``. Tests
+3. **Reranker** - test different top-N cutoffs from ``pre_rerank_top40``. Tests
    whether the cross-encoder assigned an incorrect rank to the most relevant
    chunk.
-4. **Generation** — replay with original context + generation overrides. Tests
+4. **Generation** - replay with original context + generation overrides. Tests
    whether the prompt or generation parameters caused the quality failure.
 """
 
@@ -110,7 +110,7 @@ class VeriductaReplayEngine(BaseReplayEngine):
 
         stage_results: dict[str, StageReplayResult] = {}
 
-        # Stage 1 — Chunking
+        # Stage 1 - Chunking
         stage1_config = (
             ReplayConfigurationBuilder(label="stage1_boundary_naive")
             .with_chunking_override(
@@ -130,7 +130,7 @@ class VeriductaReplayEngine(BaseReplayEngine):
         )
         REPLAY_ABLATIONS_RUN.labels(stage=STAGE1).inc()
 
-        # Stage 2 — Retrieval
+        # Stage 2 - Retrieval
         stage2_config = ReplayConfigurationBuilder(label="stage2_gold_retrieval").build()
         stage_results[STAGE2] = self._executor.execute_stage2_retrieval(
             retrieval_trace=retrieval_trace,
@@ -141,7 +141,7 @@ class VeriductaReplayEngine(BaseReplayEngine):
         )
         REPLAY_ABLATIONS_RUN.labels(stage=STAGE2).inc()
 
-        # Stage 3 — Reranker
+        # Stage 3 - Reranker
         stage3_config = ReplayConfigurationBuilder(label="stage3_reranker_cutoffs").build()
         stage_results[STAGE3] = self._executor.execute_stage3_reranker(
             retrieval_trace=retrieval_trace,
@@ -152,7 +152,7 @@ class VeriductaReplayEngine(BaseReplayEngine):
         )
         REPLAY_ABLATIONS_RUN.labels(stage=STAGE3).inc()
 
-        # Stage 4 — Generation
+        # Stage 4 - Generation
         stage4_config = ReplayConfigurationBuilder(label="stage4_baseline_generation").build()
         stage_results[STAGE4] = self._executor.execute_stage4_generation(
             retrieval_trace=retrieval_trace,

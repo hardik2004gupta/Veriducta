@@ -28,7 +28,7 @@ def project_root() -> Path:
         if (current / "pyproject.toml").exists():
             return current
         current = current.parent
-    raise RuntimeError("Could not locate pyproject.toml — is this a Veriducta project?")
+    raise RuntimeError("Could not locate pyproject.toml - is this a Veriducta project?")
 
 
 def safe_filename(name: str) -> str:

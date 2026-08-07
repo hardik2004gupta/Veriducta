@@ -47,10 +47,10 @@ The `GOOD_FIRST_ISSUES.md` file lists pre-analyzed tasks that are well-scoped fo
 
 ### Labels on GitHub
 
-- `good first issue` — well-scoped, bounded changes
-- `documentation` — doc improvements, no code required
-- `tests` — adding missing test coverage
-- `frontend` — Next.js/TypeScript frontend changes (no backend required)
+- `good first issue` - well-scoped, bounded changes
+- `documentation` - doc improvements, no code required
+- `tests` - adding missing test coverage
+- `frontend` - Next.js/TypeScript frontend changes (no backend required)
 
 ---
 
@@ -68,8 +68,8 @@ git checkout -b feat/your-feature-name
 Read the relevant section of `CLAUDE.md` before touching any file. The document describes the architecture, coding standards, and import rules that every change must follow.
 
 Key rules:
-- No `print()` — use `structlog`
-- No circular imports — check the dependency graph in Section 6 of CLAUDE.md
+- No `print()` - use `structlog`
+- No circular imports - check the dependency graph in Section 6 of CLAUDE.md
 - All public functions need docstrings
 - Type hints required everywhere (mypy --strict)
 

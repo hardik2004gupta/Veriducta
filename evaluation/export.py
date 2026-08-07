@@ -1,4 +1,4 @@
-"""Dataset export utilities — JSONL, CSV, and Markdown output.
+"""Dataset export utilities - JSONL, CSV, and Markdown output.
 
 :class:`DatasetExporter` writes golden QA items and corruption cases to
 disk in formats suitable for downstream consumers: the evaluation runner
@@ -197,7 +197,7 @@ class DatasetExporter:
         dest = Path(path) if path else self._export_dir / "golden_qa_review.md"
         dest.parent.mkdir(parents=True, exist_ok=True)
 
-        lines: list[str] = ["# Veriducta Golden QA — Review Document\n\n"]
+        lines: list[str] = ["# Veriducta Golden QA - Review Document\n\n"]
         lines.append(f"**Total items:** {len(records)}\n\n---\n\n")
 
         for item in records:
@@ -249,7 +249,7 @@ class DatasetExporter:
         dest = Path(path) if path else self._export_dir / "corruptions_review.md"
         dest.parent.mkdir(parents=True, exist_ok=True)
 
-        lines: list[str] = ["# Veriducta Corruption Benchmark — Review Document\n\n"]
+        lines: list[str] = ["# Veriducta Corruption Benchmark - Review Document\n\n"]
         lines.append(f"**Total cases:** {len(records)}\n\n---\n\n")
 
         for case in records:

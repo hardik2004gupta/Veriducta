@@ -1,4 +1,4 @@
-"""Tests for retrieval/retriever.py — VeriductaRetriever orchestration."""
+"""Tests for retrieval/retriever.py - VeriductaRetriever orchestration."""
 
 from pathlib import Path
 from typing import Any
