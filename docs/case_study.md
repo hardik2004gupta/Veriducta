@@ -143,8 +143,8 @@ The O(1) evidence log lookup requires knowing the exact byte offset of each entr
 Fix: seek to end before writing, record the position before write, then write. The pre-write seek gives the reliable byte offset. The SQLite record is committed only after the write succeeds.
 
 ```python
-log_file.seek(0, 2)          # seek to end
-byte_offset = log_file.tell() # record position before write
+log_file.seek(0, 2)  # seek to end
+byte_offset = log_file.tell()  # record position before write
 log_file.write(json_line + "\n")
 log_file.flush()
 # commit byte_offset to SQLite
