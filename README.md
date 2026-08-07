@@ -2,9 +2,13 @@
 
 <br/>
 
-<img src="docs/assets/banner.png" alt="Veriducta Banner" width="900" />
+<img src="docs/assets/hero_section_1600_×_600.png" alt="Veriducta" width="100%" />
 
-<br/><br/>
+<br/>
+
+<img src="docs/assets/horizontal_logo_with_name_1000x300_transparent.png" alt="Veriducta" width="450" />
+
+<br/>
 
 # Veriducta
 
@@ -186,21 +190,15 @@ Next.js 15 dashboard with Framer Motion animations, Recharts visualisations, and
 
 ---
 
-## 🎬 Screenshots
+## 🎬 Dashboard
 
 <br/>
 
 <div align="center">
 
-| Dashboard | Replay Engine | Evaluation |
-|:---:|:---:|:---:|
-| <img src="docs/assets/dashboard.png" width="280" alt="Dashboard"/> | <img src="docs/assets/replay.png" width="280" alt="Replay Engine"/> | <img src="docs/assets/evaluation.png" width="280" alt="Evaluation"/> |
-| Query interface, live metrics, cost tracking | Four-stage ablation timeline, quality delta | Scorecard, RAGAS comparison, regression gate |
+<img src="docs/assets/dashboard.png" alt="Veriducta Dashboard" width="1000" />
 
-| Retrieval Trace | Evidence Explorer | Landing |
-|:---:|:---:|:---:|
-| <img src="docs/assets/retrieval.png" width="280" alt="Retrieval Trace"/> | <img src="docs/assets/evidence.png" width="280" alt="Evidence Explorer"/> | <img src="docs/assets/landing.png" width="280" alt="Landing Page"/> |
-| BM25/dense scores, RRF fusion, reranker output | JSONL trace browser, SQLite index viewer | Public-facing product overview |
+*Veriducta Dashboard — Query Analysis, Replay Engine and Evaluation*
 
 </div>
 
@@ -212,10 +210,9 @@ Next.js 15 dashboard with Framer Motion animations, Recharts visualisations, and
 
 <div align="center">
 
-| Full Pipeline Demo | Replay Attribution |
-|:---:|:---:|
-| <img src="docs/assets/demo.gif" width="460" alt="Pipeline demo"/> | <img src="docs/assets/replay_demo.gif" width="460" alt="Replay demo"/> |
-| Query → Retrieval → Generation → Verification | Failed answer → Stage attribution → Root cause |
+<img src="docs/assets/dashboard.gif" alt="Veriducta Product Walkthrough" width="1000" />
+
+*Complete End-to-End Product Walkthrough*
 
 </div>
 
@@ -316,6 +313,14 @@ graph TD
 
 <br/>
 
+<div align="center">
+
+<img src="docs/assets/architecture.png" alt="Veriducta Architecture" width="1000" />
+
+</div>
+
+<br/>
+
 ---
 
 ## 🔄 Retrieval Pipeline
@@ -387,6 +392,14 @@ flowchart TD
     style S4 fill:#15803d,color:#dcfce7,stroke:#15803d
     style EL fill:#1e3a5f,color:#93c5fd,stroke:#1e3a5f
 ```
+
+<br/>
+
+<div align="center">
+
+<img src="docs/assets/replay_engine.png" alt="Veriducta Replay Engine" width="1000" />
+
+</div>
 
 <br/>
 
