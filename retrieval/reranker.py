@@ -80,7 +80,7 @@ class CrossEncoderReranker:
 
         with timer("reranker") as t:
             try:
-                raw_scores = self._model.predict(pairs)  # type: ignore[arg-type]
+                raw_scores = self._model.predict(pairs)
             except Exception as exc:
                 raise RetrievalError(
                     "Reranker batch inference failed",

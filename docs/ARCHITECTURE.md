@@ -34,6 +34,24 @@
 Data flows strictly downward. No layer may import from a layer above it.
 `observability` is a cross-cutting concern importable by any layer.
 
+## Evaluation Framework
+
+The `evaluation/` package implements the complete Phase 18 evaluation harness.
+
+| Component | Class | Purpose |
+|---|---|---|
+| `runner.py` | `EvaluationRunner` | Executes queries through the full pipeline; captures per-query latency and errors |
+| `metrics.py` | `MetricsComputer` | Computes all four metric groups from `EvaluationRunResults` |
+| `regression.py` | `RegressionEngine` | Checks five blocking conditions against a stored baseline |
+| `comparison.py` | `RunComparator` | Produces per-metric deltas across two evaluation runs |
+| `baseline.py` | `BaselineRunner` | Runs alternative pipeline configurations (dense-only, BM25-only, etc.) |
+| `report.py` | `ReportWriter` | Serialises results to JSON, Markdown, CSV, and HTML |
+| `benchmark.py` | `BenchmarkRunner` | Top-level orchestrator that wires all components together |
+| `ragas_adapter.py` | `RAGASAdapter` | Optional RAGAS integration; gracefully skipped when unavailable |
+
+**Dependency injection**: All `EvaluationRunner` constructor arguments are optional (`None`).
+Tests run without any live ML models or services.
+
 ## Storage Layer
 
 | Backend    | Purpose                                       |

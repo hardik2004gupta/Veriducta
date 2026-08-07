@@ -185,6 +185,30 @@ class DatasetSettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="DATASET_")
 
 
+class EvaluationSettings(BaseSettings):
+    """Evaluation harness configuration — parallelism, thresholds, output paths."""
+
+    report_dir: str = Field(default="evaluation_reports")
+    baseline_metrics_path: str = Field(default="ci_baseline.json")
+    top_k: int = Field(default=8, ge=1)
+    batch_size: int = Field(default=4, ge=1)
+    parallelism: int = Field(default=1, ge=1)
+    cache_enabled: bool = Field(default=True)
+
+    # Regression thresholds (CLAUDE.md Phase 18 — five blocking conditions)
+    faithfulness_drop_max: float = Field(default=0.02, ge=0.0, le=1.0)
+    recall5_drop_max: float = Field(default=0.03, ge=0.0, le=1.0)
+    p95_latency_increase_max: float = Field(default=0.20, ge=0.0)
+    root_cause_drop_max: float = Field(default=0.05, ge=0.0, le=1.0)
+    evidence_exposure_max: float = Field(default=0.0, ge=0.0, le=1.0)
+
+    # Metric quality thresholds from spec
+    min_root_cause_accuracy: float = Field(default=0.70, ge=0.0, le=1.0)
+    min_realistic_boundary_accuracy: float = Field(default=0.65, ge=0.0, le=1.0)
+
+    model_config = SettingsConfigDict(env_prefix="EVALUATION_")
+
+
 class Settings(BaseSettings):
     """Root application settings aggregating all sub-configurations."""
 
@@ -202,6 +226,7 @@ class Settings(BaseSettings):
     logging: LoggingSettings = Field(default_factory=LoggingSettings)
     replay: ReplaySettings = Field(default_factory=ReplaySettings)
     dataset: DatasetSettings = Field(default_factory=DatasetSettings)
+    evaluation: EvaluationSettings = Field(default_factory=EvaluationSettings)
 
     model_config = SettingsConfigDict(
         env_prefix="VERIDUCTA_",

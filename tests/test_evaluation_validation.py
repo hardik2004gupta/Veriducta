@@ -117,14 +117,14 @@ class TestValidateCorruptions:
         for i in range(20):
             cases.append(
                 _corruption_case(
-                    case_id=f"corr-retrieval-{i+1:03d}",
+                    case_id=f"corr-retrieval-{i + 1:03d}",
                     ground_truth_root_cause="retrieval",
                 )
             )
         for i in range(15):
             cases.append(
                 _corruption_case(
-                    case_id=f"corr-chunking-{i+1:03d}",
+                    case_id=f"corr-chunking-{i + 1:03d}",
                     ground_truth_root_cause="chunking",
                     corruption_type="chunking_boundary_naive",
                 )
@@ -132,7 +132,7 @@ class TestValidateCorruptions:
         for i in range(15):
             cases.append(
                 _corruption_case(
-                    case_id=f"corr-reranker-{i+1:03d}",
+                    case_id=f"corr-reranker-{i + 1:03d}",
                     ground_truth_root_cause="reranking",
                     corruption_type="reranker_score_inversion",
                 )
@@ -140,7 +140,7 @@ class TestValidateCorruptions:
         for i in range(10):
             cases.append(
                 _corruption_case(
-                    case_id=f"corr-generation-{i+1:03d}",
+                    case_id=f"corr-generation-{i + 1:03d}",
                     ground_truth_root_cause="generation",
                     corruption_type="generation_unstructured_prompt",
                 )

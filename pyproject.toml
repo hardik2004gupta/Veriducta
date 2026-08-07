@@ -167,6 +167,8 @@ module = [
     "orjson.*",
     "minio.*",
     "anthropic.*",
+    "ragas.*",
+    "datasets.*",
 ]
 ignore_missing_imports = true
 

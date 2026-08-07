@@ -48,7 +48,7 @@ def get_nli_model(model_id: str = "cross-encoder/nli-deberta-v3-base") -> CrossE
     return _nli_model
 
 
-def _softmax(logits: np.ndarray) -> np.ndarray:
+def _softmax(logits: np.ndarray) -> np.ndarray:  # type: ignore[type-arg]
     """Numerically stable softmax over a 1-D array."""
     shifted = logits - np.max(logits)
     exp = np.exp(shifted)
@@ -106,7 +106,7 @@ class NLIEntailmentVerifier:
         if not pairs:
             return []
         model = get_nli_model(self._model_id)
-        raw: np.ndarray = model.predict(pairs)  # type: ignore[arg-type, assignment]
+        raw: np.ndarray = model.predict(pairs)  # type: ignore[type-arg]
         results: list[dict[str, float]] = []
         for row in raw:
             probs = _softmax(np.array(row))

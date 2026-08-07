@@ -179,6 +179,48 @@ DATASET_BUILD_DURATION = Histogram(
 )
 
 # ---------------------------------------------------------------------------
+# Evaluation metrics
+# ---------------------------------------------------------------------------
+
+EVALUATION_QUERIES_TOTAL = Counter(
+    "veriducta_evaluation_queries_total",
+    "Total queries evaluated in evaluation runs.",
+    ["outcome"],  # success, error
+)
+
+EVALUATION_QUERY_LATENCY = Histogram(
+    "veriducta_evaluation_query_latency_ms",
+    "Per-query end-to-end latency in evaluation runs (milliseconds).",
+    buckets=[500, 1000, 2000, 4000, 8000, 16000, 30000],
+)
+
+EVALUATION_RECALL_AT_5 = Gauge(
+    "veriducta_evaluation_recall_at_5",
+    "Recall@5 from the most recent evaluation run.",
+)
+
+EVALUATION_FAITHFULNESS = Gauge(
+    "veriducta_evaluation_faithfulness",
+    "Citation entailment rate (faithfulness) from the most recent evaluation run.",
+)
+
+EVALUATION_ROOT_CAUSE_ACCURACY = Gauge(
+    "veriducta_evaluation_root_cause_accuracy",
+    "Root-cause localization accuracy from the most recent evaluation run.",
+)
+
+EVALUATION_REGRESSION_VIOLATIONS = Gauge(
+    "veriducta_evaluation_regression_violations",
+    "Number of regression gate violations in the most recent check.",
+)
+
+EVALUATION_RUNS_TOTAL = Counter(
+    "veriducta_evaluation_runs_total",
+    "Total evaluation benchmark runs.",
+    ["outcome"],  # passed, failed, error
+)
+
+# ---------------------------------------------------------------------------
 # Pipeline health
 # ---------------------------------------------------------------------------
 

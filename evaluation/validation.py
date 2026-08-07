@@ -229,8 +229,7 @@ class DatasetValidator:
                         issue_type="unexpected_corruption_distribution",
                         item_id="dataset",
                         message=(
-                            f"expected {expected_count} {stage!r} corruption cases, "
-                            f"found {actual}"
+                            f"expected {expected_count} {stage!r} corruption cases, found {actual}"
                         ),
                     )
                 )

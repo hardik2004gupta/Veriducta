@@ -54,9 +54,9 @@ class TestCorruptionsSeed:
 
     def test_all_expected_quality_deltas_are_negative(self):
         for d in CORRUPTIONS_SEED:
-            assert (
-                d["expected_quality_delta"] < 0
-            ), f"{d['case_id']} has positive expected_quality_delta: {d['expected_quality_delta']}"
+            assert d["expected_quality_delta"] < 0, (
+                f"{d['case_id']} has positive expected_quality_delta: {d['expected_quality_delta']}"
+            )
 
     def test_all_cases_are_pydantic_valid(self):
         for d in CORRUPTIONS_SEED:

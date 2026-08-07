@@ -401,8 +401,7 @@ class AnnotationExporter:
             Markdown string with a table row per item.
         """
         header = (
-            "| ID | Difficulty | Domain | Failure Mode | Review Status |\n"
-            "|---|---|---|---|---|\n"
+            "| ID | Difficulty | Domain | Failure Mode | Review Status |\n|---|---|---|---|---|\n"
         )
         rows = [
             f"| {i.question_id} | {i.difficulty} | {i.domain}"

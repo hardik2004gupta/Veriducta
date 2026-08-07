@@ -94,7 +94,6 @@ def test_snapshot_hash_changes_with_config() -> None:
 
 
 def test_snapshot_save_writes_file(tmp_path: Path) -> None:
-
     cfg = ChunkingConfig()
     chunker = HierarchicalChunker(cfg)
     snap = chunker.save_snapshot(tmp_path)
