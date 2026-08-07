@@ -79,10 +79,16 @@ class PromptRegistry:
 
         Raises:
             KeyError: If no prompt with *name* is registered.
+
+        Note:
+            Version comparison is lexicographic: ``"v9" > "v10"``.  This is
+            correct for the current single-digit versioning scheme (v1, v2 …).
+            A numeric sort will be needed if versions exceed v9.
         """
         candidates = [(v, p) for (n, v), p in self._store.items() if n == name]
         if not candidates:
             raise KeyError(f"No prompts registered with name {name!r}")
+        # Lexicographic max — adequate while version digits stay single-digit.
         return max(candidates, key=lambda t: t[0])[1]
 
     @property

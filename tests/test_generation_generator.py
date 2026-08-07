@@ -1,4 +1,4 @@
-﻿"""Tests for generation/generator.py."""
+"""Tests for generation/generator.py."""
 
 from __future__ import annotations
 

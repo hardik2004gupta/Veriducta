@@ -16,6 +16,7 @@ from typing import Any
 import anthropic
 import jsonschema
 import structlog
+from anthropic.types import TextBlock
 
 from config.settings import GenerationSettings, get_settings
 from core.exceptions import GenerationError
@@ -153,11 +154,7 @@ def _context_to_text(retrieval_result: RetrievalResult) -> str:
         parent_text = cand.parent_chunk.text if cand.parent_chunk else None
         section = f"[SECTION]\n{parent_text}\n\n" if parent_text else ""
         parts.append(
-            f"--- Source {i} ---\n"
-            f"chunk_id: {chunk_id}\n"
-            f"document_id: {doc_id}\n"
-            f"{section}"
-            f"{text}\n"
+            f"--- Source {i} ---\nchunk_id: {chunk_id}\ndocument_id: {doc_id}\n{section}{text}\n"
         )
     return "\n".join(parts)
 
@@ -378,8 +375,6 @@ class VeriductaGenerator(BaseGenerator):
                 f"Anthropic API error: {exc}",
                 details={"model": self._ant_settings.model},
             ) from exc
-
-        from anthropic.types import TextBlock
 
         text = next((block.text for block in response.content if isinstance(block, TextBlock)), "")
         return text, response.usage.input_tokens, response.usage.output_tokens

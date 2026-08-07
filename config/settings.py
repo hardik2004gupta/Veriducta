@@ -99,7 +99,6 @@ class GenerationSettings(BaseSettings):
     """Structured generation configuration."""
 
     temperature: float = Field(default=0.0, ge=0.0, le=2.0)
-    timeout_seconds: float = Field(default=60.0, gt=0)
     prompt_version: str = Field(default="v1")
 
     model_config = SettingsConfigDict(env_prefix="GENERATION_")

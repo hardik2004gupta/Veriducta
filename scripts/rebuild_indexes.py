@@ -132,8 +132,7 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     print(
-        f"Rebuild complete: version graph ({len(sidecars)} docs), "
-        f"BM25 ({bm25.chunk_count} chunks)."
+        f"Rebuild complete: version graph ({len(sidecars)} docs), BM25 ({bm25.chunk_count} chunks)."
     )
     return 0
 
