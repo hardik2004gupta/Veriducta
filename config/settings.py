@@ -121,13 +121,17 @@ class VerificationSettings(BaseSettings):
 
 
 class ObservabilitySettings(BaseSettings):
-    """OpenTelemetry and Prometheus configuration."""
+    """OpenTelemetry, Prometheus, and evidence log configuration."""
 
     otlp_endpoint: str = Field(default="http://localhost:4317")
     prometheus_port: int = Field(default=8000, ge=1, le=65535)
     service_name: str = Field(default="veriducta")
     service_version: str = Field(default="0.1.0")
     evidence_log_dir: str = Field(default="evidence_logs")
+    sqlite_index_path: str = Field(default="evidence_logs/index.db")
+    rotation_size_mb: float = Field(default=0.0, ge=0.0, description="0 disables size rotation.")
+    retention_days: int = Field(default=30, ge=1)
+    sampling_rate: float = Field(default=1.0, ge=0.0, le=1.0)
 
     model_config = SettingsConfigDict(env_prefix="OTLP_", extra="ignore")
 

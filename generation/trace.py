@@ -4,9 +4,12 @@ Mirrors :mod:`retrieval.trace` in structure: appends
 :class:`~schemas.models.GenerationTrace` objects to a daily JSONL file and
 maintains an in-memory index for O(1) intra-process lookup.
 
-The full SQLite-backed persistence layer (with byte-offset indexing for
-cross-process lookup) is implemented in Phase 14 (observability/evidence_log.py).
+When an :class:`~observability.evidence_log.EvidenceLogWriter` is supplied,
+all writes are delegated to the fully instrumented Phase 14 implementation
+(SQLite byte-offset index, thread-safe locking, gzip rotation).
 """
+
+from __future__ import annotations
 
 from datetime import UTC, datetime
 from pathlib import Path
@@ -23,19 +26,32 @@ logger = structlog.get_logger(__name__)
 class GenerationTraceWriter:
     """Appends GenerationTrace objects to a daily JSONL file.
 
+    When *evidence_log* is provided, writes are also forwarded to the fully
+    indexed :class:`~observability.evidence_log.EvidenceLogWriter`.
+
     Args:
         log_dir: Directory for JSONL evidence log files.  Created if absent.
+        evidence_log: Optional Phase 14 evidence log writer.  When provided,
+                      every trace is registered in the SQLite byte-offset index.
     """
 
-    def __init__(self, log_dir: str | Path) -> None:
+    def __init__(
+        self,
+        log_dir: str | Path,
+        evidence_log: object | None = None,
+    ) -> None:
         self._log_dir = Path(log_dir)
         ensure_dir(self._log_dir)
         self._in_memory: dict[str, GenerationTrace] = {}
+        self._evidence_log = evidence_log
 
     def write(self, trace: GenerationTrace) -> None:
         """Append *trace* to today's JSONL file and cache in memory.
 
         The log file is named ``YYYY-MM-DD.jsonl`` and opened in append mode.
+
+        When an evidence log writer is configured, the trace is also delegated
+        to it for SQLite indexing.
 
         Args:
             trace: Completed :class:`~schemas.models.GenerationTrace` to persist.
@@ -51,6 +67,8 @@ class GenerationTraceWriter:
             retrieval_trace_id=trace.retrieval_trace_id,
             log_file=log_path.name,
         )
+        if self._evidence_log is not None:
+            self._evidence_log.write_generation_trace(trace)  # type: ignore[attr-defined]
 
     def get(self, trace_id: str) -> GenerationTrace:
         """Return the trace for *trace_id* from the in-memory cache.
