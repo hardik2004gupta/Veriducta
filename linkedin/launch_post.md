@@ -27,7 +27,7 @@ On a 60-case synthetic benchmark: **73.3% attribution accuracy**. And four metri
 
 The stack: Python 3.12 · FastAPI · Qdrant · Claude Sonnet 4.6 · Next.js 15 · Docker
 
-🔗 github.com/hardik-gupta/veriducta
+🔗 github.com/hardik2004gupta/Veriducta
 
 The full write-up (including a worked case study where RAGAS scored 0.82 but the answer was missing the operative regulatory threshold) is in the README and the technical blog post.
 
@@ -49,7 +49,7 @@ The causal replay engine stores full retrieval traces and runs counterfactual ex
 
 Result: **73.3% root-cause accuracy** on 60 synthetic corruption cases.
 
-Code: github.com/hardik-gupta/veriducta
+Code: github.com/hardik2004gupta/Veriducta
 
 #RAG #LLM #Observability #NLP #Python
 

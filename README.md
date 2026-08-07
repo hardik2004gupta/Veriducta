@@ -672,7 +672,7 @@ Lookup: `SELECT byte_offset FROM index WHERE trace_id = ?` → `lseek()` → rea
 
 ```bash
 # 1. Clone
-git clone https://github.com/hardik-gupta/veriducta.git
+git clone https://github.com/hardik2004gupta/Veriducta.git
 cd veriducta
 
 # 2. Install Python dependencies (with uv — recommended)
@@ -1095,7 +1095,7 @@ or inspired your own observability work — a star means a lot.
 
 <br/>
 
-[![Star on GitHub](https://img.shields.io/github/stars/hardik-gupta/veriducta?style=for-the-badge&logo=github&label=Star%20Veriducta&color=7c3aed)](https://github.com/hardik-gupta/veriducta)
+[![Star on GitHub](https://img.shields.io/github/stars/hardik2004gupta/Veriducta?style=for-the-badge&logo=github&label=Star%20Veriducta&color=7c3aed)](https://github.com/hardik2004gupta/Veriducta)
 
 <br/>
 

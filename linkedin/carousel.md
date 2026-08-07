@@ -147,7 +147,7 @@ Stack: Python 3.12 · FastAPI · Qdrant · Claude Sonnet 4.6 · Next.js 15
 
 Open source · MIT License
 
-🔗 github.com/hardik-gupta/veriducta
+🔗 github.com/hardik2004gupta/Veriducta
 
 "If you've built a RAG pipeline and haven't answered 'which stage caused that failure?' — this was built for you."
 

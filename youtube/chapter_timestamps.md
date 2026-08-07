@@ -59,7 +59,7 @@ CHAPTERS:
 18:00 - Getting started
 
 LINKS:
-→ GitHub: github.com/hardik-gupta/veriducta
+→ GitHub: github.com/hardik2004gupta/Veriducta
 → Blog post: [link]
 → Architecture docs: [link]
 
@@ -73,7 +73,7 @@ STACK: Python 3.12 · FastAPI · Qdrant · Claude Sonnet 4.6 · Next.js 15 · Do
 ```
 Veriducta in 5 minutes: attributing a chunking failure that RAGAS missed.
 
-→ GitHub: github.com/hardik-gupta/veriducta
+→ GitHub: github.com/hardik2004gupta/Veriducta
 
 #RAG #LLM #Python #Demo
 ```

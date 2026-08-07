@@ -84,7 +84,7 @@ None — this is the initial public release.
 ## Installation
 
 ```bash
-git clone https://github.com/hardik-gupta/veriducta.git
+git clone https://github.com/hardik2004gupta/Veriducta.git
 cd veriducta
 uv pip install --system ".[dev]"
 cp .env.example .env

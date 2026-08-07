@@ -97,4 +97,4 @@ Each layer is independently testable. The replay engine can substitute any layer
 
 ---
 
-*Repository: github.com/hardik-gupta/veriducta · License: MIT*
+*Repository: github.com/hardik2004gupta/Veriducta · License: MIT*

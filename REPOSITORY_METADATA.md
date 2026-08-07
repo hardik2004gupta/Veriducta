@@ -62,8 +62,8 @@ Four-stage causal ablation engine. 73.3% accuracy. Open source.
 ## README Badges
 
 ```markdown
-[![CI](https://github.com/hardik-gupta/veriducta/actions/workflows/ci.yml/badge.svg)](https://github.com/hardik-gupta/veriducta/actions/workflows/ci.yml)
-[![Coverage](https://img.shields.io/badge/coverage-92.81%25-brightgreen)](https://github.com/hardik-gupta/veriducta)
+[![CI](https://github.com/hardik2004gupta/Veriducta/actions/workflows/ci.yml/badge.svg)](https://github.com/hardik2004gupta/Veriducta/actions/workflows/ci.yml)
+[![Coverage](https://img.shields.io/badge/coverage-92.81%25-brightgreen)](https://github.com/hardik2004gupta/Veriducta)
 [![Python](https://img.shields.io/badge/python-3.12+-blue)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![mypy](https://img.shields.io/badge/mypy-strict-blue)](https://mypy-lang.org/)
@@ -100,7 +100,7 @@ pipeline stage (chunking, retrieval, reranking, or generation) caused an answer 
 ### Installation
 
 ```bash
-git clone https://github.com/hardik-gupta/veriducta.git
+git clone https://github.com/hardik2004gupta/Veriducta.git
 cd veriducta
 uv pip install --system ".[dev]"
 cp .env.example .env  # set ANTHROPIC_API_KEY
@@ -116,7 +116,7 @@ See [RELEASE_NOTES.md](RELEASE_NOTES.md) for the full changelog.
 
 ## HuggingFace Spaces Description
 
-**Space name**: `hardik-gupta/veriducta`
+**Space name**: `hardik2004gupta/Veriducta`
 
 **Space description**:
 ```

@@ -158,4 +158,4 @@ existing tool can: *given a failed answer, which pipeline stage caused the failu
 
 ---
 
-[1.0.0]: https://github.com/hardik-gupta/veriducta/releases/tag/v1.0.0
+[1.0.0]: https://github.com/hardik2004gupta/Veriducta/releases/tag/v1.0.0

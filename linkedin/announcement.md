@@ -29,7 +29,7 @@ I wrote a full technical writeup explaining the chunking failure case study (whe
 
 Contributions welcome — see FIRST_CONTRIBUTION.md for where to start.
 
-🔗 github.com/hardik-gupta/veriducta
+🔗 github.com/hardik2004gupta/Veriducta
 
 #RAG #LLM #MachineLearning #NLP #OpenSource #Python #GenAI
 
@@ -41,6 +41,6 @@ Just open-sourced Veriducta — a RAG pipeline observability tool that tells you
 
 73.3% root-cause accuracy · 801 tests · MIT
 
-github.com/hardik-gupta/veriducta
+github.com/hardik2004gupta/Veriducta
 
 #RAG #LLM #OpenSource

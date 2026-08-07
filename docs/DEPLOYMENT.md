@@ -20,7 +20,7 @@
 ### 1.1 Clone and install
 
 ```bash
-git clone https://github.com/hardik-gupta/veriducta.git
+git clone https://github.com/hardik2004gupta/Veriducta.git
 cd veriducta
 
 # Install Python dependencies
@@ -155,7 +155,7 @@ sudo apt-get install -y nodejs
 ### 3.3 Clone and configure
 
 ```bash
-git clone https://github.com/hardik-gupta/veriducta.git
+git clone https://github.com/hardik2004gupta/Veriducta.git
 cd veriducta
 uv pip install --system "."
 cp .env.example .env

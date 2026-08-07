@@ -61,7 +61,7 @@ Show 5 corruption cases being attributed. Show accuracy summary.
 
 [3:45] Show GitHub README briefly.
 
-"Full source at github.com/hardik-gupta/veriducta. MIT license. 801 tests, 92.81% coverage."
+"Full source at github.com/hardik2004gupta/Veriducta. MIT license. 801 tests, 92.81% coverage."
 
 [4:00] End screen with links: GitHub, blog post, LinkedIn.
 

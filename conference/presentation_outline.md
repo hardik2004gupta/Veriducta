@@ -97,7 +97,7 @@
 - Can causal graphs (DAGs) replace sequential ablation to model inter-stage interactions?
 - What's the right threshold for generation attribution given LLM stochasticity?
 
-**GitHub**: github.com/hardik-gupta/veriducta
+**GitHub**: github.com/hardik2004gupta/Veriducta
 
 ---
 

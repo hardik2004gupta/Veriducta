@@ -80,7 +80,7 @@
 
 ### Slide 10 — CTA
 
-**Title**: "github.com/hardik-gupta/veriducta · MIT"
+**Title**: "github.com/hardik2004gupta/Veriducta · MIT"
 
 **Say**: "Open source. MIT. 801 tests. Docker Compose setup. If you've built a RAG pipeline and hit a failure you couldn't explain, Veriducta was built for you. Thank you."
 

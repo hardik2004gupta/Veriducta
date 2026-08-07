@@ -291,7 +291,7 @@ The two dominant contributors are dense embedding inference and cross-encoder re
 ## Getting Started
 
 ```bash
-git clone https://github.com/hardik-gupta/veriducta.git
+git clone https://github.com/hardik2004gupta/Veriducta.git
 cd veriducta
 uv pip install --system ".[dev]"
 cp .env.example .env          # add ANTHROPIC_API_KEY
@@ -306,7 +306,7 @@ The evaluation harness, replay engine, and observability dashboard all work on m
 
 ---
 
-The complete source, evaluation datasets, and architecture documentation are available at [github.com/hardik-gupta/veriducta](https://github.com/hardik-gupta/veriducta).
+The complete source, evaluation datasets, and architecture documentation are available at [https://github.com/hardik2004gupta/veriducta](https://github.com/hardik2004gupta/Veriducta).
 
 If you've built a RAG pipeline and haven't answered "which stage caused that failure?", Veriducta was built for you.
 

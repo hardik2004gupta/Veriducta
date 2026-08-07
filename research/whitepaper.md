@@ -200,7 +200,7 @@ Both targets met: ≥70% overall (73.3%), ≥65% boundary-error (68.8%).
 
 We present Veriducta, an RAG observability system that closes the diagnosis gap between faithfulness measurement and root-cause attribution. The key technical contributions are: (1) mandatory pre-reranking candidate list storage enabling oracle-free reranker ablation, (2) a four-stage counterfactual ablation engine achieving 73.3% overall attribution accuracy, and (3) four metrics absent from existing RAG evaluation frameworks.
 
-Veriducta is open source under MIT license at github.com/hardik-gupta/veriducta.
+Veriducta is open source under MIT license at github.com/hardik2004gupta/Veriducta.
 
 ---
 
