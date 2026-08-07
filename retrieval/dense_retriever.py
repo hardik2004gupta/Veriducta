@@ -182,7 +182,7 @@ class DenseRetriever:
                 limit=self._top_k,
                 with_payload=True,
             )
-            return result.points  # type: ignore[no-any-return]
+            return result.points
         except Exception as exc:
             raise VectorStoreError(
                 "Qdrant dense search failed",
