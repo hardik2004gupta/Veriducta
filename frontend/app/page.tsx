@@ -180,7 +180,7 @@ export default function LandingPage() {
         </div>
         <div className="flex items-center gap-4">
           <Link href="/docs" className="text-sm text-slate-400 hover:text-white transition-colors">Docs</Link>
-          <a href="https://github.com/hardik-gupta/veriducta" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 hover:text-white transition-colors flex items-center gap-1.5">
+          <a href="https://github.com/hardik2004gupta/Veriducta" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 hover:text-white transition-colors flex items-center gap-1.5">
             <Github className="h-4 w-4" /> GitHub
           </a>
           <Link href="/dashboard">
@@ -245,7 +245,7 @@ export default function LandingPage() {
               Try a Query
             </Button>
           </Link>
-          <a href="https://github.com/hardik-gupta/veriducta" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/hardik2004gupta/Veriducta" target="_blank" rel="noopener noreferrer">
             <Button size="lg" variant="ghost">
               <Github className="h-4 w-4" /> GitHub
             </Button>
@@ -471,7 +471,7 @@ export default function LandingPage() {
         <div className="flex items-center justify-center gap-4 text-sm text-slate-600">
           <span>Built with precision by Hardik Gupta</span>
           <span>·</span>
-          <a href="https://github.com/hardik-gupta/veriducta" target="_blank" rel="noopener noreferrer" className="hover:text-slate-400 transition-colors flex items-center gap-1">
+          <a href="https://github.com/hardik2004gupta/Veriducta" target="_blank" rel="noopener noreferrer" className="hover:text-slate-400 transition-colors flex items-center gap-1">
             GitHub <ExternalLink className="h-3 w-3" />
           </a>
           <span>·</span>
